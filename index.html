@@ -1614,13 +1614,7 @@
     document.getElementById('masterpin').addEventListener("keypress", function(event) {
         if (event.key === "Enter") { loginMASTER(); }
     });
-    <!-- security -->
-    
-    // SECURITY: Kick out if not logged in
-    if(!localStorage.getItem('adminToken')) {
-        alert("Please login first");
-        window.location.href = "index.html";
-    }
+ 
     
     // Show admin name
     document.addEventListener('DOMContentLoaded', () => {
