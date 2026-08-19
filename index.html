@@ -41,7 +41,7 @@
             max-width: 1150px;
             width: 100%;
             margin: auto;
-            padding: 80px 25px;
+            padding: 80px 55px;
         }
 
         h3 {
@@ -123,7 +123,7 @@
                 ),
                 url("Top.png") center/cover no-repeat;
         }
-
+.hero-img { width:100%; border-radius:12px; margin-bottom:20px; }
         .hero::before {
             content: "";
             position: absolute;
@@ -326,27 +326,55 @@
             margin: 8px;
         }
 
+        
         /* ================= GALLERY ================= */
-
-        .gallery {
+        .gallery { /* <-- added . */
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .gallery img {
-            width: 100%;
-            height: 230px;
-            object-fit: cover;
-            border-radius: 10px;
+        .gallery-item {
+            background: var(--card);
+            padding:0;
+            border-radius: 12px;
             border: 2px solid #222;
+            overflow:hidden;
             transition: 0.4s;
         }
 
-        .gallery img:hover {
+        .gallery-item:hover {
+            border-color: var(--red);
+            transform: translateY(-5px);
+        }
+
+        .gallery-item .label {
+            display: block;
+            color: var(--yellow);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .gallery img, .gallery video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display:block;
+            border-radius: 0;
+            border:none;
+            transition: 0.4s;
+        }
+
+        .gallery img:hover, .gallery video:hover {
             transform: scale(1.04);
             border-color: var(--red);
-      }
+        }
+        .gallery-item.full {
+    padding: 0;
+    overflow: hidden; 
+}
         /* ================= FEES ================= */
 
         .pricing {
@@ -396,37 +424,6 @@
             font-weight: bold;
         }
 
-        /* ================= PAYMENT ================= */
-
-        .payment {
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            text-align: center;
-            background: #080808;
-            border: 2px solid var(--green);
-            border-radius: 15px;
-        }
-
-        .payment h4 {
-            color: var(--green);
-            font-size: 2rem;
-        }
-
-        .ecocash-number {
-            margin: 20px 0;
-            padding: 20px;
-            background: #181818;
-            border: 2px solid var(--red);
-            border-radius: 8px;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .payment p {
-            color: var(--gray);
-            margin: 8px;
-        }
 
         /* ================= FORMS ================= */
 
@@ -568,8 +565,41 @@
             margin-top: 2px;
             accent-color: var(--red);
         }
+        
+         /* ================= PAYMENT ================= */
 
-        /* ================= STUDENT PORTAL ================= */
+        .payment {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            text-align: center;
+            background: #080808;
+            border: 2px solid var(--green);
+            border-radius: 15px;
+        }
+
+        .payment h4 {
+            color: var(--green);
+            font-size: 2rem;
+        }
+
+        .ecocash-number {
+            margin: 20px 0;
+            padding: 20px;
+            background: #181818;
+            border: 2px solid var(--red);
+            border-radius: 8px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .payment p {
+            color: var(--gray);
+            margin: 8px;
+        }
+
+
+        /* ================= ADIMN PORTAL ================= */
 
         .portal {
             background:
@@ -822,7 +852,7 @@
             }
 
             .gallery img {
-                height: 220px;
+                height: auto;
             }
 
             .price-card {
@@ -916,7 +946,7 @@
 
             <li>
                 <a href="#portal" onclick="closeMenu()">
-                    STUDENT PORTAL
+                    ADIMN PORTAL
                 </a>
             </li>
 
@@ -1047,8 +1077,219 @@
             </div>
 
         </div>
+         <!-- ================= REGISTRATION ================= -->
+
+    <section id="registration">
+
+        <h3>ONLINE REGISTRATION</h3>
+
+        <div class="registration-box">
+
+            <div class="registration-header">
+
+                <span class="registration-icon">
+                    🥋
+                </span>
+
+                <h4>
+                    JOIN TOP TAEKWONDO
+                </h4>
+
+                <p>
+                    Start your Taekwondo journey today.
+                </p>
+
+                <div class="registration-price">
+
+                    $15
+
+                    <span>
+                        REGISTRATION FEE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="registration-payment">
+
+                <h5>
+                    💳 REGISTRATION PAYMENT
+                </h5>
+
+                <p>
+                    Pay the
+                    <strong>$15 registration fee</strong>
+                    using EcoCash:
+                </p>
+
+                <div class="registration-number">
+                    +263 78 460 2024
+                </div>
+
+                <p>
+                    Account Name:
+                    <strong>Ralph Mutaurwa</strong>
+                </p>
+
+                <p class="payment-note">
+                    Keep your payment confirmation after payment.
+                </p>
+
+            </div>
+
+
+            <!-- FORMSPREE REGISTRATION FORM -->
+
+            <form
+                action="https://formspree.io/f/mdendroa"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="Registration Fee"
+                    value="$15"
+                >
+
+                <input
+                    type="text"
+                    name="Student Name"
+                    placeholder="Student Full Name"
+                    required
+                >
+<label>Date of Birth</label>
+                <input
+                    type="date"
+                    name="Date of Birth"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    name="Phone"
+                    placeholder="Student / Parent Phone Number"
+                    required
+                >
+
+                <input
+                    type="email"
+                    name="Email"
+                    placeholder="Email Address"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="Parent Guardian"
+                    placeholder="Parent / Guardian Name"
+                >
+
+                <input
+                    type="tel"
+                    name="Emergency Contact"
+                    placeholder="Emergency Contact Number"
+                    required
+                >
+
+                <select
+                    name="Experience"
+                    required
+                >
+
+                    <option value="">
+                        Previous Taekwondo Experience?
+                    </option>
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Some Experience">
+                        Some Experience
+                    </option>
+
+                    <option value="Experienced">
+                        Experienced
+                    </option>
+
+                </select>
+
+                <textarea
+                    name="Message"
+                    rows="4"
+                    placeholder="Any additional information..."
+                ></textarea>
+
+                <label class="payment-check">
+
+                    <input
+                        type="checkbox"
+                        name="Fee Confirmation"
+                        value="I understand the registration fee is $15"
+                        required
+                    >
+
+                    <span>
+                        I understand that the online registration fee is $15.
+                    </span>
+
+                </label>
+
+                <button type="submit">
+                    🥋 SUBMIT REGISTRATION
+                </button>
+
+            </form>
+
+        </div>
 
     </section>
+
+
+    </section>
+    
+<!-- Gallery  -->
+<section id="gallery">
+  <h3>OUR GALLERY</h3>
+
+  <div class="gallery">
+    
+    <div class="gallery-item">
+      <span class="label">OUR CLUB AT THE TOURNAMENT</span>
+      <img src="training.png" alt="Taekwondo training">
+    </div>
+
+    <div class="gallery-item">
+      <span class="label">Our Medals At Soundz Z Championship</span>
+      <img src="md.png" alt="Taekwondo sparring">
+    </div>
+
+    <div class="gallery-item">
+      <span class="label">Our Medal winners At HARARE MAYOR'S TAEKWONDO CHALLENGE CUP 2026</span>
+      <img src="tkd.png" alt="Taekwondo Tournament">
+    </div>
+
+    <div class="gallery-item full">
+  <span class="label">OUR COACH</span>
+  <img src="u.png">
+</div>
+
+    <div class="gallery-item">
+      <span class="label">OUR SENIOR STUDENTS</span>
+      <img src="s.png" alt="Taekwondo uniform">
+    </div>
+
+    <div class="gallery-item">
+      <span class="label">OUR SPARRING</span>
+      <video width="100%" controls>
+        <source src="my-video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+</section>
 
 
     <!-- ================= TRAINING ================= -->
@@ -1091,48 +1332,6 @@
 
     </section>
 
-
-    <!-- ================= GALLERY ================= -->
-
-    <section id="gallery">
-
-        <h3>OUR GALLERY</h3>
-
-        <div class="gallery">
-            <div class="gallery-item">
-                <span class="label">OUR CLUB AT THE TOURNAMENT</span>
-
-            <img
-                src="training.png"
-                alt="Taekwondo training"
-            > <span class="label">Our Medals  At Soundz Z ChampionsShip</span>
-                <img
-                src="md.png"
-                alt="Taekwondo sparring"
-            ><span class="label">Our Medal winners At HARARE MAYOR'S TAEKWONDO CHALLENGE CUP @2026</span>
-            <img
-                src="tkd.png"
-                alt="Taekwondo Tournment"
-            >
-            <span class="label">OUR  coach </span>
-            <img
-                src="tk.png"
-                alt="Taekwondo sparring"
-            >
-</div>
-   <span class="label">OUR SINOR STUDENTS</span>
-            <img
-                src="W.png"
-                alt="Taekwondo uniform"
-            >
-               <span class="label">OUR SPIRRING</span>
-            <video width="100%" controls>
-  <source src="my-video.mp4" type="video/mp4">
-</video>
-
-        </div>
-
-    </section>
 
 
     <!-- ================= FEES ================= -->
@@ -1244,204 +1443,36 @@
     </section>
 
 
-    <!-- ================= REGISTRATION ================= -->
+    
 
-    <section id="registration">
-
-        <h3>ONLINE REGISTRATION</h3>
-
-        <div class="registration-box">
-
-            <div class="registration-header">
-
-                <span class="registration-icon">
-                    🥋
-                </span>
-
-                <h4>
-                    JOIN TOP TAEKWONDO
-                </h4>
-
-                <p>
-                    Start your Taekwondo journey today.
-                </p>
-
-                <div class="registration-price">
-
-                    $15
-
-                    <span>
-                        REGISTRATION FEE
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="registration-payment">
-
-                <h5>
-                    💳 REGISTRATION PAYMENT
-                </h5>
-
-                <p>
-                    Pay the
-                    <strong>$15 registration fee</strong>
-                    using EcoCash:
-                </p>
-
-                <div class="registration-number">
-                    +263 78 460 2024
-                </div>
-
-                <p>
-                    Account Name:
-                    <strong>Ralph Mutaurwa</strong>
-                </p>
-
-                <p class="payment-note">
-                    Keep your payment confirmation after payment.
-                </p>
-
-            </div>
-
-
-            <!-- FORMSPREE REGISTRATION FORM -->
-
-            <form
-                action="https://formspree.io/f/mdendroa"
-                method="POST"
-            >
-
-                <input
-                    type="hidden"
-                    name="Registration Fee"
-                    value="$15"
-                >
-
-                <input
-                    type="text"
-                    name="Student Name"
-                    placeholder="Student Full Name"
-                    required
-                >
-<label>Date of Birth</label>
-                <input
-                    type="date"
-                    name="Date of Birth"
-                    required
-                >
-
-                <input
-                    type="tel"
-                    name="Phone"
-                    placeholder="Student / Parent Phone Number"
-                    required
-                >
-
-                <input
-                    type="email"
-                    name="Email"
-                    placeholder="Email Address"
-                    required
-                >
-
-                <input
-                    type="text"
-                    name="Parent Guardian"
-                    placeholder="Parent / Guardian Name (if applicable)"
-                >
-
-                <input
-                    type="tel"
-                    name="Emergency Contact"
-                    placeholder="Emergency Contact Number"
-                    required
-                >
-
-                <select
-                    name="Experience"
-                    required
-                >
-
-                    <option value="">
-                        Previous Taekwondo Experience?
-                    </option>
-
-                    <option value="Beginner">
-                        Beginner
-                    </option>
-
-                    <option value="Some Experience">
-                        Some Experience
-                    </option>
-
-                    <option value="Experienced">
-                        Experienced
-                    </option>
-
-                </select>
-
-                <textarea
-                    name="Message"
-                    rows="4"
-                    placeholder="Any additional information..."
-                ></textarea>
-
-                <label class="payment-check">
-
-                    <input
-                        type="checkbox"
-                        name="Fee Confirmation"
-                        value="I understand the registration fee is $15"
-                        required
-                    >
-
-                    <span>
-                        I understand that the online registration fee is $15.
-                    </span>
-
-                </label>
-
-                <button type="submit">
-                    🥋 SUBMIT REGISTRATION
-                </button>
-
-            </form>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= STUDENT PORTAL ================= -->
+            
+    <!-- ================= Adimn PORTAL ================= -->
 
     <section id="portal" class="portal">
 
         <h3>
-            🥋 STUDENT PORTAL
+            🥋 ADIMN PORTAL
         </h3>
 
         <div class="portal-login">
 
             <h4>
-                STUDENT LOGIN
+                ADIMN LOGIN
             </h4>
 
             <input
                 type="text"
-                id="studentName"
-                placeholder="Student Name"
+                id="email"
+                placeholder="Your email"
             >
 
             <input
                 type="password"
-                id="studentPin"
-                placeholder="Student PIN"
+                id="masterpin"
+                placeholder="Your pin PIN"
             >
 
-            <button onclick="loginStudent()">
+            <button onclick="loginMASTER()">
                 LOGIN
             </button>
 
@@ -1453,195 +1484,11 @@
                     color:#ff5555;
                 "
             ></p>
-
+<p>Welcome, <span id="adminName">Master Admin</span></p>
         </div>
 
 
-        <div
-            class="dashboard"
-            id="dashboard"
-        >
-
-            <div class="student-header">
-
-                <h4>
-                    Welcome,
-                    <span id="displayName">
-                        Student
-                    </span>
-                    👋
-                </h4>
-
-                <p>
-                    TOP TAEKWONDO Student Dashboard
-                </p>
-
-            </div>
-
-
-            <div class="portal-grid">
-
-                <div class="portal-card">
-
-                    <div class="icon">
-                        🥋
-                    </div>
-
-                    <h5>
-                        CURRENT BELT
-                    </h5>
-
-                    <p>
-                        Blue Belt
-                    </p>
-
-                </div>
-
-
-                <div class="portal-card">
-
-                    <div class="icon">
-                        📊
-                    </div>
-
-                    <h5>
-                        ATTENDANCE
-                    </h5>
-
-                    <p>
-                        92%
-                    </p>
-
-                    <div class="progress">
-
-                        <div class="progress-bar"></div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="portal-card">
-
-                    <div class="icon">
-                        📅
-                    </div>
-
-                    <h5>
-                        NEXT TRAINING
-                    </h5>
-
-                    <p>
-                        Monday - Friday
-                    </p>
-
-                    <p>
-                        15:00 - 17:00
-                    </p>
-
-                </div>
-
-
-                <div class="portal-card">
-
-                    <div class="icon">
-                        🏆
-                    </div>
-
-                    <h5>
-                        ACHIEVEMENTS
-                    </h5>
-
-                    <p>
-                        Grading completed
-                    </p>
-
-                    <p>
-                        Tournament participant
-                    </p>
-
-                </div>
-
-
-                <div class="portal-card">
-
-                    <div class="icon">
-                        💳
-                    </div>
-
-                    <h5>
-                        MEMBERSHIP
-                    </h5>
-
-                    <p>
-                        Status: Active
-                    </p>
-
-                </div>
-
-
-                <div class="portal-card">
-
-                    <div class="icon">
-                        📢
-                    </div>
-
-                    <h5>
-                        ANNOUNCEMENTS
-                    </h5>
-
-                    <p>
-                        Check with your instructor
-                        for upcoming grading dates.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="portal-card"
-                style="margin-top:20px;"
-            >
-
-                <h5>
-                    🥋 BELT PROGRESSION
-                </h5>
-
-                <p>
-                    Your Taekwondo journey
-                </p>
-
-                <div class="belts">
-
-                    <div class="belt white"></div>
-
-                    <div class="belt yellow"></div>
-
-                    <div class="belt green"></div>
-
-                    <div class="belt blue"></div>
-
-                    <div class="belt red-belt"></div>
-
-                    <div class="belt black"></div>
-
-                </div>
-
-            </div>
-
-
-            <button
-                onclick="logoutStudent()"
-                style="margin-top:20px;"
-            >
-                LOGOUT
-            </button>
-
-        </div>
-
-    </section>
+        
 
 
     <!-- ================= CONTACT ================= -->
@@ -1737,85 +1584,58 @@
                 .classList.remove("active");
 
         }
+<!-- Adimn list portal -->
+    // LIST OF ADMINS - Add as many as you want here
+    const ADMINS = [
+        { email: "Raleigh@gmail.com", pin: "1234", name: "Raleigh" },      { email:"panashechamani175@gmail.com",pin:"@chamani2010", name: "Panashe" },     { email:"kupakwashechingaipe@gmail.com",pin:"Irene@2005*!*", name: "Kupa" }
+    ];
 
+    function loginMASTER() {
+        const email = document.getElementById('email').value.trim();
+        const pin = document.getElementById('masterpin').value.trim();
+        const msg = document.getElementById('loginMessage');
+        const admin = ADMINS.find(a => a.email === email && a.pin === pin);
 
-        /* STUDENT PORTAL */
-
-        function loginStudent() {
-
-            const name =
-                document
-                    .getElementById("studentName")
-                    .value
-                    .trim();
-
-            const pin =
-                document
-                    .getElementById("studentPin")
-                    .value
-                    .trim();
-
-            const message =
-                document.getElementById("loginMessage");
-
-
-            if (name === "" || pin === "") {
-
-                message.textContent =
-                    "Please enter your student name and PIN.";
-
-                return;
-            }
-
-
-            document
-                .getElementById("displayName")
-                .textContent = name;
-
-
-            document
-                .getElementById("dashboard")
-                .classList.add("active");
-
-
-            message.textContent = "";
-
-
-            document
-                .getElementById("dashboard")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
+        if(admin) {
+            msg.style.color = "green";
+            msg.textContent = `Welcome ${admin.name}! Redirecting...`;
+            localStorage.setItem('adminToken', 'loggedIn');
+            localStorage.setItem('adminName', admin.name);
+            localStorage.setItem('adminEmail', admin.email);
+            setTimeout(() => {
+                window.location.href = "portal.html";
+            }, 1000);
+        } else {
+            msg.style.color = "red";
+            msg.textContent = "Invalid Email or PIN";
         }
+    }
 
+    document.getElementById('masterpin').addEventListener("keypress", function(event) {
+        if (event.key === "Enter") { loginMASTER(); }
+    });
+    <!-- security -->
+    
+    // SECURITY: Kick out if not logged in
+    if(!localStorage.getItem('adminToken')) {
+        alert("Please login first");
+        window.location.href = "index.html";
+    }
+    
+    // Show admin name
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('adminName').textContent = localStorage.getItem('adminName');
+    });
 
-        function logoutStudent() {
+    // LOGOUT FUNCTION
+    function logout() {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminName');
+        localStorage.removeItem('adminEmail');
+        window.location.href = "index.html";
+    }
 
-            document
-                .getElementById("dashboard")
-                .classList.remove("active");
-
-
-            document
-                .getElementById("studentName")
-                .value = "";
-
-
-            document
-                .getElementById("studentPin")
-                .value = "";
-
-
-            document
-                .getElementById("portal")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
-
-    </script>
+</script>
 
 </body>
 
