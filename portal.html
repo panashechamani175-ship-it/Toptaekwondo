@@ -32,6 +32,8 @@
       .fee-due { color: var(--red); font-weight: bold; }
       .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index: 999; }
       .modal-content { background:white; padding:25px; border-radius:12px; width:90%; max-width:550px; max-height: 90vh; overflow-y: auto; }
+      .dob-group { display: flex; gap: 8px; }
+      .dob-group select { flex: 1; }
     </style>
 </head>
 <body>
@@ -41,15 +43,21 @@
     <p>Welcome, <span id="adminName">Master Admin</span></p>
 </div>
     
-  
-
     <div class="admin-grid">
         <!-- ADD STUDENT -->
         <div class="admin-card">
             <h3>➕ Add New Student - From Website Form</h3>
             <div class="section-title">Student Information</div>
             <input type="text" id="sName" placeholder="Full Name">
-            <input type="date" id="sDOB" placeholder="Date of Birth">
+            
+            <div class="section-title">Date of Birth</div>
+            <div class="dob-group">
+                <select id="sDay"><option value="">Day</option></select>
+                <select id="sMonth"><option value="">Month</option></select>
+                <select id="sYear"><option value="">Year</option></select>
+            </div>
+            <input type="hidden" id="sDOB">
+
             <select id="sGender"><option value="">Select Gender</option><option>Male</option><option>Female</option></select>
             <input type="email" id="sEmail" placeholder="Student Email">
             <input type="tel" id="sPhone" placeholder="Student Phone">
@@ -99,15 +107,34 @@
 <script>
     let students = JSON.parse(localStorage.getItem('tkdStudents')) || [];
     let editingId = null;
-    const belts = ["White","Yellow","Orange","Green","Blue","Red","Black"];
+    const belts = ["White","Yellow","Green","Blue","Red","Black"];
+    const months = {Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
     const REG_FEE = 15;
+
+    // Fill DOB dropdowns on load - NOW 1950 TO 2026
+    window.onload = function(){
+        for(let i=1;i<=31;i++) document.getElementById('sDay').innerHTML += `<option>${i}</option>`;
+        ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].forEach(m => document.getElementById('sMonth').innerHTML += `<option>${m}</option>`);
+        for(let i=2026;i>=1950;i--) document.getElementById('sYear').innerHTML += `<option>${i}</option>`; // <-- 76 YEARS
+        loadStudents();
+    }
+
+    function combineDOB() {
+        const day = document.getElementById('sDay').value;
+        const month = document.getElementById('sMonth').value;
+        const year = document.getElementById('sYear').value;
+        if(day && month && year){
+            document.getElementById('sDOB').value = `${year}-${months[month]}-${String(day).padStart(2,'0')}`;
+        }
+    }
 
     function getMonthlyFee(dob) {
         const age = getAge(dob);
-        return age < 18? 20 : 40; // Kids 20, Adults 40
+        return age < 18? 20 : 40;
     }
 
     function addStudent() {
+        combineDOB();
         const student = {
             id: Date.now(),
             name: document.getElementById('sName').value.trim(),
@@ -196,9 +223,15 @@
     function openEdit(id) {
         editingId = id;
         const s = students.find(st => st.id === id);
+        const [y,m,d] = s.dob.split('-');
+        const monthName = Object.keys(months).find(key => months[key] === m);
         document.getElementById('editForm').innerHTML = `
             <input type="text" id="editName" value="${s.name}">
-            <input type="date" id="editDOB" value="${s.dob}">
+            <div class="dob-group">
+                <select id="editDay">${Array.from({length:31},(_,i)=>`<option ${i+1==d?'selected':''}>${i+1}</option>`)}</select>
+                <select id="editMonth">${Object.keys(months).map(mn=>`<option ${mn==monthName?'selected':''}>${mn}</option>`)}</select>
+                <select id="editYear">${Array.from({length:77},(_,i)=>`<option ${2026-i==y?'selected':''}>${2026-i}</option>`)}</select> <!-- 1950-2026 -->
+            </div>
             <select id="editGender"><option>${s.gender}</option><option>Male</option><option>Female</option></select>
             <input type="email" id="editEmail" value="${s.email}">
             <select id="editBelt">${belts.map(b => `<option ${s.belt===b?'selected':''}>${b}</option>`).join('')}</select>
@@ -211,8 +244,12 @@
 
     function saveEdit() {
         const s = students.find(st => st.id === editingId);
+        const day = document.getElementById('editDay').value;
+        const month = document.getElementById('editMonth').value;
+        const year = document.getElementById('editYear').value;
+        s.dob = `${year}-${months[month]}-${String(day).padStart(2,'0')}`;
+        
         s.name = document.getElementById('editName').value;
-        s.dob = document.getElementById('editDOB').value;
         s.gender = document.getElementById('editGender').value;
         s.email = document.getElementById('editEmail').value;
         s.belt = document.getElementById('editBelt').value;
@@ -229,8 +266,6 @@
     function deleteStudent(id) { if(!confirm("Delete?")) return; students = students.filter(s => s.id!== id); saveToStorage(); loadStudents(); }
     function saveToStorage() { localStorage.setItem('tkdStudents', JSON.stringify(students)); }
     function logout() { window.location = 'index.html'; }
-
-    loadStudents();
 </script>
 </body>
 </html>
