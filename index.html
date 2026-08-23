@@ -960,7 +960,8 @@
                     CONTACT
                 </a>
             </li>
-
+<li><a href="#privacy" onclick="closeMenu()">PRIVACY</a></li>
+<li><a href="#terms" onclick="closeMenu()">TERMS</a></li>
         </ul>
 
     </nav>
@@ -1080,8 +1081,9 @@
                 </p>
 
             </div>
+            </section>
 
-        </div>
+        
          <!-- ================= REGISTRATION ================= -->
 
     <section id="registration">
@@ -1143,11 +1145,13 @@
                 </p>
 
             </div>
+            </section>
 
 
             <!-- FORMSPREE REGISTRATION FORM -->
 
             <form
+                id="registrationForm"
                 action="https://formspree.io/f/mdendroa"
                 method="POST"
             >
@@ -1471,10 +1475,10 @@
             <input
                 type="password"
                 id="masterpin"
-                placeholder="Your pin PIN"
+                placeholder="Your password"
             >
 
-            <button onclick="loginMASTER()">
+            <button id="loginBtn" type="button">
                 LOGIN
             </button>
 
@@ -1486,7 +1490,6 @@
                     color:#ff5555;
                 "
             ></p>
-<p>Welcome, <span id="adminName">Master Admin</span></p>
         </div>
 
 
@@ -1562,7 +1565,17 @@
         </p>
 
     </footer>
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+<h3>PRIVACY POLICY</h3>
+<p>TOP TAEKWONDO collects your name and contact details only for registration. We do not share your information with third parties. By using this site you agree to our terms.</p>
+</section>
 
+<!-- TERMS -->
+<section id="terms">
+<h3>TERMS & CONDITIONS</h3>
+<p>By registering you agree to follow dojo rules. Fees are non-refundable. Training is at your own risk.</p>
+</section>
 
     <!-- ================= JAVASCRIPT ================= -->
 
@@ -1586,52 +1599,103 @@
                 .classList.remove("active");
 
         }
-<!-- Admin list portal -->
-    // LIST OF ADMINS - Add as many as you want here
-    const ADMINS = [
-        { email: "Raleigh@gmail.com", pin: "1234", name: "Raleigh" },      { email:"panashechamani175@gmail.com",pin:"@chamani2010", name: "Panashe" },     { email:"kupakwashechingaipe@gmail.com",pin:"Irene@2005*!*", name: "Kupa" }
-    ];
-
-    function loginMASTER() {
-        const email = document.getElementById('email').value.trim();
-        const pin = document.getElementById('masterpin').value.trim();
-        const msg = document.getElementById('loginMessage');
-        const admin = ADMINS.find(a => a.email === email && a.pin === pin);
-
-        if(admin) {
-            msg.style.color = "green";
-            msg.textContent = `Welcome ${admin.name}! Redirecting...`;
-            localStorage.setItem('adminToken', 'loggedIn');
-            localStorage.setItem('adminName', admin.name);
-            localStorage.setItem('adminEmail', admin.email);
-            setTimeout(() => {
-                window.location.href = "portal.html";
-            }, 1000);
-        } else {
-            msg.style.color = "red";
-            msg.textContent = "Invalid Email or PIN";
-        }
-    }
-
-    document.getElementById('masterpin').addEventListener("keypress", function(event) {
-        if (event.key === "Enter") { loginMASTER(); }
-    });
- 
-    
-    // Show admin name
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('adminName').textContent = localStorage.getItem('adminName');
-    });
-
-    // LOGOUT FUNCTION
-    function logout() {
-        localStorage.removeItem('adminToken');
-        localStorage.removeItem('adminName');
-        localStorage.removeItem('adminEmail');
-        window.location.href = "index.html";
-    }
 
 </script>
+
+    <!-- ================= SUPABASE REGISTRATION SAVE ================= -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const SUPABASE_URL = 'https://ohrzdhpttcxisiwmesxp.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const form = document.getElementById('registrationForm');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const data = new FormData(form);
+
+            const { error } = await supabase.from('students').insert([{
+                student_name: data.get('Student Name'),
+                date_of_birth: data.get('Date of Birth'),
+                phone: data.get('Phone'),
+                email: data.get('Email'),
+                parent_guardian: data.get('Parent Guardian'),
+                emergency_contact: data.get('Emergency Contact'),
+                experience: data.get('Experience'),
+                message: data.get('Message'),
+                registration_fee: 15,
+                payment_status: 'pending',
+                application_status: 'pending'
+            }]);
+
+            if (error) {
+                console.error('Supabase insert error:', error);
+                alert('Sorry, something went wrong saving your registration. Please try again or message us on WhatsApp.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+                return;
+            }
+
+            // Also send to Formspree so you still get an email notification (non-blocking)
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).catch(() => {});
+
+            alert('🥋 Registration received! Please make sure you\'ve sent the $15 registration fee via EcoCash.');
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        });
+
+        // ---- Admin login (Supabase Auth) ----
+        const emailInput = document.getElementById('email');
+        const pinInput = document.getElementById('masterpin');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginMsg = document.getElementById('loginMessage');
+
+        async function loginMaster() {
+            const email = emailInput.value.trim();
+            const password = pinInput.value.trim();
+
+            if (!email || !password) {
+                loginMsg.style.color = '#ff5555';
+                loginMsg.textContent = 'Please enter your email and password';
+                return;
+            }
+
+            loginMsg.style.color = '#ccc';
+            loginMsg.textContent = 'Logging in...';
+
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                loginMsg.style.color = '#ff5555';
+                loginMsg.textContent = 'Invalid email or password';
+                return;
+            }
+
+            loginMsg.style.color = '#00a651';
+            loginMsg.textContent = 'Welcome! Redirecting...';
+            setTimeout(() => {
+                window.location.href = 'portal.html';
+            }, 600);
+        }
+
+        loginBtn.addEventListener('click', loginMaster);
+        pinInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') loginMaster();
+        });
+    </script>
 
 </body>
 
