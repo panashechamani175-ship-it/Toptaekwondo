@@ -3,346 +3,2366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TOP TKD - Admin Panel</title>
+
 <style>
-:root{--red:#d32f2f;--black:#1a1a1a;--yellow:#ffc107;--bg:#f5f5f5;--green:#4caf50}
-*{box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:var(--bg);margin:0;padding:20px}
-.admin-header{background:linear-gradient(135deg,var(--black),var(--red));color:white;padding:25px;border-radius:12px;border-left:6px solid var(--yellow);margin-bottom:25px}
-.admin-header h1{margin:0;color:var(--yellow)}.logout{background:rgba(255,255,255,.2);color:white;border:1px solid white;float:right;width:auto;padding:8px 18px;cursor:pointer;border-radius:8px;font-weight:bold}
-.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:900px){.admin-grid{grid-template-columns:1fr}}
-.admin-card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
-.admin-card h3{color:var(--red);margin-top:0;border-bottom:2px solid var(--yellow);padding-bottom:8px}
-.section-title{font-weight:bold;color:var(--black);margin-top:12px;margin-bottom:5px;font-size:.9rem}
-input,select,textarea,button{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ccc;font-size:.95rem}
-button{background:var(--red);color:white;border:none;font-weight:bold;cursor:pointer;margin-top:10px}button:hover{background:#b71c1c}
-button.edit{background:#1976d2}button.save{background:var(--green)}button.reg-paid{background:var(--green)}
-.student-row{padding:12px;border:1px solid #eee;margin-bottom:10px;border-radius:8px;background:#fafafa}
-.student-row small{display:block;color:#555;margin-top:3px}.btn-group{display:flex;gap:8px;flex-wrap:wrap}.btn-group button{flex:1;min-width:120px}
-.progress-bar{background:#e0e0e0;border-radius:10px;height:10px;margin-top:5px}.progress{background:var(--green);height:10px;border-radius:10px}
-.fee-paid{color:var(--green);font-weight:bold}.fee-due{color:var(--red);font-weight:bold}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);justify-content:center;align-items:center;z-index:999}
-.modal-content{background:white;padding:25px;border-radius:12px;width:90%;max-width:550px;max-height:90vh;overflow-y:auto}
-.dob-group{display:flex;gap:8px}.dob-group select{flex:1}
-#loginScreen{max-width:450px;margin:50px auto}.hidden{display:none!important}.notice{padding:10px;border-radius:8px;margin:8px 0;background:#fff3cd;color:#664d03}
+
+:root{
+--red:#d32f2f;
+--black:#1a1a1a;
+--yellow:#ffc107;
+--bg:#f5f5f5;
+--green:#4caf50;
+--blue:#1976d2;
+}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:'Segoe UI',Arial,sans-serif;
+background:var(--bg);
+margin:0;
+padding:20px;
+}
+
+.hidden{
+display:none !important;
+}
+
+/* LOGIN */
+
+#loginScreen{
+max-width:450px;
+margin:70px auto;
+}
+
+.login-box{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+.login-box h2{
+color:var(--red);
+margin-top:0;
+}
+
+input,
+select,
+textarea,
+button{
+width:100%;
+padding:11px;
+margin:6px 0;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+textarea{
+resize:vertical;
+}
+
+button{
+background:var(--red);
+color:white;
+border:none;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#b71c1c;
+}
+
+button.edit{
+background:var(--blue);
+}
+
+button.save{
+background:var(--green);
+}
+
+button.reg-paid{
+background:var(--green);
+}
+
+button.delete{
+background:#555;
+}
+
+/* HEADER */
+
+.admin-header{
+background:linear-gradient(
+135deg,
+var(--black),
+var(--red)
+);
+
+color:white;
+padding:25px;
+border-radius:12px;
+border-left:6px solid var(--yellow);
+margin-bottom:25px;
+}
+
+.admin-header h1{
+margin:0;
+color:var(--yellow);
+}
+
+.logout{
+background:rgba(255,255,255,.2);
+color:white;
+border:1px solid white;
+float:right;
+width:auto;
+padding:8px 18px;
+}
+
+/* GRID */
+
+.admin-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+@media(max-width:900px){
+
+.admin-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+/* CARDS */
+
+.admin-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.admin-card h3{
+color:var(--red);
+margin-top:0;
+border-bottom:2px solid var(--yellow);
+padding-bottom:8px;
+}
+
+.section-title{
+font-weight:bold;
+color:var(--black);
+margin-top:14px;
+margin-bottom:5px;
+font-size:.9rem;
+}
+
+/* DOB */
+
+.dob-group{
+display:flex;
+gap:8px;
+}
+
+.dob-group select{
+flex:1;
+}
+
+/* STUDENTS */
+
+.student-row{
+padding:15px;
+border:1px solid #ddd;
+margin-bottom:12px;
+border-radius:10px;
+background:#fafafa;
+}
+
+.student-row small{
+display:block;
+color:#555;
+margin-top:5px;
+}
+
+.btn-group{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+.btn-group button{
+flex:1;
+min-width:100px;
+}
+
+.progress-bar{
+background:#e0e0e0;
+border-radius:10px;
+height:10px;
+margin-top:7px;
+}
+
+.progress{
+background:var(--green);
+height:10px;
+border-radius:10px;
+}
+
+.fee-paid{
+color:var(--green);
+font-weight:bold;
+}
+
+.fee-due{
+color:var(--red);
+font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:white;
+padding:25px;
+border-radius:12px;
+width:90%;
+max-width:550px;
+max-height:90vh;
+overflow-y:auto;
+}
+
+/* MESSAGE */
+
+.message{
+padding:10px;
+margin-top:8px;
+border-radius:8px;
+font-weight:bold;
+}
+
+.success{
+color:#2e7d32;
+}
+
+.error{
+color:#c62828;
+}
+
+.notice{
+background:#fff3cd;
+color:#664d03;
+padding:10px;
+border-radius:8px;
+margin-top:10px;
+}
+
 </style>
 </head>
+
 <body>
 
-<div id="loginScreen" class="admin-card">
-<h2 style="color:#d32f2f">🥋 TOP TKD Admin Login</h2>
-<p>Sign in with the Supabase Auth account you created for your administrator.</p>
-<input type="email" id="loginEmail" placeholder="Admin email">
-<input type="password" id="loginPassword" placeholder="Password">
-<button onclick="login()">Login</button>
-<p id="loginMessage"></p>
+
+<!-- ========================= -->
+<!-- LOGIN -->
+<!-- ========================= -->
+
+<div id="loginScreen">
+
+<div class="login-box">
+
+<h2>🥋 TOP TKD Admin Login</h2>
+
+<p>
+Sign in with your Supabase administrator account.
+</p>
+
+<input
+type="email"
+id="loginEmail"
+placeholder="Admin email"
+>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Password"
+>
+
+<button onclick="login()">
+Login
+</button>
+
+<div id="loginMessage"></div>
+
 </div>
 
-<div id="app" class="hidden">
-<div class="admin-header">
-<button class="logout" onclick="logout()">Logout</button>
-<h1>🥋 TOP TKD ADMIN PANEL</h1>
-<p>Welcome, <span id="adminName">Master Admin</span></p>
 </div>
+
+
+<!-- ========================= -->
+<!-- ADMIN APPLICATION -->
+<!-- ========================= -->
+
+<div id="app" class="hidden">
+
+
+<!-- HEADER -->
+
+<div class="admin-header">
+
+<button
+class="logout"
+onclick="logout()"
+>
+Logout
+</button>
+
+<h1>
+🥋 TOP TKD ADMIN PANEL
+</h1>
+
+<p>
+Welcome,
+<span id="adminName">
+Master Admin
+</span>
+</p>
+
+</div>
+
 
 <div class="admin-grid">
 
+
+<!-- ========================= -->
+<!-- ADD STUDENT -->
+<!-- ========================= -->
+
 <div class="admin-card">
-<h3>➕ Add New Student - From Website Form</h3>
-<div class="section-title">Student Information</div>
-<input type="text" id="sName" placeholder="Full Name">
-<div class="section-title">Date of Birth</div>
+
+<h3>
+➕ Add New Student
+</h3>
+
+<div class="section-title">
+Student Information
+</div>
+
+<input
+type="text"
+id="sName"
+placeholder="Full Name"
+>
+
+<div class="section-title">
+Date of Birth
+</div>
+
 <div class="dob-group">
-<select id="sDay"><option value="">Day</option></select>
-<select id="sMonth"><option value="">Month</option></select>
-<select id="sYear"><option value="">Year</option></select>
-</div>
-<input type="hidden" id="sDOB">
-<select id="sGender"><option value="">Select Gender</option><option>Male</option><option>Female</option></select>
-<input type="email" id="sEmail" placeholder="Student Email">
-<input type="tel" id="sPhone" placeholder="Student Phone">
-<select id="sBelt"><option value="">Select Belt Rank</option><option>White</option><option>Yellow</option><option>Green</option><option>Blue</option><option>Red</option><option>Black</option></select>
-<select id="sExperience"><option value="">Experience Level</option><option>No Experience</option><option>Some Experience</option><option>Experienced</option></select>
 
-<div class="section-title">Parent / Guardian</div>
-<input type="text" id="pName" placeholder="Parent/Guardian Full Name">
-<input type="tel" id="pPhone" placeholder="Parent Phone Number">
-<textarea id="pAddress" placeholder="Home Address" rows="2"></textarea>
-<input type="tel" id="sEmergency" placeholder="Emergency Contact">
+<select id="sDay">
+<option value="">
+Day
+</option>
+</select>
 
-<div class="section-title">Medical & Fees</div>
-<textarea id="sDiseases" placeholder="Diseases, Allergies, Injuries" rows="3"></textarea>
-<label><input type="checkbox" id="sRegPaid"> Registration Fee Paid $15</label>
-<input type="number" id="sFeePaid" placeholder="Monthly Fee Paid This Month $">
-<button onclick="addStudent()">Save Student Profile</button>
-<p id="formMessage"></p>
+<select id="sMonth">
+<option value="">
+Month
+</option>
+</select>
+
+<select id="sYear">
+<option value="">
+Year
+</option>
+</select>
+
 </div>
+
+<select id="sGender">
+
+<option value="">
+Select Gender
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Female">
+Female
+</option>
+
+</select>
+
+
+<input
+type="email"
+id="sEmail"
+placeholder="Student Email"
+>
+
+<input
+type="tel"
+id="sPhone"
+placeholder="Student Phone"
+>
+
+
+<select id="sBelt">
+
+<option value="">
+Select Belt Rank
+</option>
+
+<option>
+White
+</option>
+
+<option>
+Yellow
+</option>
+
+<option>
+Green
+</option>
+
+<option>
+Blue
+</option>
+
+<option>
+Red
+</option>
+
+<option>
+Black
+</option>
+
+</select>
+
+
+<select id="sExperience">
+
+<option value="">
+Experience Level
+</option>
+
+<option>
+No Experience
+</option>
+
+<option>
+Some Experience
+</option>
+
+<option>
+Experienced
+</option>
+
+</select>
+
+
+<div class="section-title">
+Parent / Guardian
+</div>
+
+<input
+type="text"
+id="pName"
+placeholder="Parent / Guardian Name"
+>
+
+<input
+type="tel"
+id="pPhone"
+placeholder="Parent Phone"
+>
+
+<textarea
+id="pAddress"
+placeholder="Home Address"
+rows="3"
+></textarea>
+
+<input
+type="tel"
+id="sEmergency"
+placeholder="Emergency Contact"
+>
+
+
+<div class="section-title">
+Medical Information
+</div>
+
+<textarea
+id="sDiseases"
+placeholder="Diseases, allergies, injuries or medical notes"
+rows="4"
+></textarea>
+
+
+<div class="section-title">
+Fees
+</div>
+
+<label>
+
+<input
+type="checkbox"
+id="sRegPaid"
+>
+
+Registration Fee Paid $15
+
+</label>
+
+
+<input
+type="number"
+id="sFeePaid"
+placeholder="Monthly Fee Paid This Month"
+step="0.01"
+>
+
+
+<button onclick="addStudent()">
+Save Student Profile
+</button>
+
+<div id="formMessage"></div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- STATISTICS -->
+<!-- ========================= -->
 
 <div class="admin-card">
-<h3>📊 Club Statistics</h3>
-<p><b>Total Students:</b> <span id="totalStudents">0</span></p>
-<p><b>Reg Fees Collected:</b> $<span id="totalReg">0</span></p>
-<p><b>Monthly Collected:</b> $<span id="totalCollected">0</span></p>
-<p><b>Monthly Due:</b> $<span id="totalDue">0</span></p>
-<button onclick="loadStudents()">🔄 Refresh</button>
+
+<h3>
+📊 Club Statistics
+</h3>
+
+<p>
+<b>Total Students:</b>
+<span id="totalStudents">
+0
+</span>
+</p>
+
+<p>
+<b>Registration Fees:</b>
+$
+<span id="totalReg">
+0.00
+</span>
+</p>
+
+<p>
+<b>Monthly Collected:</b>
+$
+<span id="totalCollected">
+0.00
+</span>
+</p>
+
+<p>
+<b>Monthly Due:</b>
+$
+<span id="totalDue">
+0.00
+</span>
+</p>
+
+<button onclick="loadStudents()">
+🔄 Refresh Students
+</button>
+
 </div>
 
-<div class="admin-card" style="grid-column:1/-1">
-<h3>📋 All Student Profiles</h3>
-<div id="studentList">Loading...</div>
-</div>
-</div>
+
+<!-- ========================= -->
+<!-- STUDENT LIST -->
+<!-- ========================= -->
+
+<div
+class="admin-card"
+style="grid-column:1/-1"
+>
+
+<h3>
+📋 All Student Profiles
+</h3>
+
+<div id="studentList">
+Loading...
 </div>
 
-<div id="editModal" class="modal">
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- EDIT MODAL -->
+<!-- ========================= -->
+
+<div
+id="editModal"
+class="modal"
+>
+
 <div class="modal-content">
-<h3>Edit Student</h3>
+
+<h3>
+✏️ Edit Student
+</h3>
+
 <div id="editForm"></div>
-<button class="save" onclick="saveEdit()">Save Changes</button>
-<button onclick="closeModal()">Cancel</button>
+
+<button
+class="save"
+onclick="saveEdit()"
+>
+Save Changes
+</button>
+
+<button onclick="closeModal()">
+Cancel
+</button>
+
 </div>
+
 </div>
+
+
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
+
+/* =========================================
+SUPABASE CONFIGURATION
+========================================= */
+
 /*
 IMPORTANT:
-Replace the two placeholders below with your Supabase Project URL
-and your Supabase anon/public key.
-Never put your service_role key in this HTML file.
+
+Replace these values with your Supabase
+Project URL and publishable/anon key.
+
+DO NOT USE SERVICE_ROLE KEY.
 */
-const SUPABASE_URL=" https://ohrzdhpttcxisiwmesxp.supabase.co";
-const SUPABASE_ANON_KEY="sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-const belts=["White","Yellow","Green","Blue","Red","Black"];
-const months={Jan:"01",Feb:"02",Mar:"03",Apr:"04",May:"05",Jun:"06",Jul:"07",Aug:"08",Sep:"09",Oct:"10",Nov:"11",Dec:"12"};
-const REG_FEE=15;
-let editingId=null;
+const SUPABASE_URL =
+"https://ohrzdhpttcxisiwmesxp.supabase.co";
 
-window.addEventListener("load",async()=>{
-  fillDOB();
-  const {data}=await supabaseClient.auth.getSession();
-  if(data.session) showApp(data.session.user);
-});
+const SUPABASE_ANON_KEY =
+"sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_";
+
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL.trim(),
+SUPABASE_ANON_KEY.trim()
+);
+
+
+/* =========================================
+SETTINGS
+========================================= */
+
+const REG_FEE = 15;
+
+const belts = [
+"White",
+"Yellow",
+"Green",
+"Blue",
+"Red",
+"Black"
+];
+
+const months = {
+Jan:"01",
+Feb:"02",
+Mar:"03",
+Apr:"04",
+May:"05",
+Jun:"06",
+Jul:"07",
+Aug:"08",
+Sep:"09",
+Oct:"10",
+Nov:"11",
+Dec:"12"
+};
+
+let editingId = null;
+
+
+/* =========================================
+PAGE LOAD
+========================================= */
+
+window.addEventListener(
+"load",
+async function(){
+
+fillDOB();
+
+const result =
+await supabaseClient.auth.getSession();
+
+if(result.error){
+
+console.log(result.error);
+
+return;
+
+}
+
+if(result.data.session){
+
+showApp(
+result.data.session.user
+);
+
+}
+
+}
+);
+
+
+/* =========================================
+DOB DROPDOWNS
+========================================= */
 
 function fillDOB(){
-  for(let i=1;i<=31;i++) document.getElementById("sDay").innerHTML+=`<option value="${i}">${i}</option>`;
-  Object.keys(months).forEach(m=>document.getElementById("sMonth").innerHTML+=`<option value="${m}">${m}</option>`);
-  for(let i=new Date().getFullYear();i>=1950;i--) document.getElementById("sYear").innerHTML+=`<option value="${i}">${i}</option>`;
+
+const day =
+document.getElementById("sDay");
+
+const month =
+document.getElementById("sMonth");
+
+const year =
+document.getElementById("sYear");
+
+
+for(
+let i=1;
+i<=31;
+i++
+){
+
+day.innerHTML +=
+`<option value="${i}">
+${i}
+</option>`;
+
 }
+
+
+Object.keys(months).forEach(
+function(m){
+
+month.innerHTML +=
+`<option value="${m}">
+${m}
+</option>`;
+
+}
+);
+
+
+for(
+let i=new Date().getFullYear();
+i>=1950;
+i--
+){
+
+year.innerHTML +=
+`<option value="${i}">
+${i}
+</option>`;
+
+}
+
+}
+
+
+/* =========================================
+LOGIN
+========================================= */
 
 async function login(){
-  const email=document.getElementById("loginEmail").value.trim();
-  const password=document.getElementById("loginPassword").value;
-  if(!email||!password){document.getElementById("loginMessage").textContent="Enter email and password.";return}
-  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
-  if(error){document.getElementById("loginMessage").textContent=error.message;return}
-  showApp(data.user);
+
+const email =
+document.getElementById(
+"loginEmail"
+).value.trim();
+
+const password =
+document.getElementById(
+"loginPassword"
+).value;
+
+
+if(!email || !password){
+
+document.getElementById(
+"loginMessage"
+).innerHTML =
+"<p class='error'>Enter email and password.</p>";
+
+return;
+
 }
+
+
+const {
+data,
+error
+} =
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+
+if(error){
+
+document.getElementById(
+"loginMessage"
+).innerHTML =
+"<p class='error'>"+
+escapeHTML(error.message)+
+"</p>";
+
+return;
+
+}
+
+
+showApp(data.user);
+
+}
+
+
+/* =========================================
+SHOW ADMIN
+========================================= */
 
 function showApp(user){
-  document.getElementById("loginScreen").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
-  document.getElementById("adminName").textContent=user.email||"Master Admin";
-  loadStudents();
+
+document
+.getElementById("loginScreen")
+.classList.add("hidden");
+
+document
+.getElementById("app")
+.classList.remove("hidden");
+
+document
+.getElementById("adminName")
+.textContent =
+user.email ||
+"Master Admin";
+
+loadStudents();
+
 }
+
+
+/* =========================================
+LOGOUT
+========================================= */
 
 async function logout(){
-  await supabaseClient.auth.signOut();
-  location.reload();
+
+await supabaseClient.auth.signOut();
+
+location.reload();
+
 }
+
+
+/* =========================================
+DOB
+========================================= */
 
 function combineDOB(){
-  const d=document.getElementById("sDay").value,m=document.getElementById("sMonth").value,y=document.getElementById("sYear").value;
-  document.getElementById("sDOB").value=d&&m&&y?`${y}-${months[m]}-${String(d).padStart(2,"0")}`:"";
+
+const day =
+document.getElementById(
+"sDay"
+).value;
+
+const month =
+document.getElementById(
+"sMonth"
+).value;
+
+const year =
+document.getElementById(
+"sYear"
+).value;
+
+
+if(day && month && year){
+
+return `${year}-${months[month]}-${String(day).padStart(2,"0")}`;
+
 }
+
+return null;
+
+}
+
+
+/* =========================================
+AGE
+========================================= */
 
 function getAge(dob){
-  if(!dob)return 0;
-  const birth=new Date(dob),now=new Date();
-  let age=now.getFullYear()-birth.getFullYear();
-  const md=now.getMonth()-birth.getMonth();
-  if(md<0||(md===0&&now.getDate()<birth.getDate()))age--;
-  return age;
+
+if(!dob){
+
+return 0;
+
 }
 
-function getMonthlyFee(dob){return getAge(dob)<20?20:40}
+const birth =
+new Date(dob);
 
-function msg(text,error=false){
-  const el=document.getElementById("formMessage");
-  el.textContent=text;
-  el.style.color=error?"#d32f2f":"#4caf50";
+const today =
+new Date();
+
+let age =
+today.getFullYear() -
+birth.getFullYear();
+
+const month =
+today.getMonth() -
+birth.getMonth();
+
+if(
+month < 0 ||
+(
+month === 0 &&
+today.getDate() < birth.getDate()
+)
+){
+
+age--;
+
 }
+
+return age;
+
+}
+
+
+/* =========================================
+MONTHLY FEE
+========================================= */
+
+function getMonthlyFee(dob){
+
+return getAge(dob) < 20
+? 20
+: 40;
+
+}
+
+
+/* =========================================
+MESSAGE
+========================================= */
+
+function showMessage(
+text,
+error=false
+){
+
+const box =
+document.getElementById(
+"formMessage"
+);
+
+box.className =
+"message "+
+(
+error
+? "error"
+: "success"
+);
+
+box.textContent = text;
+
+}
+
+
+/* =========================================
+ADD STUDENT
+========================================= */
 
 async function addStudent(){
-  combineDOB();
-  const dob=document.getElementById("sDOB").value;
-  const student={
-    full_name:document.getElementById("sName").value.trim(),
-    dob:dob||null,
-    gender:document.getElementById("sGender").value||null,
-    email:document.getElementById("sEmail").value.trim()||null,
-    phone:document.getElementById("sPhone").value.trim()||null,
-    belt:document.getElementById("sBelt").value||null,
-    experience:document.getElementById("sExperience").value||null,
-    parent_name:document.getElementById("pName").value.trim()||null,
-    parent_phone:document.getElementById("pPhone").value.trim()||null,
-    parent_address:document.getElementById("pAddress").value.trim()||null,
-    emergency_contact:document.getElementById("sEmergency").value.trim()||null,
-    medical_notes:document.getElementById("sDiseases").value.trim()||null,
-    registration_fee:document.getElementById("sRegPaid").checked?REG_FEE:0,
-    payment_status:document.getElementById("sRegPaid").checked?"Paid":"Pending",
-    belt_progress:0,
-    attendance:0
-  };
 
-  if(!student.full_name||!student.dob){msg("Enter Name and DOB.",true);return}
+const dob =
+combineDOB();
 
-  const {error}=await supabaseClient.from("students").insert([student]);
-  if(error){msg(error.message,true);return}
+const name =
+document.getElementById(
+"sName"
+).value.trim();
 
-  const fee=parseFloat(document.getElementById("sFeePaid").value)||0;
-  if(fee>0) alert("Student saved. Monthly fee amount can be recorded in the monthly_fees table after the student ID is available.");
-  msg(student.full_name+" added successfully.");
-  clearForm();
-  loadStudents();
+
+if(!name){
+
+showMessage(
+"Enter the student's name.",
+true
+);
+
+return;
+
 }
+
+
+if(!dob){
+
+showMessage(
+"Select the student's date of birth.",
+true
+);
+
+return;
+
+}
+
+
+/*
+Build database record.
+*/
+
+const student = {
+
+full_name:name,
+
+dob:dob,
+
+gender:
+document.getElementById(
+"sGender"
+).value || null,
+
+email:
+document.getElementById(
+"sEmail"
+).value.trim() || null,
+
+phone:
+document.getElementById(
+"sPhone"
+).value.trim() || null,
+
+belt:
+document.getElementById(
+"sBelt"
+).value || null,
+
+experience:
+document.getElementById(
+"sExperience"
+).value || null,
+
+parent_name:
+document.getElementById(
+"pName"
+).value.trim() || null,
+
+parent_phone:
+document.getElementById(
+"pPhone"
+).value.trim() || null,
+
+parent_address:
+document.getElementById(
+"pAddress"
+).value.trim() || null,
+
+emergency_contact:
+document.getElementById(
+"sEmergency"
+).value.trim() || null,
+
+medical_notes:
+document.getElementById(
+"sDiseases"
+).value.trim() || null,
+
+belt_progress:0,
+
+attendance:0,
+
+registration_fee:
+document.getElementById(
+"sRegPaid"
+).checked
+? REG_FEE
+: 0,
+
+payment_status:
+document.getElementById(
+"sRegPaid"
+).checked
+? "Paid"
+: "Pending",
+
+monthly_fee_paid:
+Number(
+document.getElementById(
+"sFeePaid"
+).value
+) || 0
+
+};
+
+
+/*
+Insert into Supabase.
+*/
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("students")
+.insert([student])
+.select()
+.single();
+
+
+if(error){
+
+showMessage(
+"Supabase error: "+
+error.message,
+true
+);
+
+console.error(error);
+
+return;
+
+}
+
+
+showMessage(
+name+
+" was added successfully."
+);
+
+
+/*
+Clear form.
+*/
+
+clearForm();
+
+
+/*
+Reload students.
+*/
+
+loadStudents();
+
+}
+
+
+/* =========================================
+CLEAR FORM
+========================================= */
 
 function clearForm(){
-  ["sName","sDOB","sEmail","sPhone","pName","pPhone","pAddress","sEmergency","sDiseases","sFeePaid"].forEach(id=>document.getElementById(id).value="");
-  ["sDay","sMonth","sYear","sGender","sBelt","sExperience"].forEach(id=>document.getElementById(id).value="");
-  document.getElementById("sRegPaid").checked=false;
+
+document.getElementById(
+"sName"
+).value="";
+
+document.getElementById(
+"sDay"
+).value="";
+
+document.getElementById(
+"sMonth"
+).value="";
+
+document.getElementById(
+"sYear"
+).value="";
+
+document.getElementById(
+"sGender"
+).value="";
+
+document.getElementById(
+"sEmail"
+).value="";
+
+document.getElementById(
+"sPhone"
+).value="";
+
+document.getElementById(
+"sBelt"
+).value="";
+
+document.getElementById(
+"sExperience"
+).value="";
+
+document.getElementById(
+"pName"
+).value="";
+
+document.getElementById(
+"pPhone"
+).value="";
+
+document.getElementById(
+"pAddress"
+).value="";
+
+document.getElementById(
+"sEmergency"
+).value="";
+
+document.getElementById(
+"sDiseases"
+).value="";
+
+document.getElementById(
+"sFeePaid"
+).value="";
+
+document.getElementById(
+"sRegPaid"
+).checked=false;
+
 }
+
+
+/* =========================================
+LOAD STUDENTS
+========================================= */
 
 async function loadStudents(){
-  const list=document.getElementById("studentList");
-  list.textContent="Loading students...";
-  const {data,error}=await supabaseClient.from("students").select("*").order("created_at",{ascending:false});
-  if(error){list.textContent="Supabase error: "+error.message;return}
 
-  document.getElementById("totalStudents").textContent=data.length;
-  let reg=0,collected=0,due=0;
+const list =
+document.getElementById(
+"studentList"
+);
 
-  data.forEach(s=>{
-    reg+=Number(s.registration_fee||0);
-  });
+list.innerHTML =
+"Loading students...";
 
-  document.getElementById("totalReg").textContent=reg.toFixed(2);
 
-  if(!data.length){list.textContent="No students yet.";return}
-
-  list.innerHTML=data.map(s=>{
-    const progress=Math.max(0,Math.min(100,Number(s.belt_progress||0)));
-    const monthlyFee=getMonthlyFee(s.dob);
-    const paid=Number(s.monthly_fee_paid||0);
-    const remaining=Math.max(0,monthlyFee-paid);
-    collected+=paid;due+=remaining;
-    const index=belts.indexOf(s.belt);
-    const nextBelt=index>=0?belts[index+1]||"Max Rank":"Not set";
-    return `
-    <div class="student-row">
-      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-        <b>${esc(s.full_name||"Unnamed")}</b> - ${esc(s.belt||"No belt")} Belt - ${esc(s.gender||"")} - Age: ${getAge(s.dob)}
-      </div>
-      <small><b>Email:</b> ${esc(s.email||"Not provided")} | <b>Phone:</b> ${esc(s.phone||"Not provided")}</small>
-      <small><b>Parent:</b> ${esc(s.parent_name||"Not provided")} | <b>Emergency:</b> ${esc(s.emergency_contact||"Not provided")}</small>
-      <small><b>Address:</b> ${esc(s.parent_address||"Not provided")}</small>
-      <small><b>Experience:</b> ${esc(s.experience||"Not provided")}</small>
-      <small style="color:red"><b>Medical:</b> ${esc(s.medical_notes||"None")}</small>
-      <small><b>Reg Fee $15:</b> <span class="${Number(s.registration_fee||0)>=REG_FEE?"fee-paid":"fee-due"}">${Number(s.registration_fee||0)>=REG_FEE?"PAID":"NOT PAID"}</span></small>
-      <small><b>Monthly Fee:</b> $${monthlyFee} | <span class="${paid>=monthlyFee?"fee-paid":"fee-due"}">Paid: $${paid.toFixed(2)} | Remaining: $${remaining.toFixed(2)}</span></small>
-      <small><b>Next Belt:</b> ${nextBelt}</small>
-      <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
-      <small>Belt progress: ${progress}% | Attendance: ${Number(s.attendance||0)}%</small>
-      <div class="btn-group">
-        <button class="edit" onclick="openEdit('${s.id}')">Edit</button>
-        <button class="reg-paid" onclick="markRegPaid('${s.id}')">${Number(s.registration_fee||0)>=REG_FEE?"Reg Paid":"Mark Reg $15"}</button>
-        <button onclick="deleteStudent('${s.id}')">Delete</button>
-      </div>
-    </div>`;
-  }).join("");
-
-  document.getElementById("totalCollected").textContent=collected.toFixed(2);
-  document.getElementById("totalDue").textContent=due.toFixed(2);
+const {
+data,
+error
+} =
+await supabaseClient
+.from("students")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
 }
+);
+
+
+if(error){
+
+list.innerHTML =
+"<p class='error'>"+
+escapeHTML(
+error.message
+)+
+"</p>";
+
+console.error(error);
+
+return;
+
+}
+
+
+document.getElementById(
+"totalStudents"
+).textContent =
+data.length;
+
+
+let totalReg=0;
+
+let totalCollected=0;
+
+let totalDue=0;
+
+
+data.forEach(
+function(student){
+
+totalReg +=
+Number(
+student.registration_fee || 0
+);
+
+const monthlyFee =
+getMonthlyFee(
+student.dob
+);
+
+const paid =
+Number(
+student.monthly_fee_paid || 0
+);
+
+totalCollected += paid;
+
+totalDue +=
+Math.max(
+0,
+monthlyFee-paid
+);
+
+}
+);
+
+
+document.getElementById(
+"totalReg"
+).textContent =
+totalReg.toFixed(2);
+
+document.getElementById(
+"totalCollected"
+).textContent =
+totalCollected.toFixed(2);
+
+document.getElementById(
+"totalDue"
+).textContent =
+totalDue.toFixed(2);
+
+
+if(data.length===0){
+
+list.innerHTML =
+"No students yet.";
+
+return;
+
+}
+
+
+/*
+Display students.
+*/
+
+list.innerHTML =
+data.map(
+function(s){
+
+const progress =
+Math.max(
+0,
+Math.min(
+100,
+Number(
+s.belt_progress || 0
+)
+)
+);
+
+const monthlyFee =
+getMonthlyFee(
+s.dob
+);
+
+const paid =
+Number(
+s.monthly_fee_paid || 0
+);
+
+const remaining =
+Math.max(
+0,
+monthlyFee-paid
+);
+
+const beltIndex =
+belts.indexOf(
+s.belt
+);
+
+const nextBelt =
+beltIndex >= 0
+?
+(
+belts[beltIndex+1]
+||
+"Max Rank"
+)
+:
+"Not Set";
+
+
+return `
+
+<div class="student-row">
+
+<div>
+
+<b>
+${escapeHTML(
+s.full_name ||
+"Unnamed"
+)}
+</b>
+
+-
+
+${escapeHTML(
+s.belt ||
+"No Belt"
+)}
+
+Belt
+
+-
+
+${escapeHTML(
+s.gender ||
+""
+)}
+
+-
+
+Age:
+
+${getAge(s.dob)}
+
+</div>
+
+
+<small>
+<b>Email:</b>
+${escapeHTML(
+s.email ||
+"Not provided"
+)}
+</small>
+
+
+<small>
+<b>Phone:</b>
+${escapeHTML(
+s.phone ||
+"Not provided"
+)}
+</small>
+
+
+<small>
+<b>Parent:</b>
+${escapeHTML(
+s.parent_name ||
+"Not provided"
+)}
+</small>
+
+
+<small>
+<b>Parent Phone:</b>
+${escapeHTML(
+s.parent_phone ||
+"Not provided"
+)}
+</small>
+
+
+<small>
+<b>Address:</b>
+${escapeHTML(
+s.parent_address ||
+"Not provided"
+)}
+</small>
+
+
+<small>
+<b>Emergency:</b>
+${escapeHTML(
+s.emergency_contact ||
+"Not provided"
+)}
+</small>
+
+
+<small>
+<b>Experience:</b>
+${escapeHTML(
+s.experience ||
+"Not provided"
+)}
+</small>
+
+
+<small style="color:red">
+
+<b>
+Medical:
+</b>
+
+${escapeHTML(
+s.medical_notes ||
+"None"
+)}
+
+</small>
+
+
+<small>
+
+<b>
+Registration $15:
+</b>
+
+<span class="${
+Number(s.registration_fee||0)>=REG_FEE
+?
+"fee-paid"
+:
+"fee-due"
+}">
+
+${
+Number(s.registration_fee||0)>=REG_FEE
+?
+"PAID"
+:
+"NOT PAID"
+}
+
+</span>
+
+</small>
+
+
+<small>
+
+<b>
+Monthly Fee:
+</b>
+
+$${monthlyFee}
+
+|
+
+<span class="${
+paid>=monthlyFee
+?
+"fee-paid"
+:
+"fee-due"
+}">
+
+Paid:
+$${paid.toFixed(2)}
+
+|
+
+Remaining:
+$${remaining.toFixed(2)}
+
+</span>
+
+</small>
+
+
+<small>
+
+<b>
+Next Belt:
+</b>
+
+${nextBelt}
+
+</small>
+
+
+<div class="progress-bar">
+
+<div
+class="progress"
+style="width:${progress}%"
+></div>
+
+</div>
+
+
+<small>
+
+Belt Progress:
+${progress}%
+
+|
+
+Attendance:
+${Number(
+s.attendance || 0
+)}%
+
+</small>
+
+
+<div class="btn-group">
+
+<button
+class="edit"
+onclick="openEdit('${s.id}')"
+>
+Edit
+</button>
+
+
+<button
+class="reg-paid"
+onclick="markRegPaid('${s.id}')"
+>
+
+${
+Number(
+s.registration_fee || 0
+)>=REG_FEE
+?
+"Reg Paid"
+:
+"Mark Reg $15"
+}
+
+</button>
+
+
+<button
+class="delete"
+onclick="deleteStudent('${s.id}')"
+>
+Delete
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+).join("");
+
+}
+
+
+/* =========================================
+MARK REGISTRATION PAID
+========================================= */
 
 async function markRegPaid(id){
-  const {error}=await supabaseClient.from("students").update({registration_fee:REG_FEE,payment_status:"Paid"}).eq("id",id);
-  if(error){alert(error.message);return}
-  loadStudents();
+
+const {
+error
+} =
+await supabaseClient
+.from("students")
+.update({
+
+registration_fee:REG_FEE,
+
+payment_status:"Paid"
+
+})
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+"Error: "+
+error.message
+);
+
+return;
+
 }
+
+loadStudents();
+
+}
+
+
+/* =========================================
+EDIT STUDENT
+========================================= */
 
 async function openEdit(id){
-  const {data:s,error}=await supabaseClient.from("students").select("*").eq("id",id).single();
-  if(error){alert(error.message);return}
-  editingId=id;
-  const dob=s.dob||"";
-  const parts=dob.split("-");
-  const y=parts[0]||"",m=parts[1]||"",d=parts[2]||"";
-  const monthName=Object.keys(months).find(k=>months[k]===m)||"";
 
-  document.getElementById("editForm").innerHTML=`
-    <input id="editName" value="${escAttr(s.full_name||"")}" placeholder="Full Name">
-    <div class="dob-group">
-      <select id="editDay">${Array.from({length:31},(_,i)=>`<option value="${i+1}" ${String(i+1)===String(Number(d))?"selected":""}>${i+1}</option>`).join("")}</select>
-      <select id="editMonth">${Object.keys(months).map(k=>`<option value="${k}" ${k===monthName?"selected":""}>${k}</option>`).join("")}</select>
-      <select id="editYear">${Array.from({length:new Date().getFullYear()-1949},(_,i)=>{let yr=new Date().getFullYear()-i;return `<option value="${yr}" ${String(yr)===String(y)?"selected":""}>${yr}</option>`}).join("")}</select>
-    </div>
-    <select id="editGender"><option value="">Select Gender</option><option ${s.gender==="Male"?"selected":""}>Male</option><option ${s.gender==="Female"?"selected":""}>Female</option></select>
-    <input id="editEmail" type="email" value="${escAttr(s.email||"")}" placeholder="Email">
-    <input id="editPhone" value="${escAttr(s.phone||"")}" placeholder="Phone">
-    <select id="editBelt">${belts.map(b=>`<option ${s.belt===b?"selected":""}>${b}</option>`).join("")}</select>
-    <select id="editExperience"><option value="">Experience Level</option><option ${s.experience==="No Experience"?"selected":""}>No Experience</option><option ${s.experience==="Some Experience"?"selected":""}>Some Experience</option><option ${s.experience==="Experienced"?"selected":""}>Experienced</option></select>
-    <input id="editParent" value="${escAttr(s.parent_name||"")}" placeholder="Parent/Guardian">
-    <input id="editParentPhone" value="${escAttr(s.parent_phone||"")}" placeholder="Parent Phone">
-    <textarea id="editAddress" placeholder="Address">${esc(s.parent_address||"")}</textarea>
-    <input id="editEmergency" value="${escAttr(s.emergency_contact||"")}" placeholder="Emergency Contact">
-    <textarea id="editMedical" placeholder="Medical Notes">${esc(s.medical_notes||"")}</textarea>
-    <label>Belt Progress %: <input type="range" id="editProgress" value="${Number(s.belt_progress||0)}" min="0" max="100" oninput="progressValue.textContent=this.value+'%'"><span id="progressValue">${Number(s.belt_progress||0)}%</span></label>
-    <label>Attendance %: <input type="number" id="editAttendance" value="${Number(s.attendance||0)}" min="0" max="100"></label>
-    <input type="number" id="editRegFee" value="${Number(s.registration_fee||0)}" step="0.01" placeholder="Registration Fee">
-    <select id="editPayment"><option ${s.payment_status==="Pending"?"selected":""}>Pending</option><option ${s.payment_status==="Paid"?"selected":""}>Paid</option><option ${s.payment_status==="Partial"?"selected":""}>Partial</option></select>
-    <div class="notice">Monthly fee is calculated from age: under 20 = $20, 20+ = $40.</div>
-  `;
-  document.getElementById("editModal").style.display="flex";
+const {
+data:s,
+error
+} =
+await supabaseClient
+.from("students")
+.select("*")
+.eq(
+"id",
+id
+)
+.single();
+
+
+if(error){
+
+alert(
+"Error: "+
+error.message
+);
+
+return;
+
 }
+
+
+editingId=id;
+
+
+const dob =
+s.dob || "";
+
+const parts =
+dob.split("-");
+
+const year =
+parts[0] || "";
+
+const month =
+parts[1] || "";
+
+const day =
+parts[2] || "";
+
+
+const monthName =
+Object.keys(months)
+.find(
+function(key){
+return months[key]===month;
+}
+) || "";
+
+
+document.getElementById(
+"editForm"
+).innerHTML = `
+
+<input
+id="editName"
+value="${escapeHTML(s.full_name||"")}"
+placeholder="Full Name"
+>
+
+
+<div class="dob-group">
+
+<select id="editDay">
+
+${Array.from(
+{length:31},
+(_,i)=>
+
+`
+<option
+value="${i+1}"
+${
+String(i+1)===
+String(Number(day))
+?
+"selected"
+:
+""
+}
+>
+${i+1}
+</option>
+`
+
+).join("")}
+
+</select>
+
+
+<select id="editMonth">
+
+${Object.keys(months)
+.map(
+function(m){
+
+return `
+
+<option
+value="${m}"
+${
+m===monthName
+?
+"selected"
+:
+""
+}
+>
+${m}
+</option>
+
+`;
+
+}
+)
+.join("")}
+
+</select>
+
+
+<select id="editYear">
+
+${Array.from(
+{
+length:
+new Date().getFullYear()-1949
+},
+(_,i)=>{
+
+const y =
+new Date().getFullYear()-i;
+
+return `
+
+<option
+value="${y}"
+${
+String(y)===
+String(year)
+?
+"selected"
+:
+""
+}
+>
+${y}
+</option>
+
+`;
+
+}
+).join("")}
+
+</select>
+
+</div>
+
+
+<select id="editGender">
+
+<option value="">
+Select Gender
+</option>
+
+<option
+${s.gender==="Male"?"selected":""}
+>
+Male
+</option>
+
+<option
+${s.gender==="Female"?"selected":""}
+>
+Female
+</option>
+
+</select>
+
+
+<input
+id="editEmail"
+type="email"
+value="${escapeHTML(s.email||"")}"
+placeholder="Student Email"
+>
+
+
+<input
+id="editPhone"
+value="${escapeHTML(s.phone||"")}"
+placeholder="Student Phone"
+>
+
+
+<select id="editBelt">
+
+${belts.map(
+function(b){
+
+return `
+
+<option
+${
+s.belt===b
+?
+"selected"
+:
+""
+}
+>
+${b}
+</option>
+
+`;
+
+}
+).join("")}
+
+</select>
+
+
+<select id="editExperience">
+
+<option value="">
+Experience Level
+</option>
+
+<option
+${s.experience==="No Experience"?"selected":""}
+>
+No Experience
+</option>
+
+<option
+${s.experience==="Some Experience"?"selected":""}
+>
+Some Experience
+</option>
+
+<option
+${s.experience==="Experienced"?"selected":""}
+>
+Experienced
+</option>
+
+</select>
+
+
+<input
+id="editParent"
+value="${escapeHTML(s.parent_name||"")}"
+placeholder="Parent / Guardian"
+>
+
+
+<input
+id="editParentPhone"
+value="${escapeHTML(s.parent_phone||"")}"
+placeholder="Parent Phone"
+>
+
+
+<textarea
+id="editAddress"
+placeholder="Address"
+>
+${escapeHTML(s.parent_address||"")}
+</textarea>
+
+
+<input
+id="editEmergency"
+value="${escapeHTML(s.emergency_contact||"")}"
+placeholder="Emergency Contact"
+>
+
+
+<textarea
+id="editMedical"
+placeholder="Medical Notes"
+>
+${escapeHTML(s.medical_notes||"")}
+</textarea>
+
+
+<label>
+
+Belt Progress %
+
+<input
+type="range"
+id="editProgress"
+value="${Number(s.belt_progress||0)}"
+min="0"
+max="100"
+oninput="
+document.getElementById('progressValue').textContent=this.value+'%';
+"
+>
+
+<span id="progressValue">
+${Number(s.belt_progress||0)}%
+</span>
+
+</label>
+
+
+<label>
+
+Attendance %
+
+<input
+type="number"
+id="editAttendance"
+value="${Number(s.attendance||0)}"
+min="0"
+max="100"
+>
+
+</label>
+
+
+<input
+type="number"
+id="editRegFee"
+value="${Number(s.registration_fee||0)}"
+step="0.01"
+placeholder="Registration Fee"
+>
+
+
+<input
+type="number"
+id="editMonthlyFee"
+value="${Number(s.monthly_fee_paid||0)}"
+step="0.01"
+placeholder="Monthly Fee Paid"
+>
+
+
+<select id="editPayment">
+
+<option
+${s.payment_status==="Pending"?"selected":""}
+>
+Pending
+</option>
+
+<option
+${s.payment_status==="Paid"?"selected":""}
+>
+Paid
+</option>
+
+<option
+${s.payment_status==="Partial"?"selected":""}
+>
+Partial
+</option>
+
+</select>
+
+`;
+
+document.getElementById(
+"editModal"
+).style.display="flex";
+
+}
+
+
+/* =========================================
+SAVE EDIT
+========================================= */
 
 async function saveEdit(){
-  const d=document.getElementById("editDay").value,m=document.getElementById("editMonth").value,y=document.getElementById("editYear").value;
-  const update={
-    full_name:document.getElementById("editName").value.trim(),
-    dob:`${y}-${months[m]}-${String(d).padStart(2,"0")}`,
-    gender:document.getElementById("editGender").value||null,
-    email:document.getElementById("editEmail").value.trim()||null,
-    phone:document.getElementById("editPhone").value.trim()||null,
-    belt:document.getElementById("editBelt").value||null,
-    experience:document.getElementById("editExperience").value||null,
-    parent_name:document.getElementById("editParent").value.trim()||null,
-    parent_phone:document.getElementById("editParentPhone").value.trim()||null,
-    parent_address:document.getElementById("editAddress").value.trim()||null,
-    emergency_contact:document.getElementById("editEmergency").value.trim()||null,
-    medical_notes:document.getElementById("editMedical").value.trim()||null,
-    belt_progress:Number(document.getElementById("editProgress").value),
-    attendance:Number(document.getElementById("editAttendance").value||0),
-    registration_fee:Number(document.getElementById("editRegFee").value||0),
-    payment_status:document.getElementById("editPayment").value
-  };
-  const {error}=await supabaseClient.from("students").update(update).eq("id",editingId);
-  if(error){alert(error.message);return}
-  closeModal();loadStudents();
+
+const day =
+document.getElementById(
+"editDay"
+).value;
+
+const month =
+document.getElementById(
+"editMonth"
+).value;
+
+const year =
+document.getElementById(
+"editYear"
+).value;
+
+
+const update = {
+
+full_name:
+document.getElementById(
+"editName"
+).value.trim(),
+
+dob:
+`${year}-${months[month]}-${String(day).padStart(2,"0")}`,
+
+gender:
+document.getElementById(
+"editGender"
+).value || null,
+
+email:
+document.getElementById(
+"editEmail"
+).value.trim() || null,
+
+phone:
+document.getElementById(
+"editPhone"
+).value.trim() || null,
+
+belt:
+document.getElementById(
+"editBelt"
+).value || null,
+
+experience:
+document.getElementById(
+"editExperience"
+).value || null,
+
+parent_name:
+document.getElementById(
+"editParent"
+).value.trim() || null,
+
+parent_phone:
+document.getElementById(
+"editParentPhone"
+).value.trim() || null,
+
+parent_address:
+document.getElementById(
+"editAddress"
+).value.trim() || null,
+
+emergency_contact:
+document.getElementById(
+"editEmergency"
+).value.trim() || null,
+
+medical_notes:
+document.getElementById(
+"editMedical"
+).value.trim() || null,
+
+belt_progress:
+Number(
+document.getElementById(
+"editProgress"
+).value
+),
+
+attendance:
+Number(
+document.getElementById(
+"editAttendance"
+).value
+) || 0,
+
+registration_fee:
+Number(
+document.getElementById(
+"editRegFee"
+).value
+) || 0,
+
+monthly_fee_paid:
+Number(
+document.getElementById(
+"editMonthlyFee"
+).value
+) || 0,
+
+payment_status:
+document.getElementById(
+"editPayment"
+).value
+
+};
+
+
+const {
+error
+} =
+await supabaseClient
+.from("students")
+.update(update)
+.eq(
+"id",
+editingId
+);
+
+
+if(error){
+
+alert(
+"Update failed: "+
+error.message
+);
+
+return;
+
 }
 
-function closeModal(){document.getElementById("editModal").style.display="none";editingId=null}
+
+closeModal();
+
+loadStudents();
+
+}
+
+
+/* =========================================
+CLOSE MODAL
+========================================= */
+
+function closeModal(){
+
+document.getElementById(
+"editModal"
+).style.display="none";
+
+editingId=null;
+
+}
+
+
+/* =========================================
+DELETE
+========================================= */
 
 async function deleteStudent(id){
-  if(!confirm("Delete this student from Supabase?"))return;
-  const {error}=await supabaseClient.from("students").delete().eq("id",id);
-  if(error){alert(error.message);return}
-  loadStudents();
+
+if(
+!confirm(
+"Delete this student permanently from Supabase?"
+)
+){
+
+return;
+
 }
 
-function esc(v){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function escAttr(v){return esc(v)}
+
+const {
+error
+} =
+await supabaseClient
+.from("students")
+.delete()
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+"Delete failed: "+
+error.message
+);
+
+return;
+
+}
+
+loadStudents();
+
+}
+
+
+/* =========================================
+ESCAPE HTML
+========================================= */
+
+function escapeHTML(value){
+
+return String(value)
+
+.replaceAll("&","&amp;")
+
+.replaceAll("<","&lt;")
+
+.replaceAll(">","&gt;")
+
+.replaceAll('"',"&quot;")
+
+.replaceAll("'","&#039;");
+
+}
+
 </script>
+
 </body>
 </html>
