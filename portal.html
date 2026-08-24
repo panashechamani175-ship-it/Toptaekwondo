@@ -1,271 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP TKD - Admin Panel</title>
-    <style>
-        :root { --red: #d32f2f; --black: #1a1a1a; --yellow: #ffc107; --bg: #f5f5f5; --green: #4caf50; }
-        * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
-      .admin-header { background: linear-gradient(135deg, var(--black), var(--red)); color: white; padding: 25px; border-radius: 12px; border-left: 6px solid var(--yellow); margin-bottom: 25px; }
-      .admin-header h1 { margin: 0; color: var(--yellow); }
-      .logout { background: rgba(255,255,255,0.2); color: white; border: 1px solid white; float: right; width: auto; padding: 8px 18px; cursor: pointer; border-radius: 8px; font-weight: bold; }
-      .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-       @media (max-width: 900px) {.admin-grid { grid-template-columns: 1fr; }}
-      .admin-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
-      .admin-card h3 { color: var(--red); margin-top: 0; border-bottom: 2px solid var(--yellow); padding-bottom: 8px; }
-      .section-title { font-weight: bold; color: var(--black); margin-top: 12px; margin-bottom: 5px; font-size: 0.9rem; }
-        input, select, textarea, button { width: 100%; padding: 10px; margin: 6px 0; border-radius: 8px; border: 1px solid #ccc; font-size: 0.95rem; }
-        button { background: var(--red); color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        button:hover { background: #b71c1c; }
-        button.edit { background: #1976d2; }
-        button.save { background: var(--green); }
-        button.reg-paid { background: var(--green); }
-      .student-row { padding: 12px; border: 1px solid #eee; margin-bottom: 10px; border-radius: 8px; background: #fafafa; }
-      .student-row small { display: block; color: #555; margin-top: 3px; }
-      .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
-      .btn-group button { flex: 1; min-width: 120px; }
-      .progress-bar { background: #e0e0e0; border-radius: 10px; height: 10px; margin-top: 5px; }
-      .progress { background: var(--green); height: 10px; border-radius: 10px; }
-      .fee-paid { color: var(--green); font-weight: bold; }
-      .fee-due { color: var(--red); font-weight: bold; }
-      .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index: 999; }
-      .modal-content { background:white; padding:25px; border-radius:12px; width:90%; max-width:550px; max-height: 90vh; overflow-y: auto; }
-      .dob-group { display: flex; gap: 8px; }
-      .dob-group select { flex: 1; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP TKD - Admin Panel</title>
+<style>
+:root{--red:#d32f2f;--black:#1a1a1a;--yellow:#ffc107;--bg:#f5f5f5;--green:#4caf50}
+*{box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:var(--bg);margin:0;padding:20px}
+.admin-header{background:linear-gradient(135deg,var(--black),var(--red));color:white;padding:25px;border-radius:12px;border-left:6px solid var(--yellow);margin-bottom:25px}
+.admin-header h1{margin:0;color:var(--yellow)}.logout{background:rgba(255,255,255,.2);color:white;border:1px solid white;float:right;width:auto;padding:8px 18px;cursor:pointer;border-radius:8px;font-weight:bold}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:900px){.admin-grid{grid-template-columns:1fr}}
+.admin-card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.admin-card h3{color:var(--red);margin-top:0;border-bottom:2px solid var(--yellow);padding-bottom:8px}
+.section-title{font-weight:bold;color:var(--black);margin-top:12px;margin-bottom:5px;font-size:.9rem}
+input,select,textarea,button{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ccc;font-size:.95rem}
+button{background:var(--red);color:white;border:none;font-weight:bold;cursor:pointer;margin-top:10px}button:hover{background:#b71c1c}
+button.edit{background:#1976d2}button.save{background:var(--green)}button.reg-paid{background:var(--green)}
+.student-row{padding:12px;border:1px solid #eee;margin-bottom:10px;border-radius:8px;background:#fafafa}
+.student-row small{display:block;color:#555;margin-top:3px}.btn-group{display:flex;gap:8px;flex-wrap:wrap}.btn-group button{flex:1;min-width:120px}
+.progress-bar{background:#e0e0e0;border-radius:10px;height:10px;margin-top:5px}.progress{background:var(--green);height:10px;border-radius:10px}
+.fee-paid{color:var(--green);font-weight:bold}.fee-due{color:var(--red);font-weight:bold}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);justify-content:center;align-items:center;z-index:999}
+.modal-content{background:white;padding:25px;border-radius:12px;width:90%;max-width:550px;max-height:90vh;overflow-y:auto}
+.dob-group{display:flex;gap:8px}.dob-group select{flex:1}
+#loginScreen{max-width:450px;margin:50px auto}.hidden{display:none!important}.notice{padding:10px;border-radius:8px;margin:8px 0;background:#fff3cd;color:#664d03}
+</style>
 </head>
 <body>
-<div class="admin-header">
-    <button class="logout" onclick="logout()">Logout</button>
-    <h1>🥋 TOP TKD ADMIN PANEL</h1>
-    <p>Welcome, <span id="adminName">Master Admin</span></p>
+
+<div id="loginScreen" class="admin-card">
+<h2 style="color:#d32f2f">🥋 TOP TKD Admin Login</h2>
+<p>Sign in with the Supabase Auth account you created for your administrator.</p>
+<input type="email" id="loginEmail" placeholder="Admin email">
+<input type="password" id="loginPassword" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="loginMessage"></p>
 </div>
-    
-    <div class="admin-grid">
-        <!-- ADD STUDENT -->
-        <div class="admin-card">
-            <h3>➕ Add New Student - From Website Form</h3>
-            <div class="section-title">Student Information</div>
-            <input type="text" id="sName" placeholder="Full Name">
-            
-            <div class="section-title">Date of Birth</div>
-            <div class="dob-group">
-                <select id="sDay"><option value="">Day</option></select>
-                <select id="sMonth"><option value="">Month</option></select>
-                <select id="sYear"><option value="">Year</option></select>
-            </div>
-            <input type="hidden" id="sDOB">
 
-            <select id="sGender"><option value="">Select Gender</option><option>Male</option><option>Female</option></select>
-            <input type="email" id="sEmail" placeholder="Student Email">
-            <input type="tel" id="sPhone" placeholder="Student Phone">
-            <select id="sBelt"><option value="">Select Belt Rank</option><option>White</option><option>Yellow</option><option>Green</option><option>Blue</option><option>Red</option><option>Black</option></select>
-            <select id="sExperience"><option value="">Experience Level</option><option>No Experience</option><option>Some Experience</option><option>Experienced</option></select>
+<div id="app" class="hidden">
+<div class="admin-header">
+<button class="logout" onclick="logout()">Logout</button>
+<h1>🥋 TOP TKD ADMIN PANEL</h1>
+<p>Welcome, <span id="adminName">Master Admin</span></p>
+</div>
 
-            <div class="section-title">Parent / Guardian</div>
-            <input type="text" id="pName" placeholder="Parent/Guardian Full Name">
-            <input type="tel" id="pPhone" placeholder="Parent Phone Number">
-            <textarea id="pAddress" placeholder="Home Address" rows="2"></textarea>
-            <input type="tel" id="sEmergency" placeholder="Emergency Contact">
+<div class="admin-grid">
 
-            <div class="section-title">Medical & Fees</div>
-            <textarea id="sDiseases" placeholder="Diseases, Allergies, Injuries" rows="3"></textarea>
-            <label><input type="checkbox" id="sRegPaid"> Registration Fee Paid $15</label>
-            <input type="number" id="sFeePaid" placeholder="Monthly Fee Paid This Month $">
+<div class="admin-card">
+<h3>➕ Add New Student - From Website Form</h3>
+<div class="section-title">Student Information</div>
+<input type="text" id="sName" placeholder="Full Name">
+<div class="section-title">Date of Birth</div>
+<div class="dob-group">
+<select id="sDay"><option value="">Day</option></select>
+<select id="sMonth"><option value="">Month</option></select>
+<select id="sYear"><option value="">Year</option></select>
+</div>
+<input type="hidden" id="sDOB">
+<select id="sGender"><option value="">Select Gender</option><option>Male</option><option>Female</option></select>
+<input type="email" id="sEmail" placeholder="Student Email">
+<input type="tel" id="sPhone" placeholder="Student Phone">
+<select id="sBelt"><option value="">Select Belt Rank</option><option>White</option><option>Yellow</option><option>Green</option><option>Blue</option><option>Red</option><option>Black</option></select>
+<select id="sExperience"><option value="">Experience Level</option><option>No Experience</option><option>Some Experience</option><option>Experienced</option></select>
 
-            <button onclick="addStudent()">Save Student Profile</button>
-        </div>
+<div class="section-title">Parent / Guardian</div>
+<input type="text" id="pName" placeholder="Parent/Guardian Full Name">
+<input type="tel" id="pPhone" placeholder="Parent Phone Number">
+<textarea id="pAddress" placeholder="Home Address" rows="2"></textarea>
+<input type="tel" id="sEmergency" placeholder="Emergency Contact">
 
-        <!-- STATS -->
-        <div class="admin-card">
-            <h3>📊 Club Statistics</h3>
-            <p><b>Total Students:</b> <span id="totalStudents">0</span></p>
-            <p><b>Reg Fees Collected:</b> $<span id="totalReg">0</span></p>
-            <p><b>Monthly Collected:</b> $<span id="totalCollected">0</span></p>
-            <p><b>Monthly Due:</b> $<span id="totalDue">0</span></p>
-        </div>
+<div class="section-title">Medical & Fees</div>
+<textarea id="sDiseases" placeholder="Diseases, Allergies, Injuries" rows="3"></textarea>
+<label><input type="checkbox" id="sRegPaid"> Registration Fee Paid $15</label>
+<input type="number" id="sFeePaid" placeholder="Monthly Fee Paid This Month $">
+<button onclick="addStudent()">Save Student Profile</button>
+<p id="formMessage"></p>
+</div>
 
-        <!-- ALL STUDENTS -->
-        <div class="admin-card" style="grid-column: 1 / -1;">
-            <h3>📋 All Student Profiles</h3>
-            <div id="studentList">No students yet.</div>
-        </div>
-    </div>
+<div class="admin-card">
+<h3>📊 Club Statistics</h3>
+<p><b>Total Students:</b> <span id="totalStudents">0</span></p>
+<p><b>Reg Fees Collected:</b> $<span id="totalReg">0</span></p>
+<p><b>Monthly Collected:</b> $<span id="totalCollected">0</span></p>
+<p><b>Monthly Due:</b> $<span id="totalDue">0</span></p>
+<button onclick="loadStudents()">🔄 Refresh</button>
+</div>
 
-    <!-- EDIT MODAL -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <h3>Edit Student</h3>
-            <div id="editForm"></div>
-            <button class="save" onclick="saveEdit()">Save Changes</button>
-            <button onclick="closeModal()">Cancel</button>
-        </div>
-    </div>
+<div class="admin-card" style="grid-column:1/-1">
+<h3>📋 All Student Profiles</h3>
+<div id="studentList">Loading...</div>
+</div>
+</div>
+</div>
 
+<div id="editModal" class="modal">
+<div class="modal-content">
+<h3>Edit Student</h3>
+<div id="editForm"></div>
+<button class="save" onclick="saveEdit()">Save Changes</button>
+<button onclick="closeModal()">Cancel</button>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    let students = JSON.parse(localStorage.getItem('tkdStudents')) || [];
-    let editingId = null;
-    const belts = ["White","Yellow","Green","Blue","Red","Black"];
-    const months = {Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
-    const REG_FEE = 15;
+/*
+IMPORTANT:
+Replace the two placeholders below with your Supabase Project URL
+and your Supabase anon/public key.
+Never put your service_role key in this HTML file.
+*/
+const SUPABASE_URL=" https://ohrzdhpttcxisiwmesxp.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-    // Fill DOB dropdowns on load - NOW 1950 TO 2026
-    window.onload = function(){
-        for(let i=1;i<=31;i++) document.getElementById('sDay').innerHTML += `<option>${i}</option>`;
-        ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].forEach(m => document.getElementById('sMonth').innerHTML += `<option>${m}</option>`);
-        for(let i=2026;i>=1950;i--) document.getElementById('sYear').innerHTML += `<option>${i}</option>`; // <-- 76 YEARS
-        loadStudents();
-    }
+const belts=["White","Yellow","Green","Blue","Red","Black"];
+const months={Jan:"01",Feb:"02",Mar:"03",Apr:"04",May:"05",Jun:"06",Jul:"07",Aug:"08",Sep:"09",Oct:"10",Nov:"11",Dec:"12"};
+const REG_FEE=15;
+let editingId=null;
 
-    function combineDOB() {
-        const day = document.getElementById('sDay').value;
-        const month = document.getElementById('sMonth').value;
-        const year = document.getElementById('sYear').value;
-        if(day && month && year){
-            document.getElementById('sDOB').value = `${year}-${months[month]}-${String(day).padStart(2,'0')}`;
-        }
-    }
+window.addEventListener("load",async()=>{
+  fillDOB();
+  const {data}=await supabaseClient.auth.getSession();
+  if(data.session) showApp(data.session.user);
+});
 
-    function getMonthlyFee(dob) {
-        const age = getAge(dob);
-        return age < 18? 20 : 40;
-    }
+function fillDOB(){
+  for(let i=1;i<=31;i++) document.getElementById("sDay").innerHTML+=`<option value="${i}">${i}</option>`;
+  Object.keys(months).forEach(m=>document.getElementById("sMonth").innerHTML+=`<option value="${m}">${m}</option>`);
+  for(let i=new Date().getFullYear();i>=1950;i--) document.getElementById("sYear").innerHTML+=`<option value="${i}">${i}</option>`;
+}
 
-    function addStudent() {
-        combineDOB();
-        const student = {
-            id: Date.now(),
-            name: document.getElementById('sName').value.trim(),
-            dob: document.getElementById('sDOB').value,
-            gender: document.getElementById('sGender').value,
-            email: document.getElementById('sEmail').value.trim(),
-            phone: document.getElementById('sPhone').value.trim(),
-            belt: document.getElementById('sBelt').value,
-            beltProgress: 0,
-            experience: document.getElementById('sExperience').value,
-            parentName: document.getElementById('pName').value.trim(),
-            parentPhone: document.getElementById('pPhone').value.trim(),
-            parentAddress: document.getElementById('pAddress').value.trim(),
-            emergency: document.getElementById('sEmergency').value.trim(),
-            diseases: document.getElementById('sDiseases').value.trim(),
-            regFeePaid: document.getElementById('sRegPaid').checked,
-            feePaid: parseFloat(document.getElementById('sFeePaid').value) || 0,
-            joinDate: new Date().toISOString().split('T')[0]
-        };
-        if(!student.name ||!student.dob) return alert("Enter Name and DOB");
-        students.push(student);
-        saveToStorage();
-        loadStudents();
-        alert(student.name + " added!");
-        document.querySelectorAll('input, textarea, select').forEach(i => { if(i.type!== 'checkbox') i.value = ''; else i.checked = false; });
-    }
+async function login(){
+  const email=document.getElementById("loginEmail").value.trim();
+  const password=document.getElementById("loginPassword").value;
+  if(!email||!password){document.getElementById("loginMessage").textContent="Enter email and password.";return}
+  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+  if(error){document.getElementById("loginMessage").textContent=error.message;return}
+  showApp(data.user);
+}
 
-    function loadStudents() {
-        const list = document.getElementById('studentList');
-        document.getElementById('totalStudents').textContent = students.length;
-        
-        let regTotal = 0, collected = 0, due = 0;
-        students.forEach(s => {
-            if(s.regFeePaid) regTotal += REG_FEE;
-            const monthlyFee = getMonthlyFee(s.dob);
-            collected += s.feePaid;
-            due += (monthlyFee - s.feePaid);
-        });
-        document.getElementById('totalReg').textContent = regTotal;
-        document.getElementById('totalCollected').textContent = collected;
-        document.getElementById('totalDue').textContent = due < 0? 0 : due;
+function showApp(user){
+  document.getElementById("loginScreen").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  document.getElementById("adminName").textContent=user.email||"Master Admin";
+  loadStudents();
+}
 
-        if(students.length === 0) { list.innerHTML = "No students yet."; return; }
+async function logout(){
+  await supabaseClient.auth.signOut();
+  location.reload();
+}
 
-        list.innerHTML = students.map(s => {
-            const monthlyFee = getMonthlyFee(s.dob);
-            const remaining = monthlyFee - s.feePaid;
-            const nextBelt = belts[belts.indexOf(s.belt) + 1] || "Max Rank";
-            return `
-            <div class="student-row">
-                <div style="display:flex; justify-content:space-between;">
-                    <b>${s.name}</b> - ${s.belt} Belt - ${s.gender} - Age: ${getAge(s.dob)}
-                </div>
-                <small><b>Email:</b> ${s.email} | <b>Phone:</b> ${s.phone}</small>
-                <small><b>Parent:</b> ${s.parentName} | <b>Emergency:</b> ${s.emergency}</small>
-                <small><b>Address:</b> ${s.parentAddress}</small>
-                <small><b>Experience:</b> ${s.experience}</small>
-                <small style="color:red;"><b>Medical:</b> ${s.diseases || 'None'}</small>
-                
-                <small><b>Reg Fee $15:</b> <span class="${s.regFeePaid? 'fee-paid' : 'fee-due'}">${s.regFeePaid? 'PAID' : 'NOT PAID'}</span></small>
-                <small><b>Monthly Fee:</b> $${monthlyFee} | 
-                    <span class="${s.feePaid >= monthlyFee? 'fee-paid' : 'fee-due'}">
-                    Paid: $${s.feePaid} | Remaining: $${remaining > 0? remaining : 0}
-                    </span>
-                </small>
+function combineDOB(){
+  const d=document.getElementById("sDay").value,m=document.getElementById("sMonth").value,y=document.getElementById("sYear").value;
+  document.getElementById("sDOB").value=d&&m&&y?`${y}-${months[m]}-${String(d).padStart(2,"0")}`:"";
+}
 
-                <small><b>Next Belt:</b> ${nextBelt}</small>
-                <div class="progress-bar"><div class="progress" style="width:${s.beltProgress}%"></div></div>
+function getAge(dob){
+  if(!dob)return 0;
+  const birth=new Date(dob),now=new Date();
+  let age=now.getFullYear()-birth.getFullYear();
+  const md=now.getMonth()-birth.getMonth();
+  if(md<0||(md===0&&now.getDate()<birth.getDate()))age--;
+  return age;
+}
 
-                <div class="btn-group">
-                    <button class="edit" onclick="openEdit(${s.id})">Edit</button>
-                    <button class="reg-paid" onclick="markRegPaid(${s.id})">${s.regFeePaid? 'Reg Paid' : 'Mark Reg $15'}</button>
-                    <button onclick="deleteStudent(${s.id})">Delete</button>
-                </div>
-            </div>`;
-        }).join('');
-    }
+function getMonthlyFee(dob){return getAge(dob)<20?20:40}
 
-    function markRegPaid(id) {
-        const s = students.find(st => st.id === id);
-        s.regFeePaid = true;
-        saveToStorage();
-        loadStudents();
-    }
+function msg(text,error=false){
+  const el=document.getElementById("formMessage");
+  el.textContent=text;
+  el.style.color=error?"#d32f2f":"#4caf50";
+}
 
-    function openEdit(id) {
-        editingId = id;
-        const s = students.find(st => st.id === id);
-        const [y,m,d] = s.dob.split('-');
-        const monthName = Object.keys(months).find(key => months[key] === m);
-        document.getElementById('editForm').innerHTML = `
-            <input type="text" id="editName" value="${s.name}">
-            <div class="dob-group">
-                <select id="editDay">${Array.from({length:31},(_,i)=>`<option ${i+1==d?'selected':''}>${i+1}</option>`)}</select>
-                <select id="editMonth">${Object.keys(months).map(mn=>`<option ${mn==monthName?'selected':''}>${mn}</option>`)}</select>
-                <select id="editYear">${Array.from({length:77},(_,i)=>`<option ${2026-i==y?'selected':''}>${2026-i}</option>`)}</select> <!-- 1950-2026 -->
-            </div>
-            <select id="editGender"><option>${s.gender}</option><option>Male</option><option>Female</option></select>
-            <input type="email" id="editEmail" value="${s.email}">
-            <select id="editBelt">${belts.map(b => `<option ${s.belt===b?'selected':''}>${b}</option>`).join('')}</select>
-            <label>Belt Progress %: <input type="range" id="editProgress" value="${s.beltProgress}" min="0" max="100"></label>
-            <input type="number" id="editFee" value="${s.feePaid}" placeholder="Monthly Fee Paid">
-            <textarea id="editMedical">${s.diseases}</textarea>
-        `;
-        document.getElementById('editModal').style.display = 'flex';
-    }
+async function addStudent(){
+  combineDOB();
+  const dob=document.getElementById("sDOB").value;
+  const student={
+    full_name:document.getElementById("sName").value.trim(),
+    dob:dob||null,
+    gender:document.getElementById("sGender").value||null,
+    email:document.getElementById("sEmail").value.trim()||null,
+    phone:document.getElementById("sPhone").value.trim()||null,
+    belt:document.getElementById("sBelt").value||null,
+    experience:document.getElementById("sExperience").value||null,
+    parent_name:document.getElementById("pName").value.trim()||null,
+    parent_phone:document.getElementById("pPhone").value.trim()||null,
+    parent_address:document.getElementById("pAddress").value.trim()||null,
+    emergency_contact:document.getElementById("sEmergency").value.trim()||null,
+    medical_notes:document.getElementById("sDiseases").value.trim()||null,
+    registration_fee:document.getElementById("sRegPaid").checked?REG_FEE:0,
+    payment_status:document.getElementById("sRegPaid").checked?"Paid":"Pending",
+    belt_progress:0,
+    attendance:0
+  };
 
-    function saveEdit() {
-        const s = students.find(st => st.id === editingId);
-        const day = document.getElementById('editDay').value;
-        const month = document.getElementById('editMonth').value;
-        const year = document.getElementById('editYear').value;
-        s.dob = `${year}-${months[month]}-${String(day).padStart(2,'0')}`;
-        
-        s.name = document.getElementById('editName').value;
-        s.gender = document.getElementById('editGender').value;
-        s.email = document.getElementById('editEmail').value;
-        s.belt = document.getElementById('editBelt').value;
-        s.beltProgress = parseInt(document.getElementById('editProgress').value);
-        s.feePaid = parseFloat(document.getElementById('editFee').value) || 0;
-        s.diseases = document.getElementById('editMedical').value;
-        saveToStorage();
-        loadStudents();
-        closeModal();
-    }
+  if(!student.full_name||!student.dob){msg("Enter Name and DOB.",true);return}
 
-    function closeModal() { document.getElementById('editModal').style.display = 'none'; }
-    function getAge(dob) { if(!dob) return '?'; return Math.floor((Date.now() - new Date(dob).getTime()) / (1000 * 60 * 60 * 24 * 365.25)); }
-    function deleteStudent(id) { if(!confirm("Delete?")) return; students = students.filter(s => s.id!== id); saveToStorage(); loadStudents(); }
-    function saveToStorage() { localStorage.setItem('tkdStudents', JSON.stringify(students)); }
-    function logout() { window.location = 'index.html'; }
+  const {error}=await supabaseClient.from("students").insert([student]);
+  if(error){msg(error.message,true);return}
+
+  const fee=parseFloat(document.getElementById("sFeePaid").value)||0;
+  if(fee>0) alert("Student saved. Monthly fee amount can be recorded in the monthly_fees table after the student ID is available.");
+  msg(student.full_name+" added successfully.");
+  clearForm();
+  loadStudents();
+}
+
+function clearForm(){
+  ["sName","sDOB","sEmail","sPhone","pName","pPhone","pAddress","sEmergency","sDiseases","sFeePaid"].forEach(id=>document.getElementById(id).value="");
+  ["sDay","sMonth","sYear","sGender","sBelt","sExperience"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("sRegPaid").checked=false;
+}
+
+async function loadStudents(){
+  const list=document.getElementById("studentList");
+  list.textContent="Loading students...";
+  const {data,error}=await supabaseClient.from("students").select("*").order("created_at",{ascending:false});
+  if(error){list.textContent="Supabase error: "+error.message;return}
+
+  document.getElementById("totalStudents").textContent=data.length;
+  let reg=0,collected=0,due=0;
+
+  data.forEach(s=>{
+    reg+=Number(s.registration_fee||0);
+  });
+
+  document.getElementById("totalReg").textContent=reg.toFixed(2);
+
+  if(!data.length){list.textContent="No students yet.";return}
+
+  list.innerHTML=data.map(s=>{
+    const progress=Math.max(0,Math.min(100,Number(s.belt_progress||0)));
+    const monthlyFee=getMonthlyFee(s.dob);
+    const paid=Number(s.monthly_fee_paid||0);
+    const remaining=Math.max(0,monthlyFee-paid);
+    collected+=paid;due+=remaining;
+    const index=belts.indexOf(s.belt);
+    const nextBelt=index>=0?belts[index+1]||"Max Rank":"Not set";
+    return `
+    <div class="student-row">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <b>${esc(s.full_name||"Unnamed")}</b> - ${esc(s.belt||"No belt")} Belt - ${esc(s.gender||"")} - Age: ${getAge(s.dob)}
+      </div>
+      <small><b>Email:</b> ${esc(s.email||"Not provided")} | <b>Phone:</b> ${esc(s.phone||"Not provided")}</small>
+      <small><b>Parent:</b> ${esc(s.parent_name||"Not provided")} | <b>Emergency:</b> ${esc(s.emergency_contact||"Not provided")}</small>
+      <small><b>Address:</b> ${esc(s.parent_address||"Not provided")}</small>
+      <small><b>Experience:</b> ${esc(s.experience||"Not provided")}</small>
+      <small style="color:red"><b>Medical:</b> ${esc(s.medical_notes||"None")}</small>
+      <small><b>Reg Fee $15:</b> <span class="${Number(s.registration_fee||0)>=REG_FEE?"fee-paid":"fee-due"}">${Number(s.registration_fee||0)>=REG_FEE?"PAID":"NOT PAID"}</span></small>
+      <small><b>Monthly Fee:</b> $${monthlyFee} | <span class="${paid>=monthlyFee?"fee-paid":"fee-due"}">Paid: $${paid.toFixed(2)} | Remaining: $${remaining.toFixed(2)}</span></small>
+      <small><b>Next Belt:</b> ${nextBelt}</small>
+      <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+      <small>Belt progress: ${progress}% | Attendance: ${Number(s.attendance||0)}%</small>
+      <div class="btn-group">
+        <button class="edit" onclick="openEdit('${s.id}')">Edit</button>
+        <button class="reg-paid" onclick="markRegPaid('${s.id}')">${Number(s.registration_fee||0)>=REG_FEE?"Reg Paid":"Mark Reg $15"}</button>
+        <button onclick="deleteStudent('${s.id}')">Delete</button>
+      </div>
+    </div>`;
+  }).join("");
+
+  document.getElementById("totalCollected").textContent=collected.toFixed(2);
+  document.getElementById("totalDue").textContent=due.toFixed(2);
+}
+
+async function markRegPaid(id){
+  const {error}=await supabaseClient.from("students").update({registration_fee:REG_FEE,payment_status:"Paid"}).eq("id",id);
+  if(error){alert(error.message);return}
+  loadStudents();
+}
+
+async function openEdit(id){
+  const {data:s,error}=await supabaseClient.from("students").select("*").eq("id",id).single();
+  if(error){alert(error.message);return}
+  editingId=id;
+  const dob=s.dob||"";
+  const parts=dob.split("-");
+  const y=parts[0]||"",m=parts[1]||"",d=parts[2]||"";
+  const monthName=Object.keys(months).find(k=>months[k]===m)||"";
+
+  document.getElementById("editForm").innerHTML=`
+    <input id="editName" value="${escAttr(s.full_name||"")}" placeholder="Full Name">
+    <div class="dob-group">
+      <select id="editDay">${Array.from({length:31},(_,i)=>`<option value="${i+1}" ${String(i+1)===String(Number(d))?"selected":""}>${i+1}</option>`).join("")}</select>
+      <select id="editMonth">${Object.keys(months).map(k=>`<option value="${k}" ${k===monthName?"selected":""}>${k}</option>`).join("")}</select>
+      <select id="editYear">${Array.from({length:new Date().getFullYear()-1949},(_,i)=>{let yr=new Date().getFullYear()-i;return `<option value="${yr}" ${String(yr)===String(y)?"selected":""}>${yr}</option>`}).join("")}</select>
+    </div>
+    <select id="editGender"><option value="">Select Gender</option><option ${s.gender==="Male"?"selected":""}>Male</option><option ${s.gender==="Female"?"selected":""}>Female</option></select>
+    <input id="editEmail" type="email" value="${escAttr(s.email||"")}" placeholder="Email">
+    <input id="editPhone" value="${escAttr(s.phone||"")}" placeholder="Phone">
+    <select id="editBelt">${belts.map(b=>`<option ${s.belt===b?"selected":""}>${b}</option>`).join("")}</select>
+    <select id="editExperience"><option value="">Experience Level</option><option ${s.experience==="No Experience"?"selected":""}>No Experience</option><option ${s.experience==="Some Experience"?"selected":""}>Some Experience</option><option ${s.experience==="Experienced"?"selected":""}>Experienced</option></select>
+    <input id="editParent" value="${escAttr(s.parent_name||"")}" placeholder="Parent/Guardian">
+    <input id="editParentPhone" value="${escAttr(s.parent_phone||"")}" placeholder="Parent Phone">
+    <textarea id="editAddress" placeholder="Address">${esc(s.parent_address||"")}</textarea>
+    <input id="editEmergency" value="${escAttr(s.emergency_contact||"")}" placeholder="Emergency Contact">
+    <textarea id="editMedical" placeholder="Medical Notes">${esc(s.medical_notes||"")}</textarea>
+    <label>Belt Progress %: <input type="range" id="editProgress" value="${Number(s.belt_progress||0)}" min="0" max="100" oninput="progressValue.textContent=this.value+'%'"><span id="progressValue">${Number(s.belt_progress||0)}%</span></label>
+    <label>Attendance %: <input type="number" id="editAttendance" value="${Number(s.attendance||0)}" min="0" max="100"></label>
+    <input type="number" id="editRegFee" value="${Number(s.registration_fee||0)}" step="0.01" placeholder="Registration Fee">
+    <select id="editPayment"><option ${s.payment_status==="Pending"?"selected":""}>Pending</option><option ${s.payment_status==="Paid"?"selected":""}>Paid</option><option ${s.payment_status==="Partial"?"selected":""}>Partial</option></select>
+    <div class="notice">Monthly fee is calculated from age: under 20 = $20, 20+ = $40.</div>
+  `;
+  document.getElementById("editModal").style.display="flex";
+}
+
+async function saveEdit(){
+  const d=document.getElementById("editDay").value,m=document.getElementById("editMonth").value,y=document.getElementById("editYear").value;
+  const update={
+    full_name:document.getElementById("editName").value.trim(),
+    dob:`${y}-${months[m]}-${String(d).padStart(2,"0")}`,
+    gender:document.getElementById("editGender").value||null,
+    email:document.getElementById("editEmail").value.trim()||null,
+    phone:document.getElementById("editPhone").value.trim()||null,
+    belt:document.getElementById("editBelt").value||null,
+    experience:document.getElementById("editExperience").value||null,
+    parent_name:document.getElementById("editParent").value.trim()||null,
+    parent_phone:document.getElementById("editParentPhone").value.trim()||null,
+    parent_address:document.getElementById("editAddress").value.trim()||null,
+    emergency_contact:document.getElementById("editEmergency").value.trim()||null,
+    medical_notes:document.getElementById("editMedical").value.trim()||null,
+    belt_progress:Number(document.getElementById("editProgress").value),
+    attendance:Number(document.getElementById("editAttendance").value||0),
+    registration_fee:Number(document.getElementById("editRegFee").value||0),
+    payment_status:document.getElementById("editPayment").value
+  };
+  const {error}=await supabaseClient.from("students").update(update).eq("id",editingId);
+  if(error){alert(error.message);return}
+  closeModal();loadStudents();
+}
+
+function closeModal(){document.getElementById("editModal").style.display="none";editingId=null}
+
+async function deleteStudent(id){
+  if(!confirm("Delete this student from Supabase?"))return;
+  const {error}=await supabaseClient.from("students").delete().eq("id",id);
+  if(error){alert(error.message);return}
+  loadStudents();
+}
+
+function esc(v){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function escAttr(v){return esc(v)}
 </script>
 </body>
 </html>
