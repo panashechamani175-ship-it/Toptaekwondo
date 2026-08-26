@@ -3,170 +3,2392 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TOPTAEKWONDO Harare Zimbabwe. Taekwondo classes at 37 Cecil Road Greendale. Kids $20 Adults $40. Register $15.">
-<meta name="keywords" content="TOPTAEKWONDO, top taekwondo harare, taekwondo zimbabwe, panashe chamani">
-<meta name="author" content="Panashe Chamani">
-<title>TOP TAEKWONDO | Building Champions For Life</title>
-<style>
-:root{--black:#000;--dark:#0b0b0b;--card:#171717;--red:#c62828;--red2:#ff3030;--white:#fff;--gray:#ccc;--green:#00a651;--yellow:#ffeb3b}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-html{scroll-behavior:smooth} body{background:var(--black);color:#fff;overflow-x:hidden}
-section{max-width:1150px;width:100%;margin:auto;padding:80px 55px} h3{text-align:center;color:var(--red2);font-size:2.2rem;margin-bottom:35px}
-nav{position:fixed;top:0;left:0;width:100%;height:65px;background:rgba(0,0,0,.94);border-bottom:3px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 5%;z-index:9999;backdrop-filter:blur(10px)}
-.logo{font-size:1.35rem;font-weight:900;letter-spacing:2px}.logo span{color:var(--red)}
-.nav-links{display:flex;gap:16px;list-style:none;align-items:center}.nav-links a{color:#fff;text-decoration:none;font-size:11px;font-weight:bold;white-space:nowrap}.nav-links a:hover{color:var(--red2)}
-.menu-btn{display:none;font-size:30px;cursor:pointer}
-.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.85)),url("Top.png") center/cover no-repeat}
-.hero-content{position:relative;z-index:5;padding:25px;max-width:900px}.hero h1{font-size:clamp(2.5rem,10vw,6rem);font-weight:1000;text-shadow:4px 4px 0 var(--red)}.hero h2{font-size:clamp(.9rem,3vw,1.5rem);margin:15px 0;color:#eee}.hero p{color:var(--gray);font-size:1.1rem;margin-bottom:25px}
-.btn{display:inline-block;padding:14px 25px;margin:5px;background:var(--red);color:#fff;text-decoration:none;border:2px solid var(--red);border-radius:8px;font-weight:900;cursor:pointer}.btn:hover{background:transparent}.whatsapp{background:var(--green);border-color:var(--green)}
-.about{text-align:center;max-width:850px;margin:auto;color:var(--gray);line-height:1.8;font-size:1.1rem}
-.benefits,.gallery,.pricing,.training-box{display:grid;gap:20px}.benefits{grid-template-columns:repeat(4,1fr)}.card{background:linear-gradient(145deg,#191919,#0d0d0d);padding:25px;border-left:4px solid var(--red);border-radius:10px}.card h4{margin-bottom:10px}.card p{color:var(--gray);line-height:1.6}
-.training-box{max-width:800px;margin:auto;grid-template-columns:repeat(2,1fr)}.training-card{background:var(--card);padding:30px;text-align:center;border-radius:12px;border-top:4px solid var(--red)}.training-card h4{color:var(--yellow);font-size:1.4rem;margin-bottom:15px}.training-card p{color:var(--gray);margin:8px}
-.gallery{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.gallery-item{background:var(--card);border-radius:12px;border:2px solid #222;overflow:hidden}.gallery-item .label{display:block;color:var(--yellow);font-weight:bold;text-align:center;padding:10px;font-size:.95rem}.gallery img,.gallery video{width:100%;height:auto;object-fit:cover;display:block}
-.pricing{grid-template-columns:repeat(2,1fr)}.price-card{background:var(--card);border:2px solid var(--red);border-radius:15px;padding:35px;text-align:center}.price-card h4{color:var(--yellow);font-size:1.8rem}.price{font-size:3rem;font-weight:900;margin:15px}.price span{font-size:1rem;color:var(--gray)}.price-card ul{list-style:none;text-align:left;margin:20px 0}.price-card li{padding:12px 0;border-bottom:1px solid #333}.price-card li::before{content:"✓ ";color:var(--yellow);font-weight:bold}
-form{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:14px}input,textarea,select{width:100%;padding:15px;background:#000;border:2px solid #333;border-radius:7px;color:#fff;font-size:16px}input:focus,textarea:focus,select:focus{outline:none;border-color:var(--red)}button{padding:15px;border:0;border-radius:7px;background:var(--red);color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
-.registration-box{max-width:700px;margin:auto;background:linear-gradient(145deg,#191919,#080808);border:2px solid var(--red);border-radius:18px;padding:30px}.registration-header{text-align:center;padding-bottom:25px}.registration-icon{font-size:55px}.registration-header h4{font-size:2rem;margin:10px 0}.registration-header p{color:var(--gray)}.registration-price{display:inline-flex;flex-direction:column;margin-top:20px;padding:15px 30px;border-radius:12px;background:var(--red);font-size:2.8rem;font-weight:900}.registration-price span{font-size:.75rem;letter-spacing:1px}.registration-payment{background:#050505;border:2px solid var(--green);border-radius:12px;padding:25px;text-align:center;margin-bottom:25px}.registration-payment h5{color:var(--green);font-size:1.3rem;margin-bottom:12px}.registration-payment p{color:var(--gray);margin:8px}.registration-number{display:inline-block;margin:15px 0;padding:15px 20px;background:#171717;border:2px solid var(--red);border-radius:8px;font-size:1.5rem;font-weight:bold}.payment-check{display:flex;align-items:flex-start;gap:10px;color:var(--gray);line-height:1.5;font-size:14px}.payment-check input{width:18px;height:18px;margin-top:2px;accent-color:var(--red)}
-.payment{max-width:600px;margin:auto;padding:30px;text-align:center;background:#080808;border:2px solid var(--green);border-radius:15px}.payment h4{color:var(--green);font-size:2rem}.ecocash-number{margin:20px 0;padding:20px;background:#181818;border:2px solid var(--red);border-radius:8px;font-size:1.8rem;font-weight:bold}.payment p{color:var(--gray);margin:8px}
-.contact-info{text-align:center;color:var(--gray);margin-bottom:25px;line-height:1.8}footer{text-align:center;padding:35px 20px;border-top:3px solid var(--red);background:#000;color:var(--gray)}footer p{margin:8px}
-@media(max-width:1000px){.nav-links{gap:9px}.nav-links a{font-size:9px}.benefits{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){nav{height:60px}.menu-btn{display:block}.nav-links{position:absolute;top:60px;left:0;width:100%;background:#050505;border-bottom:3px solid var(--red);display:none;flex-direction:column;gap:0}.nav-links.active{display:flex}.nav-links li{width:100%;text-align:center;border-bottom:1px solid #222}.nav-links a{display:block;padding:16px;font-size:14px}.hero{min-height:100svh}.hero h1{font-size:3rem}.hero h2{font-size:1rem}.hero p{font-size:.95rem}section{padding:60px 18px}h3{font-size:1.7rem}.benefits,.gallery,.pricing,.training-box{grid-template-columns:1fr}.btn{width:100%;margin:5px 0}}
+<meta name="theme-color" content="#050505">
 
-.portal{background:radial-gradient(circle at top right,rgba(198,40,40,.2),transparent 35%),#090909}.portal-login{max-width:450px;margin:auto;background:var(--card);padding:30px;border-radius:15px;border:1px solid #333}.portal-login h4{text-align:center;font-size:1.6rem;margin-bottom:20px}.portal-login input{margin-bottom:14px}
+<meta name="description" content="TOP TAEKWONDO Harare Zimbabwe — Building Champions For Life. Training at 37 Cecil Road, Greendale.">
+<meta name="keywords" content="TOP TAEKWONDO, Taekwondo Harare, Taekwondo Zimbabwe, martial arts Harare, Greendale Taekwondo">
+<meta name="author" content="Panashe Chamani">
+
+<title>TOP TAEKWONDO | Building Champions For Life</title>
+
+<style>
+:root{
+  --black:#050505;
+  --black2:#0b0b0b;
+  --card:#111;
+  --card2:#171717;
+  --red:#d71920;
+  --red2:#ff3038;
+  --red-dark:#8d0e13;
+  --white:#fff;
+  --gray:#bdbdbd;
+  --gray2:#777;
+  --green:#00a651;
+  --yellow:#ffd400;
+  --border:#282828;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+body.menu-open{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+section{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:100px 40px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.section-title .eyebrow{
+  color:var(--red2);
+  font-size:.78rem;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.section-title h2{
+  font-size:clamp(2rem,5vw,3.2rem);
+  line-height:1.05;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+
+.section-title p{
+  max-width:680px;
+  margin:15px auto 0;
+  color:var(--gray);
+}
+
+.container{
+  max-width:1120px;
+  margin:auto;
+}
+
+/* NAVIGATION */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:72px;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+  background:rgba(0,0,0,.9);
+  border-bottom:2px solid rgba(215,25,32,.75);
+  backdrop-filter:blur(14px);
+}
+
+.logo{
+  text-decoration:none;
+  font-size:1.25rem;
+  font-weight:1000;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+
+.logo span{
+  color:var(--red2);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:17px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.5px;
+  transition:.25s;
+}
+
+.nav-links a:hover{
+  color:var(--red2);
+}
+
+.nav-cta{
+  padding:9px 13px;
+  border:1px solid var(--red);
+  border-radius:6px;
+}
+
+.menu-btn{
+  display:none;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:30px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  min-height:100svh;
+  max-width:none;
+  padding:120px 25px 70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.55),rgba(0,0,0,.92)),
+    linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.75)),
+    url("Top.png") center/cover no-repeat;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:550px;
+  height:550px;
+  border-radius:50%;
+  background:rgba(215,25,32,.14);
+  filter:blur(70px);
+  top:-200px;
+  right:-150px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:950px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 15px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:100px;
+  background:rgba(0,0,0,.4);
+  color:#eee;
+  font-size:.75rem;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-size:clamp(3.2rem,10vw,7.8rem);
+  line-height:.9;
+  font-weight:1000;
+  letter-spacing:-3px;
+  text-transform:uppercase;
+  text-shadow:5px 5px 0 var(--red-dark);
+}
+
+.hero h1 span{
+  color:var(--red2);
+}
+
+.hero h2{
+  margin:25px 0 12px;
+  color:#eee;
+  font-size:clamp(1rem,3vw,1.5rem);
+  letter-spacing:2px;
+  font-weight:900;
+}
+
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:#ccc;
+  font-size:1.05rem;
+}
+
+.hero-buttons{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  min-height:48px;
+  padding:13px 22px;
+  border-radius:8px;
+  border:2px solid var(--red);
+  background:var(--red);
+  color:#fff;
+  text-decoration:none;
+  font-weight:1000;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.btn:hover{
+  background:transparent;
+  transform:translateY(-2px);
+}
+
+.btn.green{
+  background:var(--green);
+  border-color:var(--green);
+}
+
+.btn.green:hover{
+  background:transparent;
+}
+
+.btn.dark{
+  background:#111;
+  border-color:#333;
+}
+
+.btn.dark:hover{
+  border-color:var(--red);
+}
+
+.hero-stats{
+  margin:45px auto 0;
+  max-width:850px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.48);
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.hero-stat{
+  padding:18px;
+  border-right:1px solid rgba(255,255,255,.12);
+}
+
+.hero-stat:last-child{
+  border-right:0;
+}
+
+.hero-stat strong{
+  display:block;
+  color:#fff;
+  font-size:1.35rem;
+}
+
+.hero-stat span{
+  color:#aaa;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* ABOUT */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:45px;
+  align-items:center;
+}
+
+.about-copy{
+  color:var(--gray);
+  font-size:1.05rem;
+}
+
+.about-copy p{
+  margin-bottom:18px;
+}
+
+.about-highlight{
+  margin-top:25px;
+  padding:22px;
+  border-left:4px solid var(--red);
+  background:linear-gradient(135deg,#151515,#090909);
+  border-radius:0 12px 12px 0;
+}
+
+.about-highlight strong{
+  display:block;
+  color:#fff;
+  margin-bottom:5px;
+}
+
+.about-card{
+  padding:35px;
+  background:
+    linear-gradient(145deg,rgba(215,25,32,.14),transparent),
+    var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+.about-card .big-icon{
+  font-size:4rem;
+}
+
+.about-card h3{
+  margin:12px 0;
+  font-size:1.8rem;
+}
+
+.about-card p{
+  color:var(--gray);
+}
+
+/* BENEFITS */
+.dark-section{
+  max-width:none;
+  background:linear-gradient(180deg,#090909,#050505);
+}
+
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.card{
+  background:linear-gradient(145deg,#171717,#0b0b0b);
+  padding:28px 22px;
+  border:1px solid #242424;
+  border-top:3px solid var(--red);
+  border-radius:13px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--red);
+}
+
+.card-icon{
+  font-size:2rem;
+  margin-bottom:14px;
+}
+
+.card h3{
+  font-size:1rem;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:var(--gray);
+  font-size:.92rem;
+}
+
+/* TRAINING */
+.training-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.training-card{
+  padding:32px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-top:4px solid var(--red);
+  border-radius:14px;
+}
+
+.training-card h3{
+  color:var(--yellow);
+  margin-bottom:15px;
+}
+
+.training-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:13px 0;
+  border-bottom:1px solid #292929;
+}
+
+.training-row:last-child{
+  border-bottom:0;
+}
+
+.training-row span:first-child{
+  color:#aaa;
+}
+
+.training-row strong{
+  text-align:right;
+}
+
+/* PRICING */
+.pricing{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px;
+}
+
+.price-card{
+  position:relative;
+  background:linear-gradient(145deg,#181818,#090909);
+  border:1px solid #333;
+  border-radius:18px;
+  padding:38px;
+  overflow:hidden;
+}
+
+.price-card.featured{
+  border:2px solid var(--red);
+}
+
+.price-card.featured::before{
+  content:"POPULAR";
+  position:absolute;
+  top:18px;
+  right:-34px;
+  transform:rotate(45deg);
+  background:var(--red);
+  padding:5px 38px;
+  font-size:.7rem;
+  font-weight:1000;
+}
+
+.price-card h3{
+  color:var(--yellow);
+  font-size:1.5rem;
+}
+
+.price{
+  margin:12px 0 22px;
+  font-size:3.3rem;
+  font-weight:1000;
+}
+
+.price span{
+  color:#aaa;
+  font-size:.95rem;
+  font-weight:normal;
+}
+
+.price-card ul{
+  list-style:none;
+  margin-bottom:25px;
+}
+
+.price-card li{
+  padding:11px 0;
+  border-bottom:1px solid #292929;
+  color:#ccc;
+}
+
+.price-card li::before{
+  content:"✓";
+  color:var(--yellow);
+  font-weight:1000;
+  margin-right:10px;
+}
+
+/* REGISTRATION */
+.registration-area{
+  background:
+    radial-gradient(circle at 10% 20%,rgba(215,25,32,.13),transparent 35%),
+    #070707;
+  max-width:none;
+}
+
+.registration-box{
+  max-width:760px;
+  margin:auto;
+  padding:35px;
+  background:linear-gradient(145deg,#171717,#080808);
+  border:1px solid #333;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+.registration-header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.registration-icon{
+  display:block;
+  font-size:4rem;
+}
+
+.registration-header h3{
+  font-size:2rem;
+  margin:10px 0;
+}
+
+.registration-header p{
+  color:#aaa;
+}
+
+.registration-price{
+  display:inline-flex;
+  flex-direction:column;
+  margin-top:20px;
+  padding:14px 30px;
+  border-radius:12px;
+  background:var(--red);
+  font-size:2.6rem;
+  font-weight:1000;
+}
+
+.registration-price small{
+  font-size:.7rem;
+  letter-spacing:2px;
+}
+
+.registration-payment{
+  padding:24px;
+  margin-bottom:28px;
+  text-align:center;
+  background:#050505;
+  border:1px solid var(--green);
+  border-radius:13px;
+}
+
+.registration-payment h4{
+  color:#25d366;
+  margin-bottom:8px;
+}
+
+.registration-number{
+  display:inline-block;
+  margin:14px 0;
+  padding:13px 20px;
+  background:#151515;
+  border:2px solid var(--red);
+  border-radius:8px;
+  font-size:1.4rem;
+  font-weight:1000;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  color:#aaa;
+  font-size:.8rem;
+  font-weight:bold;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:14px;
+  background:#050505;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:8px;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(215,25,32,.1);
+}
+
+textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+.payment-check{
+  grid-column:1/-1;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  color:#bbb;
+  font-size:.85rem;
+}
+
+.payment-check input{
+  width:18px;
+  height:18px;
+  margin-top:3px;
+  accent-color:var(--red);
+}
+
+.form-status{
+  grid-column:1/-1;
+  min-height:20px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.form-submit{
+  grid-column:1/-1;
+}
+
+.form-submit button{
+  width:100%;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.gallery-item{
+  background:#111;
+  border:1px solid #292929;
+  border-radius:13px;
+  overflow:hidden;
+}
+
+.gallery-item img,
+.gallery-item video{
+  display:block;
+  width:100%;
+  height:270px;
+  object-fit:cover;
+}
+
+.gallery-label{
+  display:block;
+  padding:13px;
+  text-align:center;
+  color:var(--yellow);
+  font-weight:bold;
+  font-size:.8rem;
+}
+
+/* PAYMENT */
+.payment-card{
+  max-width:650px;
+  margin:auto;
+  padding:40px;
+  text-align:center;
+  background:linear-gradient(145deg,#121212,#060606);
+  border:1px solid var(--green);
+  border-radius:18px;
+}
+
+.payment-card h3{
+  color:#25d366;
+  font-size:2rem;
+}
+
+.ecocash-number{
+  margin:20px 0;
+  padding:18px;
+  background:#161616;
+  border:2px solid var(--red);
+  border-radius:10px;
+  font-size:1.8rem;
+  font-weight:1000;
+}
+
+.payment-card p{
+  color:#aaa;
+  margin:8px;
+}
+
+/* ADMIN */
+.admin-area{
+  max-width:none;
+  background:
+    radial-gradient(circle at 90% 0,rgba(215,25,32,.16),transparent 35%),
+    #070707;
+}
+
+.admin-box{
+  max-width:500px;
+  margin:auto;
+  padding:35px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:18px;
+}
+
+.admin-icon{
+  text-align:center;
+  font-size:3.5rem;
+}
+
+.admin-box h3{
+  text-align:center;
+  margin:8px 0 5px;
+}
+
+.admin-box .subtitle{
+  text-align:center;
+  color:#888;
+  margin-bottom:25px;
+}
+
+.admin-field{
+  margin-bottom:15px;
+}
+
+.admin-field label{
+  display:block;
+  color:#aaa;
+  font-size:.8rem;
+  margin-bottom:6px;
+}
+
+#loginBtn{
+  width:100%;
+}
+
+.login-message{
+  text-align:center;
+  margin-top:14px;
+  min-height:22px;
+  font-size:.9rem;
+}
+
+/* CONTACT */
+.contact{
+  text-align:center;
+}
+
+.contact-details{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin:35px auto;
+  max-width:900px;
+}
+
+.contact-card{
+  padding:24px;
+  background:#111;
+  border:1px solid #292929;
+  border-radius:12px;
+}
+
+.contact-card strong{
+  display:block;
+  margin:7px 0;
+}
+
+.contact-card span{
+  color:#aaa;
+  font-size:.9rem;
+}
+
+/* LEGAL */
+.legal-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.legal-card{
+  background:#101010;
+  border:1px solid #272727;
+  padding:28px;
+  border-radius:12px;
+}
+
+.legal-card h3{
+  color:var(--red2);
+  margin-bottom:12px;
+}
+
+.legal-card p{
+  color:#aaa;
+}
+
+/* FOOTER */
+footer{
+  padding:45px 20px;
+  text-align:center;
+  background:#000;
+  border-top:2px solid var(--red);
+}
+
+.footer-logo{
+  font-size:1.5rem;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+.footer-logo span{
+  color:var(--red2);
+}
+
+footer p{
+  color:#888;
+  margin:8px;
+  font-size:.9rem;
+}
+
+.footer-links{
+  margin:20px 0;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.footer-links a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:.8rem;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,130px);
+  z-index:10000;
+  width:min(92%,500px);
+  padding:16px 20px;
+  background:#151515;
+  border:1px solid #333;
+  border-left:4px solid var(--red);
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  opacity:0;
+  transition:.3s;
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+  opacity:1;
+}
+
+.toast.success{
+  border-left-color:var(--green);
+}
+
+.toast.error{
+  border-left-color:var(--red2);
+}
+
+/* BACK TO TOP */
+.back-top{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:var(--red);
+  border:0;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  z-index:5000;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.back-top.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .nav-links{
+    gap:10px;
+  }
+
+  .nav-links a{
+    font-size:9px;
+  }
+
+  .benefits{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:800px){
+  nav{
+    height:64px;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:64px;
+    left:0;
+    width:100%;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    background:#050505;
+    border-bottom:2px solid var(--red);
+    max-height:calc(100svh - 64px);
+    overflow-y:auto;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .nav-links li{
+    width:100%;
+    border-bottom:1px solid #222;
+  }
+
+  .nav-links a{
+    display:block;
+    padding:15px;
+    text-align:center;
+    font-size:13px;
+  }
+
+  .nav-cta{
+    border:0;
+    border-radius:0;
+  }
+
+  section{
+    padding:75px 20px;
+  }
+
+  .about-grid,
+  .training-grid,
+  .pricing{
+    grid-template-columns:1fr;
+  }
+
+  .contact-details{
+    grid-template-columns:1fr;
+  }
+
+  .legal-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero-stat{
+    border-right:0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+
+  .hero-stat:last-child{
+    border-bottom:0;
+  }
+}
+
+@media(max-width:600px){
+  .hero{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .hero h1{
+    font-size:3.4rem;
+    letter-spacing:-2px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+
+  .hero-buttons .btn{
+    width:100%;
+  }
+
+  .benefits,
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .gallery-item img,
+  .gallery-item video{
+    height:auto;
+    max-height:400px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full,
+  .payment-check,
+  .form-submit,
+  .form-status{
+    grid-column:auto;
+  }
+
+  .registration-box,
+  .admin-box,
+  .payment-card{
+    padding:24px 18px;
+  }
+
+  .registration-price{
+    font-size:2.2rem;
+  }
+}
 </style>
 </head>
+
 <body>
-<nav><div class="logo">TOP <span>TKD</span></div><div class="menu-btn" onclick="toggleMenu()">☰</div><ul class="nav-links" id="navLinks">
-<li><a href="#home" onclick="closeMenu()">HOME</a></li><li><a href="#about" onclick="closeMenu()">ABOUT</a></li><li><a href="#benefits" onclick="closeMenu()">BENEFITS</a></li><li><a href="#training" onclick="closeMenu()">TRAINING</a></li><li><a href="#gallery" onclick="closeMenu()">GALLERY</a></li><li><a href="#pricing" onclick="closeMenu()">FEES</a></li><li><a href="#payment" onclick="closeMenu()">PAYMENT</a></li><li><a href="#registration" onclick="closeMenu()">REGISTER $15</a></li><li><a href="#portal" onclick="closeMenu()">ADMIN PORTAL</a></li><li><a href="#join" onclick="closeMenu()">CONTACT</a></li><li><a href="#privacy" onclick="closeMenu()">PRIVACY</a></li><li><a href="#terms" onclick="closeMenu()">TERMS</a></li>
-</ul></nav>
-<section class="hero" id="home"><div class="hero-content"><h1>TOP TAEKWONDO</h1><h2>DISCIPLINE. FOCUS. STRENGTH. SUCCESS.</h2><p>MORE THAN A SPORT, IT'S A WAY OF LIFE!</p><a href="#registration" class="btn">REGISTER — $15</a><a href="https://wa.me/263788932591" class="btn whatsapp" target="_blank" rel="noopener">📱 WHATSAPP US</a></div></section>
-<section id="about"><h3>ABOUT TOP TAEKWONDO</h3><div class="about"><p>TOP TAEKWONDO is dedicated to building champions for life. We don't just teach kicks and punches. We build character, discipline, confidence, respect and determination in every student.</p><br><p>Join our family at <strong>37 Cecil Road, Greendale</strong> and start your journey to greatness.</p></div></section>
-<section id="benefits"><h3>BENEFITS OF TAEKWONDO</h3><div class="benefits"><div class="card"><h4>🥋 BUILDS CONFIDENCE</h4><p>Helps students believe in themselves and develop courage.</p></div><div class="card"><h4>🎯 IMPROVES FOCUS</h4><p>Enhances concentration and mental clarity.</p></div><div class="card"><h4>💪 BUILDS STRENGTH</h4><p>Develops strength, coordination and healthy habits.</p></div><div class="card"><h4>🧠 TEACHES DISCIPLINE</h4><p>Encourages respect, self-control and responsibility.</p></div></div></section>
-<section id="registration"><h3>ONLINE REGISTRATION</h3><div class="registration-box"><div class="registration-header"><span class="registration-icon">🥋</span><h4>JOIN TOP TAEKWONDO</h4><p>Start your Taekwondo journey today.</p><div class="registration-price">$15<span>REGISTRATION FEE</span></div></div><div class="registration-payment"><h5>💳 REGISTRATION PAYMENT</h5><p>Pay the <strong>$15 registration fee</strong> using EcoCash:</p><div class="registration-number">+263 78 460 2024</div><p>Account Name: <strong>Ralph Mutaurwa</strong></p><p>Keep your payment confirmation after payment.</p></div>
-<form id="registrationForm" action="https://formspree.io/f/mdendroa" method="POST">
-<input type="hidden" name="Registration Fee" value="$15"><input type="text" name="Student Name" placeholder="Student Full Name" required><label>Date of Birth</label><input type="date" name="Date of Birth" required><input type="tel" name="Phone" placeholder="Student / Parent Phone Number" required><input type="email" name="Email" placeholder="Email Address" required><input type="text" name="Parent Guardian" placeholder="Parent / Guardian Name"><input type="tel" name="Emergency Contact" placeholder="Emergency Contact Number" required>
-<select name="Experience" required><option value="">Previous Taekwondo Experience?</option><option>Beginner</option><option>Some Experience</option><option>Experienced</option></select><textarea name="Message" rows="4" placeholder="Any additional information..."></textarea><label class="payment-check"><input type="checkbox" name="Fee Confirmation" value="I understand the registration fee is $15" required><span>I understand that the online registration fee is $15.</span></label><button type="submit">🥋 SUBMIT REGISTRATION</button>
-</form></div></section>
-<section id="gallery"><h3>OUR GALLERY</h3><div class="gallery"><div class="gallery-item"><span class="label">OUR CLUB AT THE TOURNAMENT</span><img src="training.png" alt="Taekwondo training"></div><div class="gallery-item"><span class="label">Our Medals At Soundz Z Championship</span><img src="md.png" alt="Taekwondo medals"></div><div class="gallery-item"><span class="label">Our Medal winners At HARARE MAYOR'S TAEKWONDO CHALLENGE CUP 2026</span><img src="tkd.png" alt="Taekwondo tournament"></div><div class="gallery-item"><span class="label">OUR COACH</span><img src="u.png" alt="TOP Taekwondo coach"></div><div class="gallery-item"><span class="label">OUR SENIOR STUDENTS</span><img src="s.png" alt="TOP Taekwondo senior students"></div><div class="gallery-item"><span class="label">OUR SPARRING</span><video controls><source src="my-video.mp4" type="video/mp4"></video></div></div></section>
-<section id="training"><h3>TRAINING INFORMATION</h3><div class="training-box"><div class="training-card"><h4>🥋 TRAINING DAYS</h4><p>Monday - Friday</p><p>15:00 - 17:00</p></div><div class="training-card"><h4>📍 TRAINING LOCATION</h4><p>37 Cecil Road</p><p>Greendale</p></div></div></section>
-<section id="pricing"><h3>MEMBERSHIP FEES</h3><div class="pricing"><div class="price-card"><h4>CHILDREN</h4><div class="price">$20 <span>/month</span></div><ul><li>Ages 5 - 19 years</li><li>Monday - Friday</li><li>15:00 - 17:00</li><li>Belt grading included</li><li>Character & discipline training</li></ul><a href="#registration" class="btn">ENROLL NOW</a></div><div class="price-card"><h4>ADULTS</h4><div class="price">$40 <span>/month</span></div><ul><li>Ages 20+ years</li><li>Monday - Friday</li><li>15:00 - 17:00</li><li>Advanced techniques</li><li>Self-defense & fitness</li></ul><a href="#registration" class="btn">JOIN NOW</a></div></div></section>
-<section id="payment"><h3>PAYMENT METHOD</h3><div class="payment"><h4>💳 ECOCASH</h4><div class="ecocash-number">+263 78 460 2024</div><p>Account Name: <strong>Ralph Mutaurwa</strong></p><p>Send proof via WhatsApp after payment.</p><a href="https://wa.me/263788932591" class="btn whatsapp" target="_blank" rel="noopener">📱 SEND PAYMENT PROOF</a></div></section>
+
+<!-- ================= NAVIGATION ================= -->
+<nav>
+  <a href="#home" class="logo">TOP <span>TKD</span></a>
+
+  <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
+    ☰
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#benefits">BENEFITS</a></li>
+    <li><a href="#training">TRAINING</a></li>
+    <li><a href="#gallery">GALLERY</a></li>
+    <li><a href="#pricing">FEES</a></li>
+    <li><a href="#payment">PAYMENT</a></li>
+    <li><a href="#registration">REGISTER $15</a></li>
+    <li><a href="#portal" class="nav-cta">ADMIN</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
 
 
-<section id="portal" class="portal">
-    <h3>🥋 Admin PORTAL</h3>
-    <div class="portal-login">
-        <h4>Admin LOGIN</h4>
-        <input type="email" id="email" placeholder="Your email" autocomplete="username">
-        <input type="password" id="masterpin" placeholder="Your password" autocomplete="current-password">
-        <button id="loginBtn" type="button">LOGIN</button>
-        <p id="loginMessage" style="text-align:center;margin-top:12px;color:#ff5555;"></p>
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="hero-content">
+
+    <div class="hero-badge">
+      🥋 TOP TAEKWONDO • HARARE, ZIMBABWE
     </div>
+
+    <h1>TOP <span>TAEKWONDO</span></h1>
+
+    <h2>DISCIPLINE. FOCUS. STRENGTH. SUCCESS.</h2>
+
+    <p>
+      More than a sport. It's a way of life.
+      Build confidence, discipline, fitness and character
+      while becoming the best version of yourself.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#registration" class="btn">
+        🥋 REGISTER — $15
+      </a>
+
+      <a href="https://wa.me/263788932591"
+         class="btn green"
+         target="_blank"
+         rel="noopener">
+        📱 WHATSAPP US
+      </a>
+
+      <a href="#training" class="btn dark">
+        VIEW TRAINING
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>5–19</strong>
+        <span>Children</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>20+</strong>
+        <span>Adults</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>Mon–Fri</strong>
+        <span>Training</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section id="join"><h3>CONTACT / JOIN US</h3><div class="contact-info"><p>BE STRONG. BE FOCUSED. BE THE BEST!</p><p>📍 37 Cecil Road, Greendale</p><p>📱 WhatsApp: +263 78 893 2591</p><p>💳 EcoCash: +263 78 460 2024</p></div><div style="text-align:center"><a href="https://wa.me/263788932591" class="btn whatsapp" target="_blank" rel="noopener">📱 CHAT ON WHATSAPP</a></div></section>
-<section id="privacy"><h3>PRIVACY POLICY</h3><p>TOP TAEKWONDO collects your name and contact details for registration and club administration. We do not intentionally share your information with third parties except services required to process registration or communications.</p></section>
-<section id="terms"><h3>TERMS & CONDITIONS</h3><p>By registering you agree to follow dojo rules. Fees are non-refundable. Training is at your own risk.</p></section>
-<footer><p>TOP TAEKWONDO - BUILDING CHAMPIONS FOR LIFE</p><p>📍 37 Cecil Road, Greendale</p><p>🕒 Monday - Friday | 15:00 - 17:00</p><p>💳 EcoCash: +263 78 460 2024</p><p>📱 WhatsApp: +263 78 893 2591</p></footer>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="section-title">
+    <div class="eyebrow">Our Mission</div>
+    <h2>Building Champions For Life</h2>
+    <p>
+      We develop martial artists who are strong in body,
+      disciplined in mind and respectful in character.
+    </p>
+  </div>
+
+  <div class="about-grid">
+
+    <div class="about-copy">
+      <p>
+        TOP TAEKWONDO is dedicated to building champions for life.
+        We don't simply teach kicks, punches and techniques.
+        We help students develop confidence, discipline,
+        focus, respect and determination.
+      </p>
+
+      <p>
+        Whether you are starting from zero or already have
+        Taekwondo experience, our training environment is
+        designed to help you progress.
+      </p>
+
+      <div class="about-highlight">
+        <strong>📍 Train With Us</strong>
+        37 Cecil Road, Greendale, Harare, Zimbabwe
+      </div>
+    </div>
+
+    <div class="about-card">
+      <div class="big-icon">🥋</div>
+      <h3>MORE THAN A SPORT</h3>
+      <p>
+        Taekwondo teaches lessons that extend beyond the
+        dojang — discipline, perseverance, confidence,
+        respect and self-control.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= BENEFITS ================= -->
+<section id="benefits" class="dark-section">
+  <div class="section-title">
+    <div class="eyebrow">Why Taekwondo?</div>
+    <h2>Train Your Body. Train Your Mind.</h2>
+  </div>
+
+  <div class="benefits">
+
+    <div class="card">
+      <div class="card-icon">🥋</div>
+      <h3>CONFIDENCE</h3>
+      <p>
+        Develop courage, self-belief and confidence through
+        progressive training.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>FOCUS</h3>
+      <p>
+        Improve concentration, attention and mental discipline.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💪</div>
+      <h3>STRENGTH</h3>
+      <p>
+        Build strength, flexibility, coordination and fitness.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>DISCIPLINE</h3>
+      <p>
+        Learn respect, self-control, responsibility and perseverance.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= TRAINING ================= -->
+<section id="training">
+  <div class="section-title">
+    <div class="eyebrow">Train With Us</div>
+    <h2>Training Information</h2>
+    <p>
+      Consistent training creates consistent progress.
+    </p>
+  </div>
+
+  <div class="training-grid">
+
+    <div class="training-card">
+      <h3>🥋 TRAINING SCHEDULE</h3>
+
+      <div class="training-row">
+        <span>Days</span>
+        <strong>Monday – Friday</strong>
+      </div>
+
+      <div class="training-row">
+        <span>Time</span>
+        <strong>15:00 – 17:00</strong>
+      </div>
+
+      <div class="training-row">
+        <span>Location</span>
+        <strong>37 Cecil Road</strong>
+      </div>
+
+      <div class="training-row">
+        <span>Area</span>
+        <strong>Greendale</strong>
+      </div>
+    </div>
+
+    <div class="training-card">
+      <h3>🔥 WHAT WE TRAIN</h3>
+
+      <div class="training-row">
+        <span>Fundamentals</span>
+        <strong>✓</strong>
+      </div>
+
+      <div class="training-row">
+        <span>Fitness & Conditioning</span>
+        <strong>✓</strong>
+      </div>
+
+      <div class="training-row">
+        <span>Sparring</span>
+        <strong>✓</strong>
+      </div>
+
+      <div class="training-row">
+        <span>Self-Defence</span>
+        <strong>✓</strong>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= FEES ================= -->
+<section id="pricing" class="dark-section">
+  <div class="section-title">
+    <div class="eyebrow">Membership</div>
+    <h2>Training Fees</h2>
+    <p>
+      Choose the programme that fits you and start your journey.
+    </p>
+  </div>
+
+  <div class="pricing">
+
+    <div class="price-card featured">
+      <h3>CHILDREN</h3>
+
+      <div class="price">
+        $20 <span>/ month</span>
+      </div>
+
+      <ul>
+        <li>Ages 5 – 19 years</li>
+        <li>Monday – Friday training</li>
+        <li>15:00 – 17:00</li>
+        <li>Belt grading included</li>
+        <li>Character & discipline development</li>
+      </ul>
+
+      <a href="#registration" class="btn">
+        ENROLL NOW
+      </a>
+    </div>
+
+    <div class="price-card">
+      <h3>ADULTS</h3>
+
+      <div class="price">
+        $40 <span>/ month</span>
+      </div>
+
+      <ul>
+        <li>Ages 20+ years</li>
+        <li>Monday – Friday training</li>
+        <li>15:00 – 17:00</li>
+        <li>Advanced techniques</li>
+        <li>Self-defence & fitness</li>
+      </ul>
+
+      <a href="#registration" class="btn">
+        JOIN NOW
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= REGISTRATION ================= -->
+<section id="registration" class="registration-area">
+
+  <div class="section-title">
+    <div class="eyebrow">Start Your Journey</div>
+    <h2>Online Registration</h2>
+    <p>
+      Complete the form below. Your application will be sent
+      directly to TOP TAEKWONDO.
+    </p>
+  </div>
+
+  <div class="registration-box">
+
+    <div class="registration-header">
+      <span class="registration-icon">🥋</span>
+
+      <h3>JOIN TOP TAEKWONDO</h3>
+
+      <p>
+        Registration is quick and simple.
+      </p>
+
+      <div class="registration-price">
+        $15
+        <small>REGISTRATION FEE</small>
+      </div>
+    </div>
+
+    <div class="registration-payment">
+      <h4>💳 PAY REGISTRATION FEE</h4>
+
+      <p>
+        Pay the <strong>$15 registration fee</strong>
+        using EcoCash.
+      </p>
+
+      <div class="registration-number">
+        +263 78 460 2024
+      </div>
+
+      <p>
+        Account Name:
+        <strong>Ralph Mutaurwa</strong>
+      </p>
+
+      <p>
+        Keep your payment confirmation after payment.
+      </p>
+    </div>
+
+
+    <form id="registrationForm" novalidate>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="studentName">Student Full Name *</label>
+          <input
+            id="studentName"
+            type="text"
+            name="student_name"
+            placeholder="Full name"
+            autocomplete="name"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth *</label>
+          <input
+            id="dob"
+            type="date"
+            name="date_of_birth"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Student / Parent Phone *</label>
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            placeholder="+263..."
+            autocomplete="tel"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="example@email.com"
+            autocomplete="email"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="guardian">Parent / Guardian</label>
+          <input
+            id="guardian"
+            type="text"
+            name="parent_guardian"
+            placeholder="Parent or guardian name"
+            autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="emergency">Emergency Contact *</label>
+          <input
+            id="emergency"
+            type="tel"
+            name="emergency_contact"
+            placeholder="+263..."
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Taekwondo Experience *</label>
+
+          <select id="experience" name="experience" required>
+            <option value="">Select experience</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Some Experience">Some Experience</option>
+            <option value="Experienced">Experienced</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+
+          <select id="gender" name="gender">
+            <option value="">Prefer not to say</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label for="message">Additional Information</label>
+
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Anything we should know before training?"></textarea>
+        </div>
+
+        <label class="payment-check">
+          <input
+            type="checkbox"
+            id="feeConfirmation"
+            required>
+
+          <span>
+            I understand that the registration fee is
+            <strong>$15</strong> and I will keep my payment
+            confirmation.
+          </span>
+        </label>
+
+        <div id="registrationStatus" class="form-status"></div>
+
+        <div class="form-submit">
+          <button
+            id="registrationBtn"
+            class="btn"
+            type="submit">
+            🥋 SUBMIT REGISTRATION
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="section-title">
+    <div class="eyebrow">Inside TOP TAEKWONDO</div>
+    <h2>Our Gallery</h2>
+  </div>
+
+  <div class="gallery">
+
+    <div class="gallery-item">
+      <img src="training.png" alt="TOP Taekwondo tournament">
+      <span class="gallery-label">
+        OUR CLUB AT THE TOURNAMENT
+      </span>
+    </div>
+
+    <div class="gallery-item">
+      <img src="md.png" alt="TOP Taekwondo medals">
+      <span class="gallery-label">
+        OUR MEDALS AT SOUNDZ Z CHAMPIONSHIP
+      </span>
+    </div>
+
+    <div class="gallery-item">
+      <img src="tkd.png" alt="TOP Taekwondo tournament">
+      <span class="gallery-label">
+        HARARE MAYOR'S TAEKWONDO CHALLENGE CUP 2026
+      </span>
+    </div>
+
+    <div class="gallery-item">
+      <img src="u.png" alt="TOP Taekwondo coach">
+      <span class="gallery-label">
+        OUR COACH
+      </span>
+    </div>
+
+    <div class="gallery-item">
+      <img src="s.png" alt="TOP Taekwondo senior students">
+      <span class="gallery-label">
+        OUR SENIOR STUDENTS
+      </span>
+    </div>
+
+    <div class="gallery-item">
+      <video controls preload="metadata">
+        <source src="my-video.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+
+      <span class="gallery-label">
+        OUR SPARRING
+      </span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= PAYMENT ================= -->
+<section id="payment" class="dark-section">
+
+  <div class="section-title">
+    <div class="eyebrow">Easy Payments</div>
+    <h2>EcoCash Payment</h2>
+  </div>
+
+  <div class="payment-card">
+
+    <h3>💳 ECOCASH</h3>
+
+    <div class="ecocash-number">
+      +263 78 460 2024
+    </div>
+
+    <p>
+      Account Name:
+      <strong>Ralph Mutaurwa</strong>
+    </p>
+
+    <p>
+      After payment, send your proof of payment via WhatsApp.
+    </p>
+
+    <br>
+
+    <a
+      href="https://wa.me/263788932591"
+      class="btn green"
+      target="_blank"
+      rel="noopener">
+      📱 SEND PAYMENT PROOF
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ADMIN PORTAL ================= -->
+<section id="portal" class="admin-area">
+
+  <div class="section-title">
+    <div class="eyebrow">Secure Access</div>
+    <h2>Admin Portal</h2>
+    <p>
+      Authorised administrators can manage students,
+      payments, belts and records.
+    </p>
+  </div>
+
+  <div class="admin-box">
+
+    <div class="admin-icon">🔐</div>
+
+    <h3>ADMIN LOGIN</h3>
+
+    <p class="subtitle">
+      Sign in with your administrator account.
+    </p>
+
+    <div class="admin-field">
+      <label for="adminEmail">Email Address</label>
+
+      <input
+        id="adminEmail"
+        type="email"
+        placeholder="Your admin email"
+        autocomplete="username">
+    </div>
+
+    <div class="admin-field">
+      <label for="adminPassword">Password</label>
+
+      <input
+        id="adminPassword"
+        type="password"
+        placeholder="Your password"
+        autocomplete="current-password">
+    </div>
+
+    <button id="loginBtn" class="btn" type="button">
+      🔐 SIGN IN
+    </button>
+
+    <div id="loginMessage" class="login-message"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+
+  <div class="section-title">
+    <div class="eyebrow">Get In Touch</div>
+    <h2>Ready To Train?</h2>
+
+    <p>
+      Come and join the TOP TAEKWONDO family.
+    </p>
+  </div>
+
+  <div class="contact">
+
+    <div class="contact-details">
+
+      <div class="contact-card">
+        📍
+        <strong>Training Location</strong>
+        <span>37 Cecil Road, Greendale</span>
+      </div>
+
+      <div class="contact-card">
+        📱
+        <strong>WhatsApp</strong>
+        <span>+263 78 893 2591</span>
+      </div>
+
+      <div class="contact-card">
+        💳
+        <strong>EcoCash</strong>
+        <span>+263 78 460 2024</span>
+      </div>
+
+    </div>
+
+    <a
+      href="https://wa.me/263788932591"
+      class="btn green"
+      target="_blank"
+      rel="noopener">
+      📱 CHAT WITH TOP TAEKWONDO
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LEGAL ================= -->
+<section class="dark-section">
+
+  <div class="legal-grid">
+
+    <div class="legal-card" id="privacy">
+      <h3>PRIVACY POLICY</h3>
+
+      <p>
+        TOP TAEKWONDO collects information submitted through
+        the registration form for student registration,
+        communication and club administration. Information
+        is handled for legitimate club purposes and is not
+        intentionally sold to third parties.
+      </p>
+    </div>
+
+    <div class="legal-card" id="terms">
+      <h3>TERMS & CONDITIONS</h3>
+
+      <p>
+        By registering, students and guardians agree to follow
+        dojo rules and reasonable instructions from instructors.
+        Fees are non-refundable. Training participation is
+        undertaken at the student's own risk.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer>
+
+  <div class="footer-logo">
+    TOP <span>TAEKWONDO</span>
+  </div>
+
+  <p>
+    BUILDING CHAMPIONS FOR LIFE
+  </p>
+
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#training">Training</a>
+    <a href="#pricing">Fees</a>
+    <a href="#registration">Register</a>
+    <a href="#portal">Admin</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+  </div>
+
+  <p>📍 37 Cecil Road, Greendale</p>
+  <p>🕒 Monday – Friday | 15:00 – 17:00</p>
+  <p>📱 WhatsApp: +263 78 893 2591</p>
+  <p>💳 EcoCash: +263 78 460 2024</p>
+
+  <p style="margin-top:22px;">
+    © <span id="year"></span> TOP TAEKWONDO. All rights reserved.
+  </p>
+
+</footer>
+
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<!-- BACK TO TOP -->
+<button id="backTop" class="back-top" aria-label="Back to top">
+  ↑
+</button>
+
+
+<!-- ================= BASIC UI ================= -->
 <script>
-function toggleMenu(){document.getElementById("navLinks").classList.toggle("active")}
-function closeMenu(){document.getElementById("navLinks").classList.remove("active")}
+const navLinks = document.getElementById('navLinks');
+const menuBtn = document.getElementById('menuBtn');
+
+function closeMenu(){
+  navLinks.classList.remove('active');
+  document.body.classList.remove('menu-open');
+  menuBtn.textContent = '☰';
+}
+
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('active');
+
+  document.body.classList.toggle('menu-open', open);
+
+  menuBtn.textContent = open ? '✕' : '☰';
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+document.getElementById('year').textContent =
+  new Date().getFullYear();
+
+const backTop = document.getElementById('backTop');
+
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 500);
+});
+
+backTop.addEventListener('click', () => {
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+});
+
+function showToast(message, type='success'){
+  const toast = document.getElementById('toast');
+
+  toast.textContent = message;
+  toast.className = 'toast show ' + type;
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(() => {
+    toast.className = 'toast';
+  }, 4500);
+}
 </script>
+
+
+<!-- ================= SUPABASE ================= -->
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-const SUPABASE_URL = 'https://ohrzdhpttcxisiwmesxp.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_';
+import {
+  createClient
+} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-// IMPORTANT: create exactly ONE Supabase client on index.html.
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-/* Registration */
-const form = document.getElementById('registrationForm');
-if (form) {
-  const btn = form.querySelector('button[type="submit"]');
-  const originalText = btn.textContent;
+/*
+===========================================================
+SUPABASE CONFIGURATION
+===========================================================
+This is the public/publishable key.
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-    const d = new FormData(form);
+NEVER put a Supabase service_role/secret key in this file.
+===========================================================
+*/
 
-    const { error } = await supabase.from('students').insert([{
-      student_name: d.get('Student Name'),
-      date_of_birth: d.get('Date of Birth'),
-      student_phone: d.get('Phone'),
-      student_email: d.get('Email'),
-      parent_guardian_name: d.get('Parent Guardian') || null,
-      emergency_contact: d.get('Emergency Contact'),
-      experience_level: d.get('Experience'),
-      message: d.get('Message') || null,
-      registration_fee_paid: 0,
-      monthly_fee: 0,
-      monthly_fee_paid: 0,
-      payment_status: 'pending',
-      application_status: 'pending',
-      status: 'active'
-    }]);
+const SUPABASE_URL =
+  'https://ohrzdhpttcxisiwmesxp.supabase.co';
+
+const SUPABASE_KEY =
+  'sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_';
+
+
+const supabase =
+  createClient(SUPABASE_URL, SUPABASE_KEY);
+
+
+/*
+===========================================================
+REGISTRATION
+===========================================================
+Matches your current students table:
+
+student_name
+date_of_birth
+phone
+email
+parent_guardian
+emergency_contact
+experience
+message
+registration_fee
+payment_status
+application_status
+belt
+attendance
+...
+plus your newer fields.
+===========================================================
+*/
+
+const registrationForm =
+  document.getElementById('registrationForm');
+
+const registrationBtn =
+  document.getElementById('registrationBtn');
+
+const registrationStatus =
+  document.getElementById('registrationStatus');
+
+
+registrationForm.addEventListener('submit', async (event) => {
+
+  event.preventDefault();
+
+  registrationStatus.textContent = '';
+  registrationStatus.style.color = '#ccc';
+
+  if (!registrationForm.checkValidity()) {
+    registrationForm.reportValidity();
+    return;
+  }
+
+  registrationBtn.disabled = true;
+  registrationBtn.textContent = '⏳ SUBMITTING...';
+
+  const studentName =
+    document.getElementById('studentName').value.trim();
+
+  const dateOfBirth =
+    document.getElementById('dob').value;
+
+  const phone =
+    document.getElementById('phone').value.trim();
+
+  const email =
+    document.getElementById('email').value.trim();
+
+  const guardian =
+    document.getElementById('guardian').value.trim();
+
+  const emergency =
+    document.getElementById('emergency').value.trim();
+
+  const experience =
+    document.getElementById('experience').value;
+
+  const gender =
+    document.getElementById('gender').value || null;
+
+  const message =
+    document.getElementById('message').value.trim() || null;
+
+
+  /*
+  IMPORTANT:
+
+  The required NOT NULL fields in your students table
+  are supplied below.
+
+  We intentionally do NOT manually supply "id".
+  PostgreSQL generates the UUID using gen_random_uuid().
+  */
+
+  const studentRecord = {
+
+    student_name: studentName,
+
+    date_of_birth: dateOfBirth,
+
+    phone: phone,
+
+    email: email,
+
+    parent_guardian:
+      guardian || null,
+
+    emergency_contact:
+      emergency,
+
+    experience:
+      experience,
+
+    message:
+      message,
+
+    registration_fee:
+      15,
+
+    payment_status:
+      'Pending',
+
+    application_status:
+      'Pending',
+
+    belt:
+      'White Belt',
+
+    attendance:
+      0,
+
+    gender:
+      gender,
+
+    parent_name:
+      guardian || null,
+
+    parent_guardian_name:
+      guardian || null,
+
+    parent_phone:
+      phone || null,
+
+    belt_progress:
+      0,
+
+    monthly_fee_paid:
+      0,
+
+    monthly_fee:
+      0,
+
+    registration_fee_paid:
+      false,
+
+    experience_level:
+      experience,
+
+    join_date:
+      new Date().toISOString().slice(0,10),
+
+    student_email:
+      email,
+
+    student_phone:
+      phone,
+
+    medical_information:
+      'None',
+
+    status:
+      'active'
+  };
+
+
+  try {
+
+    const {
+      data,
+      error
+    } = await supabase
+      .from('students')
+      .insert([studentRecord])
+      .select('id')
+      .single();
+
 
     if (error) {
-      console.error('Supabase registration error:', error);
-      alert('Registration could not be saved. Please contact us on WhatsApp.');
-      btn.disabled = false;
-      btn.textContent = originalText;
+
+      console.error(
+        'Supabase registration error:',
+        error
+      );
+
+      registrationStatus.style.color =
+        '#ff5555';
+
+      registrationStatus.textContent =
+        'Registration could not be saved. Please try again or contact us on WhatsApp.';
+
+      showToast(
+        'Registration could not be saved.',
+        'error'
+      );
+
+      registrationBtn.disabled = false;
+      registrationBtn.textContent =
+        '🥋 SUBMIT REGISTRATION';
+
       return;
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: d,
-      headers: { Accept: 'application/json' }
-    }).catch(() => {});
 
-    alert("🥋 Registration received! Please send the $15 registration fee via EcoCash.");
-    form.reset();
-    btn.disabled = false;
-    btn.textContent = originalText;
-  });
-}
+    console.log(
+      'Registration saved:',
+      data
+    );
 
-/* Admin Sign In */
-const emailInput = document.getElementById('email');
-const pinInput = document.getElementById('masterpin');
-const loginBtn = document.getElementById('loginBtn');
-const loginMsg = document.getElementById('loginMessage');
 
-async function loginMaster() {
-  const email = emailInput.value.trim();
-  const password = pinInput.value.trim();
+    registrationStatus.style.color =
+      '#00d26a';
 
-  if (!email || !password) {
-    loginMsg.style.color = '#ff5555';
-    loginMsg.textContent = 'Please enter your email and password';
-    return;
+    registrationStatus.textContent =
+      '✓ Registration received successfully.';
+
+
+    showToast(
+      '🥋 Registration received successfully!',
+      'success'
+    );
+
+
+    registrationForm.reset();
+
+
+    setTimeout(() => {
+
+      registrationStatus.textContent = '';
+
+    }, 5000);
+
+
+  } catch (err) {
+
+    console.error(
+      'Unexpected registration error:',
+      err
+    );
+
+    registrationStatus.style.color =
+      '#ff5555';
+
+    registrationStatus.textContent =
+      'Something went wrong. Please try again.';
+
+    showToast(
+      'Something went wrong.',
+      'error'
+    );
+
+  } finally {
+
+    registrationBtn.disabled = false;
+
+    registrationBtn.textContent =
+      '🥋 SUBMIT REGISTRATION';
+
   }
 
-  loginMsg.style.color = '#ccc';
-  loginMsg.textContent = 'Logging in...';
-
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    console.error('Admin login error:', error);
-    loginMsg.style.color = '#ff5555';
-    loginMsg.textContent = 'Invalid email or password';
-    return;
-  }
-
-  loginMsg.style.color = '#00a651';
-  loginMsg.textContent = 'Welcome! Redirecting...';
-  setTimeout(() => { window.location.href = 'portal.html'; }, 600);
-}
-
-loginBtn.addEventListener('click', loginMaster);
-pinInput.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') loginMaster();
 });
+
+
+/*
+===========================================================
+ADMIN LOGIN
+===========================================================
+Uses Supabase Auth.
+
+Successful login redirects to portal.html.
+===========================================================
+*/
+
+const adminEmail =
+  document.getElementById('adminEmail');
+
+const adminPassword =
+  document.getElementById('adminPassword');
+
+const loginBtn =
+  document.getElementById('loginBtn');
+
+const loginMessage =
+  document.getElementById('loginMessage');
+
+
+async function loginAdmin(){
+
+  const email =
+    adminEmail.value.trim();
+
+  const password =
+    adminPassword.value;
+
+
+  if (!email || !password){
+
+    loginMessage.style.color =
+      '#ff5555';
+
+    loginMessage.textContent =
+      'Please enter your email and password.';
+
+    return;
+  }
+
+
+  loginBtn.disabled = true;
+  loginBtn.textContent =
+    '⏳ SIGNING IN...';
+
+  loginMessage.style.color =
+    '#aaa';
+
+  loginMessage.textContent =
+    'Authenticating...';
+
+
+  try {
+
+    const {
+      data,
+      error
+    } = await supabase.auth.signInWithPassword({
+
+      email,
+      password
+
+    });
+
+
+    if (error){
+
+      console.error(
+        'Admin login error:',
+        error
+      );
+
+      loginMessage.style.color =
+        '#ff5555';
+
+      loginMessage.textContent =
+        'Invalid email or password.';
+
+      showToast(
+        'Login failed.',
+        'error'
+      );
+
+      return;
+    }
+
+
+    if (!data.session){
+
+      loginMessage.style.color =
+        '#ff5555';
+
+      loginMessage.textContent =
+        'Login session could not be created.';
+
+      return;
+    }
+
+
+    loginMessage.style.color =
+      '#00d26a';
+
+    loginMessage.textContent =
+      '✓ Login successful. Opening Admin Portal...';
+
+
+    showToast(
+      'Welcome to the Admin Portal.',
+      'success'
+    );
+
+
+    setTimeout(() => {
+
+      window.location.href =
+        'portal.html';
+
+    }, 600);
+
+
+  } catch (err) {
+
+    console.error(
+      'Unexpected login error:',
+      err
+    );
+
+    loginMessage.style.color =
+      '#ff5555';
+
+    loginMessage.textContent =
+      'Unable to connect. Please try again.';
+
+  } finally {
+
+    loginBtn.disabled = false;
+
+    loginBtn.textContent =
+      '🔐 SIGN IN';
+
+  }
+
+}
+
+
+loginBtn.addEventListener(
+  'click',
+  loginAdmin
+);
+
+
+adminPassword.addEventListener(
+  'keydown',
+  event => {
+
+    if (event.key === 'Enter') {
+      loginAdmin();
+    }
+
+  }
+);
+
+
+/*
+===========================================================
+IF AN ADMIN IS ALREADY SIGNED IN
+===========================================================
+We don't automatically redirect because this is the public
+homepage. The administrator can choose ADMIN from navigation.
+===========================================================
+*/
+
+const {
+  data: {
+    session
+  }
+} = await supabase.auth.getSession();
+
+if (session) {
+
+  console.log(
+    'Existing Supabase session detected.'
+  );
+
+}
+
 </script>
 
 </body>

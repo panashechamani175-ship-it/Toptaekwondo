@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP TAEKWONDO | Student ID Card</title>
+
+<style>
+:root{
+  --black:#050505;
+  --black2:#0d0d0d;
+  --red:#c62828;
+  --red2:#ff3030;
+  --white:#fff;
+  --gray:#bdbdbd;
+  --green:#00a651;
+  --gold:#ffdc3d;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:#252525;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  min-height:100vh;
+}
+
+/* =========================
+   SCREEN CONTROLS
+========================= */
+
+.controls{
+  width:100%;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.controls button{
+  border:0;
+  border-radius:8px;
+  padding:13px 20px;
+  font-weight:800;
+  cursor:pointer;
+  color:#fff;
+  background:var(--red);
+}
+
+.controls button:hover{
+  background:var(--red2);
+}
+
+.controls .secondary{
+  background:#333;
+}
+
+/* =========================
+   PRINT AREA
+========================= */
+
+.print-area{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+}
+
+/*
+   CR80 CARD
+   85.60mm × 53.98mm
+*/
+
+.id-card{
+  width:85.6mm;
+  height:53.98mm;
+  position:relative;
+  overflow:hidden;
+  border-radius:3mm;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(198,40,40,.35),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #171717,
+      #050505 70%
+    );
+  border:0.5mm solid #8d1d1d;
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.55);
+}
+
+/* Decorative diagonal */
+
+.id-card::before{
+  content:"";
+  position:absolute;
+  width:90mm;
+  height:25mm;
+  right:-25mm;
+  top:25mm;
+  background:rgba(198,40,40,.12);
+  transform:rotate(-28deg);
+}
+
+.id-card::after{
+  content:"";
+  position:absolute;
+  width:45mm;
+  height:45mm;
+  right:-25mm;
+  bottom:-25mm;
+  border:0.7mm solid rgba(255,48,48,.15);
+  border-radius:50%;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.card-header{
+  position:relative;
+  z-index:2;
+  height:11mm;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:2.5mm 3.5mm;
+  border-bottom:0.5mm solid rgba(255,255,255,.12);
+}
+
+.brand{
+  font-size:4.2mm;
+  font-weight:1000;
+  letter-spacing:.5mm;
+}
+
+.brand span{
+  color:var(--red2);
+}
+
+.subtitle{
+  font-size:1.8mm;
+  color:#bbb;
+  letter-spacing:.35mm;
+  margin-top:.7mm;
+}
+
+.tkd-symbol{
+  width:7mm;
+  height:7mm;
+  border:0.6mm solid var(--red2);
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:3.2mm;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.card-body{
+  position:relative;
+  z-index:2;
+  display:flex;
+  gap:3mm;
+  padding:3mm 3.5mm 2mm;
+}
+
+.photo{
+  width:21mm;
+  height:25mm;
+  flex-shrink:0;
+  border:0.7mm solid var(--red2);
+  border-radius:1.8mm;
+  overflow:hidden;
+  background:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+
+.photo-placeholder{
+  text-align:center;
+  color:#777;
+  font-size:2.2mm;
+  line-height:1.3;
+}
+
+.photo-placeholder strong{
+  display:block;
+  font-size:4.5mm;
+  color:#555;
+  margin-bottom:1mm;
+}
+
+.details{
+  flex:1;
+  min-width:0;
+}
+
+.student-name{
+  font-size:4.2mm;
+  line-height:1.05;
+  font-weight:1000;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-bottom:1.5mm;
+}
+
+.student-id{
+  color:var(--red2);
+  font-size:2.3mm;
+  font-weight:800;
+  letter-spacing:.3mm;
+  margin-bottom:2.5mm;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.7mm 3mm;
+}
+
+.info-label{
+  color:#777;
+  font-size:1.7mm;
+  text-transform:uppercase;
+  letter-spacing:.2mm;
+}
+
+.info-value{
+  color:#eee;
+  font-size:2.35mm;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:.4mm;
+}
+
+/* =========================
+   STATUS / BELT
+========================= */
+
+.badges{
+  display:flex;
+  gap:1.5mm;
+  margin-top:2.5mm;
+}
+
+.badge{
+  padding:1mm 2mm;
+  border-radius:1.2mm;
+  font-size:1.8mm;
+  font-weight:900;
+  background:#222;
+  border:0.3mm solid #444;
+}
+
+.badge.status{
+  border-color:var(--green);
+  color:#62e59b;
+}
+
+.badge.belt{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.card-footer{
+  position:absolute;
+  z-index:3;
+  left:0;
+  right:0;
+  bottom:0;
+  height:9mm;
+  padding:1.8mm 3.5mm;
+  background:rgba(0,0,0,.72);
+  border-top:0.4mm solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.club-info{
+  font-size:1.7mm;
+  color:#aaa;
+  line-height:1.4;
+}
+
+.club-info strong{
+  color:#fff;
+}
+
+.signature{
+  text-align:right;
+  font-size:1.6mm;
+  color:#777;
+}
+
+.signature-line{
+  width:19mm;
+  border-bottom:.3mm solid #777;
+  margin-bottom:.7mm;
+}
+
+/* =========================
+   QR
+========================= */
+
+.qr{
+  width:9mm;
+  height:9mm;
+  background:#fff;
+  border-radius:1mm;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#111;
+  font-size:1.5mm;
+  text-align:center;
+  flex-shrink:0;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+  font-weight:800;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@page{
+  size:A4 portrait;
+  margin:0;
+}
+
+@media print{
+
+  html,
+  body{
+    width:210mm;
+    height:297mm;
+    background:#fff!important;
+  }
+
+  .controls,
+  .loading{
+    display:none!important;
+  }
+
+  .print-area{
+    width:210mm;
+    height:297mm;
+    padding:0;
+    margin:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .id-card{
+    margin:0;
+    box-shadow:none;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+}
+
+/* =========================
+   SMALL SCREEN PREVIEW
+========================= */
+
+@media screen and (max-width:600px){
+
+  .print-area{
+    padding:20px 10px;
+    overflow:auto;
+  }
+
+  .id-card{
+    transform:scale(.9);
+    transform-origin:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loading" id="loading">
+  Loading student card...
+</div>
+
+<div class="controls">
+  <button onclick="window.print()">🖨 PRINT CARD</button>
+  <button class="secondary" onclick="window.history.back()">← BACK TO PORTAL</button>
+</div>
+
+<div class="print-area">
+
+  <div class="id-card">
+
+    <div class="card-header">
+
+      <div>
+        <div class="brand">
+          TOP <span>TAEKWONDO</span>
+        </div>
+
+        <div class="subtitle">
+          BUILDING CHAMPIONS FOR LIFE
+        </div>
+      </div>
+
+      <div class="tkd-symbol">
+        🥋
+      </div>
+
+    </div>
+
+
+    <div class="card-body">
+
+      <div class="photo">
+
+        <img id="studentPhoto" alt="Student photo">
+
+        <div class="photo-placeholder" id="photoPlaceholder">
+          <strong>🥋</strong>
+          STUDENT<br>
+          PHOTO
+        </div>
+
+      </div>
+
+
+      <div class="details">
+
+        <div class="student-name" id="studentName">
+          STUDENT NAME
+        </div>
+
+        <div class="student-id" id="studentId">
+          TKD-000000
+        </div>
+
+
+        <div class="info-grid">
+
+          <div>
+            <div class="info-label">Date of Birth</div>
+            <div class="info-value" id="dateOfBirth">—</div>
+          </div>
+
+          <div>
+            <div class="info-label">Gender</div>
+            <div class="info-value" id="gender">—</div>
+          </div>
+
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-value" id="phone">—</div>
+          </div>
+
+          <div>
+            <div class="info-label">Emergency</div>
+            <div class="info-value" id="emergency">—</div>
+          </div>
+
+        </div>
+
+
+        <div class="badges">
+
+          <div class="badge belt" id="belt">
+            WHITE BELT
+          </div>
+
+          <div class="badge status" id="status">
+            ACTIVE
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="qr" id="qr">
+        QR<br>
+        VERIFY
+      </div>
+
+    </div>
+
+
+    <div class="card-footer">
+
+      <div class="club-info">
+
+        <strong>TOP TAEKWONDO</strong><br>
+
+        37 Cecil Road, Greendale<br>
+
+        Harare • Zimbabwe<br>
+
+        WhatsApp: +263 78 893 2591
+
+      </div>
+
+
+      <div class="signature">
+
+        <div class="signature-line"></div>
+
+        Administrator
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  createClient
+} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+
+const SUPABASE_URL =
+  'https://ohrzdhpttcxisiwmesxp.supabase.co';
+
+const SUPABASE_KEY =
+  'sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_';
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+const $ = id =>
+  document.getElementById(id);
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeValue(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ''
+  ){
+    return '—';
+  }
+
+  return String(value);
+}
+
+
+function formatDate(value){
+
+  if(!value){
+    return '—';
+  }
+
+  const date =
+    new Date(value);
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+    return value;
+  }
+
+  return date.toLocaleDateString(
+    'en-GB',
+    {
+      day:'2-digit',
+      month:'short',
+      year:'numeric'
+    }
+  );
+}
+
+
+function shortId(id){
+
+  if(!id){
+    return '000000';
+  }
+
+  return String(id)
+    .replace(/-/g,'')
+    .substring(0,6)
+    .toUpperCase();
+}
+
+
+/* =========================
+   GET STUDENT ID
+========================= */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const studentId =
+  params.get('id');
+
+
+/* =========================
+   LOAD STUDENT
+========================= */
+
+async function loadStudent(){
+
+  try{
+
+    if(!studentId){
+
+      throw new Error(
+        'No student ID was supplied.'
+      );
+
+    }
+
+
+    /* Require authenticated admin */
+
+    const {
+      data:{
+        user
+      }
+    } =
+      await supabase.auth.getUser();
+
+
+    if(!user){
+
+      window.location.href =
+        'index.html#portal';
+
+      return;
+
+    }
+
+
+    const {
+      data:student,
+      error
+    } =
+      await supabase
+        .from('students')
+        .select('*')
+        .eq('id',studentId)
+        .single();
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    if(!student){
+
+      throw new Error(
+        'Student was not found.'
+      );
+
+    }
+
+
+    renderStudent(student);
+
+
+  }catch(error){
+
+    console.error(
+      'Student card error:',
+      error
+    );
+
+    alert(
+      'Unable to load this student card.'
+    );
+
+    window.history.back();
+
+  }finally{
+
+    $('loading')
+      .classList.add('hidden');
+
+  }
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function renderStudent(student){
+
+  const displayName =
+    student.student_name ||
+    student.full_name ||
+    'STUDENT NAME';
+
+
+  $('studentName')
+    .textContent =
+    displayName;
+
+
+  $('studentId')
+    .textContent =
+    'TKD-' +
+    shortId(student.id);
+
+
+  $('dateOfBirth')
+    .textContent =
+    formatDate(
+      student.date_of_birth ||
+      student.dob
+    );
+
+
+  $('gender')
+    .textContent =
+    escapeValue(
+      student.gender
+    );
+
+
+  $('phone')
+    .textContent =
+    escapeValue(
+      student.student_phone ||
+      student.phone
+    );
+
+
+  $('emergency')
+    .textContent =
+    escapeValue(
+      student.emergency_contact
+    );
+
+
+  $('belt')
+    .textContent =
+    escapeValue(
+      student.belt ||
+      student.belt_rank ||
+      'White Belt'
+    ).toUpperCase();
+
+
+  $('status')
+    .textContent =
+    escapeValue(
+      student.status ||
+      'active'
+    ).toUpperCase();
+
+
+  /* Photo support */
+
+  const photoUrl =
+    student.photo_url ||
+    student.photo ||
+    student.profile_photo;
+
+
+  if(photoUrl){
+
+    $('studentPhoto').src =
+      photoUrl;
+
+    $('studentPhoto').style.display =
+      'block';
+
+    $('photoPlaceholder').style.display =
+      'none';
+
+  }
+
+
+  /*
+    Simple verification payload.
+    This can later be replaced with
+    a dedicated public verification URL.
+  */
+
+  $('qr').textContent =
+    'TKD-' +
+    shortId(student.id);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadStudent();
+
+</script>
+
+</body>
+</html>
