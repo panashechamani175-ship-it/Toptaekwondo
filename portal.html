@@ -3,386 +3,369 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TOP TKD - Admin Panel</title>
+<title>TOP TKD - Admin Portal</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root{
-    --red:#c62828;
-    --red-dark:#8e0000;
-    --red-light:#ff3030;
-    --dark:#080808;
-    --dark2:#171717;
-    --yellow:#ffeb3b;
-    --bg:#f1f1f1;
-    --green:#00a651;
-    --blue:#1976d2;
-    --white:#fff;
-    --gray:#666;
+  --red:#c62828;
+  --red-dark:#8e0000;
+  --dark:#080808;
+  --dark2:#171717;
+  --yellow:#ffeb3b;
+  --bg:#f1f1f1;
+  --green:#00a651;
+  --blue:#1976d2;
+  --white:#fff;
+  --gray:#666;
 }
 
 *{
-    box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    padding:20px;
-    background:var(--bg);
-    font-family:'Segoe UI',Arial,sans-serif;
-    color:#222;
+  margin:0;
+  padding:20px;
+  background:var(--bg);
+  font-family:'Segoe UI',Arial,sans-serif;
+  color:#222;
 }
 
-/* ================= HEADER ================= */
-
 .admin-header{
-    background:linear-gradient(
-        135deg,
-        #050505,
-        #171717,
-        #8e0000
-    );
-    color:#fff;
-    padding:25px;
-    border-radius:14px;
-    border-left:6px solid var(--yellow);
-    margin-bottom:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
+  background:linear-gradient(135deg,#050505,#171717,#8e0000);
+  color:#fff;
+  padding:25px;
+  border-radius:14px;
+  border-left:6px solid var(--yellow);
+  margin-bottom:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
 .admin-header h1{
-    margin:0;
-    color:var(--yellow);
+  margin:0;
+  color:var(--yellow);
 }
 
 .admin-header p{
-    margin-bottom:0;
+  margin-bottom:0;
 }
 
 .logout{
-    float:right;
-    background:rgba(255,255,255,.15);
-    color:#fff;
-    border:1px solid #fff;
-    padding:9px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-    width:auto;
-    margin:0;
+  float:right;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  border:1px solid #fff;
+  padding:9px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  width:auto;
+  margin:0;
 }
 
-/* ================= GRID ================= */
-
 .admin-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
 @media(max-width:900px){
-    .admin-grid{
-        grid-template-columns:1fr;
-    }
+  .admin-grid{
+    grid-template-columns:1fr;
+  }
 }
 
-/* ================= CARDS ================= */
-
 .card{
-    background:#fff;
-    padding:20px;
-    border-radius:14px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-    border-top:4px solid var(--red);
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  border-top:4px solid var(--red);
 }
 
 .full{
-    grid-column:1/-1;
+  grid-column:1/-1;
 }
 
 .card h2,
 .card h3{
-    color:var(--red);
-    margin-top:0;
-    border-bottom:2px solid var(--yellow);
-    padding-bottom:8px;
+  color:var(--red);
+  margin-top:0;
+  border-bottom:2px solid var(--yellow);
+  padding-bottom:8px;
 }
 
-/* ================= FORMS ================= */
-
 label{
-    display:block;
-    font-weight:bold;
-    margin-top:10px;
-    font-size:14px;
+  display:block;
+  font-weight:bold;
+  margin-top:10px;
+  font-size:14px;
 }
 
 input,
 select,
 textarea,
 button{
-    width:100%;
-    padding:11px;
-    margin-top:6px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:15px;
+  width:100%;
+  padding:11px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
 }
 
 textarea{
-    resize:vertical;
+  resize:vertical;
 }
 
 button{
-    border:none;
-    background:var(--red);
-    color:#fff;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
+  border:none;
+  background:var(--red);
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
 }
 
 button:hover{
-    opacity:.9;
-    transform:translateY(-1px);
+  opacity:.9;
+  transform:translateY(-1px);
 }
 
 button:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-    transform:none;
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
 }
 
 .btn-blue{
-    background:var(--blue);
+  background:var(--blue);
 }
 
 .btn-green{
-    background:var(--green);
+  background:var(--green);
 }
 
 .btn-dark{
-    background:var(--dark);
+  background:var(--dark);
 }
 
 .btn-danger{
-    background:#9b0000;
+  background:#9b0000;
 }
-
-/* ================= DOB ================= */
 
 .dob-group{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
 }
 
-/* ================= CHECKBOX ================= */
-
 .checkbox-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
 }
 
 .checkbox-row input{
-    width:auto;
-    margin:0;
+  width:auto;
 }
 
-/* ================= STATISTICS ================= */
-
 .stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
 
 @media(max-width:700px){
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
 .stat{
-    padding:15px;
-    background:#fafafa;
-    border-radius:10px;
-    border-left:5px solid var(--red);
+  padding:15px;
+  background:#fafafa;
+  border-radius:10px;
+  border-left:5px solid var(--red);
 }
 
 .stat strong{
-    display:block;
-    font-size:24px;
-    margin-top:5px;
+  display:block;
+  font-size:24px;
+  margin-top:5px;
 }
-
-/* ================= SEARCH ================= */
 
 .search{
-    margin-bottom:15px;
+  margin-bottom:15px;
 }
 
-/* ================= STUDENTS ================= */
-
 .student-row{
-    background:#fafafa;
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:12px;
+  background:#fafafa;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:12px;
 }
 
 .student-row h3{
-    margin:0 0 8px;
-    color:var(--dark);
-    border:0;
+  margin:0 0 8px;
+  color:var(--dark);
+  border:0;
 }
 
 .student-info{
-    color:#555;
-    font-size:14px;
-    line-height:1.7;
+  color:#555;
+  font-size:14px;
+  line-height:1.8;
 }
 
-/* ================= BUTTON ROW ================= */
-
 .button-row{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
 }
 
 .button-row button{
-    width:auto;
-    flex:1;
-    min-width:100px;
+  width:auto;
+  flex:1;
+  min-width:100px;
 }
-
-/* ================= STATUS ================= */
-
-.badge{
-    display:inline-block;
-    padding:4px 8px;
-    border-radius:20px;
-    font-weight:bold;
-    font-size:12px;
-}
-
-.active{
-    background:#d8f5dc;
-    color:#176b20;
-}
-
-.suspended{
-    background:#ffd6d6;
-    color:#9b0000;
-}
-
-/* ================= BELTS ================= */
-
-.belt-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:4px 9px;
-    border-radius:20px;
-    background:#fff;
-    border:1px solid #ccc;
-    font-weight:800;
-    color:#111;
-}
-
-.belt-bar{
-    display:inline-block;
-    width:42px;
-    height:11px;
-    border-radius:3px;
-    border:1px solid #999;
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.25);
-}
-
-.belt-white{
-    background:#fff;
-}
-
-.belt-yellow{
-    background:#ffeb3b;
-}
-
-.belt-green{
-    background:#20a020;
-}
-
-.belt-blue{
-    background:#1674d1;
-}
-
-.belt-red{
-    background:#d00000;
-}
-
-.belt-black{
-    background:#111;
-    border-color:#555;
-}
-
-/* ================= MESSAGE ================= */
 
 .message{
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:12px;
-    display:none;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:12px;
+  display:none;
 }
 
 .success{
-    background:#dff5e2;
-    color:#176b20;
+  background:#dff5e2;
+  color:#176b20;
 }
 
 .error{
-    background:#ffdede;
-    color:#a00000;
+  background:#ffdede;
+  color:#a00000;
 }
 
-/* ================= MODAL ================= */
+.warning{
+  background:#fff4cc;
+  color:#705500;
+}
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    z-index:1000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
 .modal-content{
-    background:#fff;
-    width:100%;
-    max-width:600px;
-    max-height:90vh;
-    overflow-y:auto;
-    border-radius:14px;
-    padding:20px;
+  background:#fff;
+  width:100%;
+  max-width:650px;
+  max-height:90vh;
+  overflow-y:auto;
+  border-radius:14px;
+  padding:20px;
 }
 
 .close{
-    background:#555;
+  background:#555;
 }
 
-/* ================= LOADING ================= */
-
 .loading{
-    text-align:center;
-    padding:20px;
-    color:#666;
+  text-align:center;
+  padding:20px;
+  color:#666;
+}
+
+/* BELTS */
+
+.belt-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:4px 9px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid #ccc;
+  font-weight:800;
+  color:#111;
+}
+
+.belt-bar{
+  display:inline-block;
+  width:42px;
+  height:11px;
+  border-radius:3px;
+  border:1px solid #999;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.25);
+}
+
+.belt-white{
+  background:#fff;
+}
+
+.belt-yellow{
+  background:#ffeb3b;
+}
+
+.belt-green{
+  background:#20a020;
+}
+
+.belt-blue{
+  background:#1674d1;
+}
+
+.belt-red{
+  background:#d00000;
+}
+
+.belt-black{
+  background:#111;
+  border-color:#555;
+}
+
+.badge{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.badge.active{
+  background:#dff5e2;
+  color:#176b20;
+}
+
+.badge.inactive{
+  background:#eee;
+  color:#555;
+}
+
+.badge.suspended{
+  background:#ffdede;
+  color:#a00000;
+}
+
+.badge.graduated{
+  background:#e0eaff;
+  color:#174c9c;
+}
+
+.required{
+  color:#a00000;
 }
 </style>
 </head>
@@ -391,237 +374,199 @@ button:disabled{
 
 <div id="message" class="message"></div>
 
-<!-- ================= HEADER ================= -->
-
 <header class="admin-header">
+  <button class="logout" onclick="logout()">Logout</button>
 
-    <button
-        class="logout"
-        id="logoutBtn"
-        type="button"
-    >
-        Logout
-    </button>
+  <h1>🥋 TOP TKD ADMIN PANEL</h1>
 
-    <h1>🥋 TOP TKD ADMIN PANEL</h1>
-
-    <p>
-        Welcome,
-        <strong id="adminName">
-            Master Admin
-        </strong>
-    </p>
-
+  <p>
+    Welcome,
+    <strong id="adminName">Master Admin</strong>
+  </p>
 </header>
-
 
 <div class="admin-grid">
 
-<!-- ================= ADD STUDENT ================= -->
+<!-- =========================
+     ADD STUDENT
+========================= -->
 
 <div class="card">
 
 <h2>➕ Add New Student</h2>
 
-<label>Student Full Name</label>
+<label>
+  Student Full Name <span class="required">*</span>
+</label>
 
 <input
-    id="sName"
-    type="text"
-    placeholder="Full Name"
+  id="sName"
+  type="text"
+  placeholder="Full Name"
 >
 
-
-<label>Date of Birth</label>
+<label>
+  Date of Birth <span class="required">*</span>
+</label>
 
 <div class="dob-group">
 
-<select id="sDay">
+  <select id="sDay">
     <option value="">Day</option>
-</select>
+  </select>
 
-<select id="sMonth">
+  <select id="sMonth">
     <option value="">Month</option>
-</select>
+  </select>
 
-<select id="sYear">
+  <select id="sYear">
     <option value="">Year</option>
-</select>
+  </select>
 
 </div>
-
 
 <label>Gender</label>
 
 <select id="sGender">
-
-    <option value="">
-        Select Gender
-    </option>
-
-    <option value="Male">
-        Male
-    </option>
-
-    <option value="Female">
-        Female
-    </option>
-
-    <option value="Other">
-        Other
-    </option>
-
-    <option value="Prefer not to say">
-        Prefer not to say
-    </option>
-
+  <option value="">Select Gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="Other">Other</option>
+  <option value="Prefer not to say">Prefer not to say</option>
 </select>
 
-
-<label>Student Email</label>
-
-<input
-    id="sEmail"
-    type="email"
-    placeholder="student@email.com"
->
-
-
-<label>Student Phone</label>
+<label>
+  Student Email <span class="required">*</span>
+</label>
 
 <input
-    id="sPhone"
-    type="tel"
-    placeholder="Phone number"
+  id="sEmail"
+  type="email"
+  placeholder="student@email.com"
 >
 
+<label>
+  Student Phone <span class="required">*</span>
+</label>
+
+<input
+  id="sPhone"
+  type="tel"
+  placeholder="Phone number"
+>
 
 <label>Belt Rank</label>
 
 <select id="sBelt">
 
-    <option value="White">White</option>
-    <option value="Yellow">Yellow</option>
-    <option value="Green">Green</option>
-    <option value="Blue">Blue</option>
-    <option value="Red">Red</option>
-    <option value="Black">Black</option>
-    <option value="Black 1st Dan">Black 1st Dan</option>
-    <option value="Black 2nd Dan">Black 2nd Dan</option>
-    <option value="Black 3rd Dan">Black 3rd Dan</option>
+  <option value="White">White</option>
+  <option value="Yellow">Yellow</option>
+  <option value="Green">Green</option>
+  <option value="Blue">Blue</option>
+  <option value="Red">Red</option>
+  <option value="Black">Black</option>
+  <option value="Black 1st Dan">Black 1st Dan</option>
+  <option value="Black 2nd Dan">Black 2nd Dan</option>
+  <option value="Black 3rd Dan">Black 3rd Dan</option>
 
 </select>
 
-
-<label>Experience Level</label>
+<label>
+  Experience Level <span class="required">*</span>
+</label>
 
 <select id="sExperience">
 
-    <option value="">
-        Select Experience
-    </option>
-
-    <option value="No Experience">
-        No Experience
-    </option>
-
-    <option value="Some Experience">
-        Some Experience
-    </option>
-
-    <option value="Experienced">
-        Experienced
-    </option>
+  <option value="">Select Experience</option>
+  <option value="No Experience">No Experience</option>
+  <option value="Some Experience">Some Experience</option>
+  <option value="Experienced">Experienced</option>
 
 </select>
-
 
 <h3>Parent / Guardian</h3>
 
 <label>Guardian Name</label>
 
 <input
-    id="pName"
-    type="text"
-    placeholder="Parent / Guardian"
+  id="pName"
+  type="text"
+  placeholder="Parent / Guardian"
 >
-
 
 <label>Guardian Phone</label>
 
 <input
-    id="pPhone"
-    type="tel"
-    placeholder="Guardian phone"
+  id="pPhone"
+  type="tel"
+  placeholder="Guardian phone"
 >
-
 
 <label>Home Address</label>
 
 <textarea
-    id="pAddress"
-    rows="2"
-    placeholder="Home address"
+  id="pAddress"
+  rows="2"
+  placeholder="Home address"
 ></textarea>
 
-
-<label>Emergency Contact</label>
+<label>
+  Emergency Contact <span class="required">*</span>
+</label>
 
 <input
-    id="sEmergency"
-    type="tel"
-    placeholder="Emergency contact"
+  id="sEmergency"
+  type="tel"
+  placeholder="Emergency contact"
 >
-
 
 <h3>Medical Information</h3>
 
 <textarea
-    id="sMedical"
-    rows="3"
-    placeholder="Medical information, allergies, injuries..."
+  id="sMedical"
+  rows="3"
+  placeholder="Medical information, allergies, injuries..."
 ></textarea>
-
 
 <h3>Fees</h3>
 
 <div class="checkbox-row">
 
-    <input
-        type="checkbox"
-        id="sRegPaid"
-    >
+  <input
+    type="checkbox"
+    id="sRegPaid"
+  >
 
-    <label style="margin:0">
-        Registration Fee Paid ($15)
-    </label>
+  <label style="margin:0">
+    Registration Fee Paid ($15)
+  </label>
 
 </div>
-
 
 <label>Monthly Fee Paid</label>
 
 <input
-    id="sFeePaid"
-    type="number"
-    min="0"
-    step="0.01"
-    placeholder="0.00"
+  id="sFeePaid"
+  type="number"
+  min="0"
+  step="0.01"
+  placeholder="0.00"
 >
-
 
 <button
-    class="btn-green"
-    id="saveStudentBtn"
-    type="button"
+  id="saveStudentButton"
+  class="btn-green"
+  onclick="addStudent()"
 >
-    💾 Save Student
+  💾 Save Student
 </button>
 
 </div>
 
 
-<!-- ================= STATISTICS ================= -->
+<!-- =========================
+     STATISTICS
+========================= -->
 
 <div class="card">
 
@@ -630,29 +575,23 @@ button:disabled{
 <div class="stats">
 
 <div class="stat">
-    Total Students
-    <strong id="totalStudents">0</strong>
+  Total Students
+  <strong id="totalStudents">0</strong>
 </div>
 
 <div class="stat">
-    Registration
-    <strong>
-        $<span id="totalReg">0.00</span>
-    </strong>
+  Registration
+  <strong>$<span id="totalReg">0.00</span></strong>
 </div>
 
 <div class="stat">
-    Monthly Paid
-    <strong>
-        $<span id="totalCollected">0.00</span>
-    </strong>
+  Monthly Paid
+  <strong>$<span id="totalCollected">0.00</span></strong>
 </div>
 
 <div class="stat">
-    Monthly Due
-    <strong>
-        $<span id="totalDue">0.00</span>
-    </strong>
+  Monthly Due
+  <strong>$<span id="totalDue">0.00</span></strong>
 </div>
 
 </div>
@@ -660,24 +599,27 @@ button:disabled{
 </div>
 
 
-<!-- ================= STUDENT LIST ================= -->
+<!-- =========================
+     STUDENTS
+========================= -->
 
 <div class="card full">
 
 <h2>📋 All Student Profiles</h2>
 
 <input
-    class="search"
-    id="searchStudent"
-    type="search"
-    placeholder="🔎 Search student..."
+  class="search"
+  id="searchStudent"
+  type="search"
+  placeholder="🔎 Search student..."
+  oninput="displayStudents()"
 >
 
 <div id="studentList">
 
-    <div class="loading">
-        Loading students...
-    </div>
+  <div class="loading">
+    Loading students...
+  </div>
 
 </div>
 
@@ -686,11 +628,13 @@ button:disabled{
 </div>
 
 
-<!-- ================= EDIT MODAL ================= -->
+<!-- =========================
+     EDIT MODAL
+========================= -->
 
 <div
-    class="modal"
-    id="editModal"
+  class="modal"
+  id="editModal"
 >
 
 <div class="modal-content">
@@ -700,19 +644,18 @@ button:disabled{
 <div id="editForm"></div>
 
 <button
-    class="btn-green"
-    id="saveEditBtn"
-    type="button"
+  id="saveEditButton"
+  class="btn-green"
+  onclick="saveEdit()"
 >
-    Save Changes
+  Save Changes
 </button>
 
 <button
-    class="close"
-    id="closeModalBtn"
-    type="button"
+  class="close"
+  onclick="closeModal()"
 >
-    Cancel
+  Cancel
 </button>
 
 </div>
@@ -727,16 +670,16 @@ button:disabled{
 ===================================================== */
 
 const SUPABASE_URL =
-    "https://ohrzdhpttcxisiwmesxp.supabase.co";
+  "https://ohrzdhpttcxisiwmesxp.supabase.co";
 
 const SUPABASE_ANON_KEY =
-    "sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_";
+  "sb_publishable_blBKBN-cs_QuSf2XxGPlAw_bdzgS58_";
 
 const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 
 
 /* =====================================================
@@ -750,78 +693,42 @@ let editingId = null;
 const REG_FEE = 15;
 
 const months = {
-    Jan:"01",
-    Feb:"02",
-    Mar:"03",
-    Apr:"04",
-    May:"05",
-    Jun:"06",
-    Jul:"07",
-    Aug:"08",
-    Sep:"09",
-    Oct:"10",
-    Nov:"11",
-    Dec:"12"
+  Jan:"01",
+  Feb:"02",
+  Mar:"03",
+  Apr:"04",
+  May:"05",
+  Jun:"06",
+  Jul:"07",
+  Aug:"08",
+  Sep:"09",
+  Oct:"10",
+  Nov:"11",
+  Dec:"12"
 };
 
 
 /* =====================================================
-   ELEMENT HELPER
+   PAGE START
 ===================================================== */
 
-function $(id){
-    return document.getElementById(id);
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-window.addEventListener("DOMContentLoaded", async () => {
+window.addEventListener(
+  "load",
+  async () => {
 
     createDOBOptions();
 
     const isAdmin =
-        await checkAdmin();
+      await checkAdmin();
 
     if(!isAdmin){
-        return;
+      return;
     }
 
     await loadStudents();
 
-    $("saveStudentBtn")
-        .addEventListener(
-            "click",
-            addStudent
-        );
-
-    $("saveEditBtn")
-        .addEventListener(
-            "click",
-            saveEdit
-        );
-
-    $("closeModalBtn")
-        .addEventListener(
-            "click",
-            closeModal
-        );
-
-    $("logoutBtn")
-        .addEventListener(
-            "click",
-            logout
-        );
-
-    $("searchStudent")
-        .addEventListener(
-            "input",
-            displayStudents
-        );
-
-});
+  }
+);
 
 
 /* =====================================================
@@ -830,59 +737,46 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 function createDOBOptions(){
 
-    const day =
-        $("sDay");
+  const day =
+    document.getElementById("sDay");
 
-    const month =
-        $("sMonth");
+  const month =
+    document.getElementById("sMonth");
 
-    const year =
-        $("sYear");
-
-
-    for(let i = 1; i <= 31; i++){
-
-        day.insertAdjacentHTML(
-            "beforeend",
-            `<option value="${i}">
-                ${i}
-            </option>`
-        );
-
-    }
+  const year =
+    document.getElementById("sYear");
 
 
-    Object.keys(months)
-        .forEach(m => {
+  for(let i=1;i<=31;i++){
 
-            month.insertAdjacentHTML(
-                "beforeend",
-                `<option value="${m}">
-                    ${m}
-                </option>`
-            );
+    day.innerHTML +=
+      `<option value="${i}">${i}</option>`;
 
-        });
+  }
 
 
-    const currentYear =
-        new Date().getFullYear();
+  Object.keys(months).forEach(m => {
+
+    month.innerHTML +=
+      `<option value="${m}">${m}</option>`;
+
+  });
 
 
-    for(
-        let i = currentYear;
-        i >= 1950;
-        i--
-    ){
+  const currentYear =
+    new Date().getFullYear();
 
-        year.insertAdjacentHTML(
-            "beforeend",
-            `<option value="${i}">
-                ${i}
-            </option>`
-        );
 
-    }
+  for(
+    let i=currentYear;
+    i>=1950;
+    i--
+  ){
+
+    year.innerHTML +=
+      `<option value="${i}">${i}</option>`;
+
+  }
 
 }
 
@@ -893,26 +787,22 @@ function createDOBOptions(){
 
 function getDOB(){
 
-    const day =
-        $("sDay").value;
+  const d =
+    document.getElementById("sDay").value;
 
-    const month =
-        $("sMonth").value;
+  const m =
+    document.getElementById("sMonth").value;
 
-    const year =
-        $("sYear").value;
-
-
-    if(!day || !month || !year){
-
-        return null;
-
-    }
+  const y =
+    document.getElementById("sYear").value;
 
 
-    return (
-        `${year}-${months[month]}-${String(day).padStart(2,"0")}`
-    );
+  if(!d || !m || !y){
+    return null;
+  }
+
+
+  return `${y}-${months[m]}-${String(d).padStart(2,"0")}`;
 
 }
 
@@ -923,42 +813,42 @@ function getDOB(){
 
 function getAge(dob){
 
-    if(!dob){
-        return 0;
-    }
+  if(!dob){
+    return 0;
+  }
 
 
-    const birth =
-        new Date(dob);
+  const birth =
+    new Date(dob);
 
-    const today =
-        new Date();
-
-
-    let age =
-        today.getFullYear() -
-        birth.getFullYear();
+  const today =
+    new Date();
 
 
-    const monthDifference =
-        today.getMonth() -
-        birth.getMonth();
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
 
 
-    if(
-        monthDifference < 0 ||
-        (
-            monthDifference === 0 &&
-            today.getDate() < birth.getDate()
-        )
-    ){
-
-        age--;
-
-    }
+  const monthDifference =
+    today.getMonth() -
+    birth.getMonth();
 
 
-    return age;
+  if(
+    monthDifference < 0 ||
+    (
+      monthDifference === 0 &&
+      today.getDate() < birth.getDate()
+    )
+  ){
+
+    age--;
+
+  }
+
+
+  return age;
 
 }
 
@@ -969,108 +859,105 @@ function getAge(dob){
 
 function getMonthlyFee(dob){
 
-    return getAge(dob) < 20
-        ? 20
-        : 40;
+  return getAge(dob) < 20
+    ? 20
+    : 40;
 
 }
 
 
 /* =====================================================
-   ADMIN AUTHENTICATION
+   ADMIN CHECK
 ===================================================== */
 
 async function checkAdmin(){
 
-    try{
+  try{
 
-        const {
-            data:{
-                user
-            },
-            error:userError
-        } =
-        await supabaseClient
-            .auth
-            .getUser();
+    const {
+      data:{user},
+      error:userError
+    } =
+      await supabaseClient.auth.getUser();
 
 
-        if(userError || !user){
+    if(
+      userError ||
+      !user
+    ){
 
-            window.location.href =
-                "index.html";
+      location.href =
+        "index.html";
 
-            return false;
-
-        }
-
-
-        const {
-            data:profile,
-            error:profileError
-        } =
-        await supabaseClient
-            .from("profiles")
-            .select("full_name,role")
-            .eq("id",user.id)
-            .single();
-
-
-        if(profileError){
-
-            console.error(
-                "Profile error:",
-                profileError
-            );
-
-            showMessage(
-                "Unable to verify your admin account.",
-                "error"
-            );
-
-            return false;
-
-        }
-
-
-        if(!profile || profile.role !== "admin"){
-
-            alert(
-                "Access denied. Admin account required."
-            );
-
-            await supabaseClient
-                .auth
-                .signOut();
-
-            window.location.href =
-                "index.html";
-
-            return false;
-
-        }
-
-
-        $("adminName").textContent =
-            profile.full_name ||
-            "Master Admin";
-
-
-        return true;
+      return false;
 
     }
-    catch(error){
 
-        console.error(error);
 
-        showMessage(
-            "Authentication error. Please log in again.",
-            "error"
-        );
+    const {
+      data:profile,
+      error
+    } =
+      await supabaseClient
+        .from("profiles")
+        .select("full_name,role")
+        .eq("id",user.id)
+        .single();
 
-        return false;
+
+    if(error){
+
+      showMessage(
+        "Unable to verify admin account: " +
+        error.message,
+        "error"
+      );
+
+      return false;
 
     }
+
+
+    if(
+      !profile ||
+      profile.role !== "admin"
+    ){
+
+      alert(
+        "Access denied. Admin account required."
+      );
+
+      await supabaseClient.auth.signOut();
+
+      location.href =
+        "index.html";
+
+      return false;
+
+    }
+
+
+    document.getElementById(
+      "adminName"
+    ).textContent =
+      profile.full_name ||
+      "Master Admin";
+
+
+    return true;
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Unable to verify admin account.",
+      "error"
+    );
+
+    return false;
+
+  }
 
 }
 
@@ -1081,210 +968,377 @@ async function checkAdmin(){
 
 async function addStudent(){
 
-    const button =
-        $("saveStudentBtn");
+  const button =
+    document.getElementById(
+      "saveStudentButton"
+    );
 
 
-    const name =
-        $("sName")
-        .value
-        .trim();
+  const name =
+    document.getElementById(
+      "sName"
+    ).value.trim();
 
 
-    const dob =
-        getDOB();
+  const dob =
+    getDOB();
 
 
-    if(!name){
+  const phone =
+    document.getElementById(
+      "sPhone"
+    ).value.trim();
 
-        alert(
-            "Please enter the student's full name."
-        );
 
-        return;
+  const email =
+    document.getElementById(
+      "sEmail"
+    ).value.trim();
+
+
+  const emergencyContact =
+    document.getElementById(
+      "sEmergency"
+    ).value.trim();
+
+
+  const experience =
+    document.getElementById(
+      "sExperience"
+    ).value.trim();
+
+
+  if(!name || !dob){
+
+    alert(
+      "Please enter the student's name and date of birth."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    These columns are NOT NULL
+    in your actual students table.
+  */
+
+  if(!phone){
+
+    alert(
+      "Please enter the student's phone number."
+    );
+
+    return;
+
+  }
+
+
+  if(!email){
+
+    alert(
+      "Please enter the student's email."
+    );
+
+    return;
+
+  }
+
+
+  if(!emergencyContact){
+
+    alert(
+      "Please enter the emergency contact."
+    );
+
+    return;
+
+  }
+
+
+  if(!experience){
+
+    alert(
+      "Please select the student's experience level."
+    );
+
+    return;
+
+  }
+
+
+  const registrationPaid =
+    document.getElementById(
+      "sRegPaid"
+    ).checked;
+
+
+  const monthlyPaid =
+    parseFloat(
+      document.getElementById(
+        "sFeePaid"
+      ).value
+    ) || 0;
+
+
+  const {
+    data:{user},
+    error:userError
+  } =
+    await supabaseClient.auth.getUser();
+
+
+  if(
+    userError ||
+    !user
+  ){
+
+    alert(
+      "Your admin session has expired."
+    );
+
+    location.href =
+      "index.html";
+
+    return;
+
+  }
+
+
+  /*
+    IMPORTANT:
+
+    registration_fee       = NUMBER 15
+    registration_fee_paid  = BOOLEAN true/false
+
+    They are separate database columns.
+  */
+
+  const studentData = {
+
+    /* Required existing columns */
+
+    student_name:
+      name,
+
+    date_of_birth:
+      dob,
+
+    phone:
+      phone,
+
+    email:
+      email,
+
+    emergency_contact:
+      emergencyContact,
+
+    experience:
+      experience,
+
+
+    /* Existing application fields */
+
+    parent_guardian:
+      document.getElementById(
+        "pName"
+      ).value.trim() || null,
+
+    parent_name:
+      document.getElementById(
+        "pName"
+      ).value.trim() || null,
+
+    parent_phone:
+      document.getElementById(
+        "pPhone"
+      ).value.trim() || null,
+
+    parent_address:
+      document.getElementById(
+        "pAddress"
+      ).value.trim() || null,
+
+    medical_notes:
+      document.getElementById(
+        "sMedical"
+      ).value.trim() || null,
+
+
+    /* Belt */
+
+    belt:
+      document.getElementById(
+        "sBelt"
+      ).value || "White Belt",
+
+    belt_rank:
+      document.getElementById(
+        "sBelt"
+      ).value || "White",
+
+
+    /* Newer admin fields */
+
+    gender:
+      document.getElementById(
+        "sGender"
+      ).value || null,
+
+    parent_guardian_name:
+      document.getElementById(
+        "pName"
+      ).value.trim() || null,
+
+    guardian_name:
+      document.getElementById(
+        "pName"
+      ).value.trim() || null,
+
+    guardian_phone:
+      document.getElementById(
+        "pPhone"
+      ).value.trim() || null,
+
+    home_address:
+      document.getElementById(
+        "pAddress"
+      ).value.trim() || null,
+
+    medical_information:
+      document.getElementById(
+        "sMedical"
+      ).value.trim() ||
+      "None",
+
+    experience_level:
+      experience,
+
+    student_email:
+      email,
+
+    student_phone:
+      phone,
+
+    join_date:
+      new Date()
+        .toISOString()
+        .split("T")[0],
+
+
+    /* Fees */
+
+    registration_fee:
+      REG_FEE,
+
+    /*
+      BOOLEAN ONLY
+    */
+
+    registration_fee_paid:
+      registrationPaid,
+
+    monthly_fee:
+      getMonthlyFee(dob),
+
+    monthly_fee_paid:
+      monthlyPaid,
+
+    registration_fee_paid_at:
+      registrationPaid
+        ? new Date().toISOString()
+        : null,
+
+    last_monthly_payment_at:
+      monthlyPaid > 0
+        ? new Date().toISOString()
+        : null,
+
+
+    /* Status */
+
+    status:
+      "active",
+
+
+    /*
+      Logged-in admin UUID.
+    */
+
+    user_id:
+      user.id
+
+  };
+
+
+  console.log(
+    "Student data being sent:",
+    studentData
+  );
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Saving...";
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("students")
+        .insert(studentData)
+        .select()
+        .single();
+
+
+    if(error){
+
+      console.error(
+        "ADD STUDENT ERROR:",
+        error
+      );
+
+      showMessage(
+        "Supabase error: " +
+        error.message,
+        "error"
+      );
+
+      return;
 
     }
 
 
-    if(!dob){
-
-        alert(
-            "Please select the student's date of birth."
-        );
-
-        return;
-
-    }
+    console.log(
+      "Student created:",
+      data
+    );
 
 
-    button.disabled = true;
+    showMessage(
+      `${name} was added successfully!`,
+      "success"
+    );
+
+
+    clearStudentForm();
+
+    await loadStudents();
+
+  }finally{
+
+    button.disabled = false;
 
     button.textContent =
-        "Saving...";
+      "💾 Save Student";
 
-
-    try{
-
-        const {
-            data:{
-                user
-            }
-        } =
-        await supabaseClient
-            .auth
-            .getUser();
-
-
-        if(!user){
-
-            alert(
-                "Your admin session has expired. Please log in again."
-            );
-
-            window.location.href =
-                "index.html";
-
-            return;
-
-        }
-
-
-        const registrationPaid =
-            $("sRegPaid").checked
-                ? REG_FEE
-                : 0;
-
-
-        const monthlyPaid =
-            parseFloat(
-                $("sFeePaid").value
-            ) || 0;
-
-
-        const studentData = {
-
-            student_name:name,
-
-            date_of_birth:dob,
-
-            gender:
-                $("sGender").value ||
-                null,
-
-            student_email:
-                $("sEmail").value.trim() ||
-                null,
-
-            student_phone:
-                $("sPhone").value.trim() ||
-                null,
-
-            belt_rank:
-                $("sBelt").value ||
-                "White",
-
-            experience_level:
-                $("sExperience").value ||
-                null,
-
-            join_date:
-                new Date()
-                    .toISOString()
-                    .split("T")[0],
-
-            parent_guardian_name:
-                $("pName").value.trim() ||
-                null,
-
-            parent_phone:
-                $("pPhone").value.trim() ||
-                null,
-
-            home_address:
-                $("pAddress").value.trim() ||
-                null,
-
-            emergency_contact:
-                $("sEmergency").value.trim() ||
-                null,
-
-            medical_information:
-                $("sMedical").value.trim() ||
-                "None",
-
-            registration_fee_paid:
-                registrationPaid,
-
-            monthly_fee:
-                getMonthlyFee(dob),
-
-            monthly_fee_paid:
-                monthlyPaid,
-
-            registration_fee_paid_at:
-                registrationPaid > 0
-                    ? new Date().toISOString()
-                    : null,
-
-            last_monthly_payment_at:
-                monthlyPaid > 0
-                    ? new Date().toISOString()
-                    : null,
-
-            status:
-                "active",
-
-            user_id:
-                null
-
-        };
-
-
-        const {
-            error
-        } =
-        await supabaseClient
-            .from("students")
-            .insert(studentData);
-
-
-        if(error){
-
-            console.error(
-                "Supabase insert error:",
-                error
-            );
-
-            showMessage(
-                "Supabase error: " +
-                error.message,
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        showMessage(
-            `${name} was added successfully!`,
-            "success"
-        );
-
-
-        clearStudentForm();
-
-        await loadStudents();
-
-    }
-    finally{
-
-        button.disabled = false;
-
-        button.textContent =
-            "💾 Save Student";
-
-    }
+  }
 
 }
 
@@ -1295,57 +1349,56 @@ async function addStudent(){
 
 async function loadStudents(){
 
-    $("studentList").innerHTML =
-        `<div class="loading">
-            Loading students...
-        </div>`;
+  const list =
+    document.getElementById(
+      "studentList"
+    );
 
 
-    const {
-        data,
-        error
-    } =
+  list.innerHTML =
+    '<div class="loading">Loading students...</div>';
+
+
+  const {
+    data,
+    error
+  } =
     await supabaseClient
-        .from("students")
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending:false
-            }
-        );
+      .from("students")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
-    if(error){
+  if(error){
 
-        console.error(
-            "Load students error:",
-            error
-        );
+    console.error(error);
 
-        showMessage(
-            "Could not load students: " +
-            error.message,
-            "error"
-        );
+    showMessage(
+      "Could not load students: " +
+      error.message,
+      "error"
+    );
 
-        $("studentList").innerHTML =
-            `<div class="loading">
-                Could not load students.
-            </div>`;
+    list.innerHTML =
+      "Unable to load students.";
 
-        return;
+    return;
 
-    }
+  }
 
 
-    students =
-        data || [];
+  students =
+    data || [];
 
 
-    updateStatistics();
+  updateStatistics();
 
-    displayStudents();
+  displayStudents();
 
 }
 
@@ -1356,33 +1409,33 @@ async function loadStudents(){
 
 function getBeltClass(belt){
 
-    const value =
-        String(
-            belt || "White"
-        ).toLowerCase();
+  const value =
+    String(
+      belt || "White"
+    ).toLowerCase();
 
 
-    if(value.includes("yellow")){
-        return "yellow";
-    }
+  if(value.includes("yellow"))
+    return "yellow";
 
-    if(value.includes("green")){
-        return "green";
-    }
 
-    if(value.includes("blue")){
-        return "blue";
-    }
+  if(value.includes("green"))
+    return "green";
 
-    if(value.includes("red")){
-        return "red";
-    }
 
-    if(value.includes("black")){
-        return "black";
-    }
+  if(value.includes("blue"))
+    return "blue";
 
-    return "white";
+
+  if(value.includes("red"))
+    return "red";
+
+
+  if(value.includes("black"))
+    return "black";
+
+
+  return "white";
 
 }
 
@@ -1393,21 +1446,21 @@ function getBeltClass(belt){
 
 function beltHTML(belt){
 
-    const label =
-        belt || "White";
+  const label =
+    belt || "White";
 
 
-    return `
-        <span class="belt-badge">
+  return `
+    <span class="belt-badge">
 
-            <span
-                class="belt-bar belt-${getBeltClass(label)}"
-            ></span>
+      <span
+        class="belt-bar belt-${getBeltClass(label)}"
+      ></span>
 
-            ${escapeHTML(label)}
+      ${escapeHTML(label)}
 
-        </span>
-    `;
+    </span>
+  `;
 
 }
 
@@ -1418,212 +1471,276 @@ function beltHTML(belt){
 
 function displayStudents(){
 
-    const list =
-        $("studentList");
+  const list =
+    document.getElementById(
+      "studentList"
+    );
 
 
-    const search =
-        $("searchStudent")
-            .value
-            .toLowerCase()
-            .trim();
+  const search =
+    document
+      .getElementById(
+        "searchStudent"
+      )
+      .value
+      .toLowerCase()
+      .trim();
 
 
-    const filtered =
-        students.filter(student => {
+  const filtered =
+    students.filter(
+      s => {
 
-            return (
-
-                (student.student_name || "")
-                    .toLowerCase()
-                    .includes(search)
-
-                ||
-
-                (student.student_email || "")
-                    .toLowerCase()
-                    .includes(search)
-
-                ||
-
-                (student.student_phone || "")
-                    .toLowerCase()
-                    .includes(search)
-
-            );
-
-        });
+        const name =
+          String(
+            s.student_name ||
+            ""
+          ).toLowerCase();
 
 
-    if(filtered.length === 0){
+        const email =
+          String(
+            s.student_email ||
+            s.email ||
+            ""
+          ).toLowerCase();
 
-        list.innerHTML =
-            "No students found.";
 
-        return;
+        const phone =
+          String(
+            s.student_phone ||
+            s.phone ||
+            ""
+          ).toLowerCase();
 
-    }
 
+        return (
+          name.includes(search) ||
+          email.includes(search) ||
+          phone.includes(search)
+        );
+
+      }
+    );
+
+
+  if(!filtered.length){
 
     list.innerHTML =
-        filtered
-            .map(student => {
+      "No students found.";
 
-                const monthlyFee =
-                    Number(
-                        student.monthly_fee
-                    ) || 0;
+    return;
+
+  }
 
 
-                const paid =
-                    Number(
-                        student.monthly_fee_paid
-                    ) || 0;
+  list.innerHTML =
+    filtered
+      .map(
+        s => {
+
+          const fee =
+            Number(
+              s.monthly_fee
+            ) || 0;
 
 
-                const due =
-                    Math.max(
-                        0,
-                        monthlyFee - paid
-                    );
+          const paid =
+            Number(
+              s.monthly_fee_paid
+            ) || 0;
 
 
-                const registration =
-                    Number(
-                        student.registration_fee_paid
-                    ) || 0;
+          const due =
+            Math.max(
+              0,
+              fee - paid
+            );
 
 
-                const statusClass =
-                    student.status === "active"
-                        ? "active"
-                        : "suspended";
+          const registration =
+            s.registration_fee_paid
+              ? REG_FEE
+              : 0;
 
 
-                return `
+          const status =
+            s.status ||
+            "active";
 
-                <div class="student-row">
 
-                    <h3>
-                        ${escapeHTML(
-                            student.student_name ||
-                            "Unnamed Student"
-                        )}
-                    </h3>
+          const email =
+            s.student_email ||
+            s.email ||
+            "Not provided";
 
-                    <div class="student-info">
 
-                        <b>Belt:</b>
-                        ${beltHTML(
-                            student.belt_rank
-                        )}
+          const phone =
+            s.student_phone ||
+            s.phone ||
+            "Not provided";
 
-                        <br>
 
-                        <b>Age:</b>
-                        ${getAge(
-                            student.date_of_birth
-                        )}
+          const guardian =
+            s.parent_guardian_name ||
+            s.guardian_name ||
+            s.parent_guardian ||
+            s.parent_name ||
+            "Not provided";
 
-                        <br>
 
-                        <b>Gender:</b>
-                        ${escapeHTML(
-                            student.gender ||
-                            "Not provided"
-                        )}
+          const medical =
+            s.medical_information ||
+            s.medical_info ||
+            s.medical_notes ||
+            "None";
 
-                        <br>
 
-                        <b>Email:</b>
-                        ${escapeHTML(
-                            student.student_email ||
-                            "Not provided"
-                        )}
+          const belt =
+            s.belt_rank ||
+            s.belt ||
+            "White";
 
-                        <br>
 
-                        <b>Phone:</b>
-                        ${escapeHTML(
-                            student.student_phone ||
-                            "Not provided"
-                        )}
+          return `
 
-                        <br>
+          <div
+            class="student-row"
+          >
 
-                        <b>Guardian:</b>
-                        ${escapeHTML(
-                            student.parent_guardian_name ||
-                            "Not provided"
-                        )}
+            <h3>
+              ${escapeHTML(
+                s.student_name ||
+                s.full_name ||
+                "Unnamed Student"
+              )}
+            </h3>
 
-                        <br>
 
-                        <b>Medical:</b>
-                        ${escapeHTML(
-                            student.medical_information ||
-                            "None"
-                        )}
+            <div class="student-info">
 
-                        <br>
+              <b>Belt:</b>
+              ${beltHTML(belt)}
+              <br>
 
-                        <b>Registration:</b>
-                        $${registration.toFixed(2)}
 
-                        <br>
+              <b>Age:</b>
+              ${getAge(
+                s.date_of_birth ||
+                s.dob
+              )}
+              <br>
 
-                        <b>Monthly Fee:</b>
-                        $${monthlyFee.toFixed(2)}
 
-                        <br>
+              <b>Gender:</b>
+              ${escapeHTML(
+                s.gender ||
+                "Not provided"
+              )}
+              <br>
 
-                        <b>Monthly Paid:</b>
-                        $${paid.toFixed(2)}
 
-                        <br>
+              <b>Email:</b>
+              ${escapeHTML(email)}
+              <br>
 
-                        <b>Monthly Due:</b>
-                        $${due.toFixed(2)}
 
-                        <br>
+              <b>Phone:</b>
+              ${escapeHTML(phone)}
+              <br>
 
-                        <b>Status:</b>
 
-                        <span class="badge ${statusClass}">
-                            ${escapeHTML(
-                                student.status ||
-                                "active"
-                            )}
-                        </span>
+              <b>Guardian:</b>
+              ${escapeHTML(guardian)}
+              <br>
 
-                    </div>
 
-                    <div class="button-row">
+              <b>Emergency:</b>
+              ${escapeHTML(
+                s.emergency_contact ||
+                "Not provided"
+              )}
+              <br>
 
-                        <button
-                            class="btn-blue"
-                            type="button"
-                            onclick="openEdit('${student.id}')"
-                        >
-                            ✏️ Edit
-                        </button>
 
-                        <button
-                            class="btn-danger"
-                            type="button"
-                            onclick="deleteStudent('${student.id}')"
-                        >
-                            🗑 Delete
-                        </button>
+              <b>Experience:</b>
+              ${escapeHTML(
+                s.experience_level ||
+                s.experience ||
+                "Not provided"
+              )}
+              <br>
 
-                    </div>
 
-                </div>
+              <b>Medical:</b>
+              ${escapeHTML(medical)}
+              <br>
 
-                `;
 
-            })
-            .join("");
+              <b>Registration:</b>
+              $${registration.toFixed(2)}
+
+              ${
+                s.registration_fee_paid
+                  ? " — PAID"
+                  : " — NOT PAID"
+              }
+
+              <br>
+
+
+              <b>Monthly Fee:</b>
+              $${fee.toFixed(2)}
+              <br>
+
+
+              <b>Monthly Paid:</b>
+              $${paid.toFixed(2)}
+              <br>
+
+
+              <b>Monthly Due:</b>
+              $${due.toFixed(2)}
+              <br>
+
+
+              <b>Status:</b>
+
+              <span
+                class="badge ${escapeAttribute(status)}"
+              >
+                ${escapeHTML(status)}
+              </span>
+
+            </div>
+
+
+            <div class="button-row">
+
+              <button
+                class="btn-blue"
+                onclick="openEdit('${escapeAttribute(s.id)}')"
+              >
+                ✏️ Edit
+              </button>
+
+
+              <button
+                class="btn-danger"
+                onclick="deleteStudent('${escapeAttribute(s.id)}')"
+              >
+                🗑 Delete
+              </button>
+
+            </div>
+
+          </div>
+
+          `;
+
+        }
+      )
+      .join("");
 
 }
 
@@ -1634,64 +1751,74 @@ function displayStudents(){
 
 function updateStatistics(){
 
-    let registrationTotal = 0;
+  let registrationTotal = 0;
 
-    let collectedTotal = 0;
+  let collected = 0;
 
-    let dueTotal = 0;
+  let due = 0;
 
 
-    students.forEach(student => {
+  students.forEach(
+    s => {
+
+      if(
+        s.registration_fee_paid
+      ){
 
         registrationTotal +=
-            Number(
-                student.registration_fee_paid
-            ) || 0;
+          REG_FEE;
+
+      }
 
 
-        collectedTotal +=
-            Number(
-                student.monthly_fee_paid
-            ) || 0;
+      const fee =
+        Number(
+          s.monthly_fee
+        ) || 0;
 
 
-        dueTotal +=
-            Math.max(
-                0,
-                (
-                    Number(
-                        student.monthly_fee
-                    ) || 0
-                )
-                -
-                (
-                    Number(
-                        student.monthly_fee_paid
-                    ) || 0
-                )
-            );
-
-    });
+      const paid =
+        Number(
+          s.monthly_fee_paid
+        ) || 0;
 
 
-    $("totalStudents")
-        .textContent =
-        students.length;
+      collected +=
+        paid;
 
 
-    $("totalReg")
-        .textContent =
-        registrationTotal.toFixed(2);
+      due +=
+        Math.max(
+          0,
+          fee - paid
+        );
+
+    }
+  );
 
 
-    $("totalCollected")
-        .textContent =
-        collectedTotal.toFixed(2);
+  document.getElementById(
+    "totalStudents"
+  ).textContent =
+    students.length;
 
 
-    $("totalDue")
-        .textContent =
-        dueTotal.toFixed(2);
+  document.getElementById(
+    "totalReg"
+  ).textContent =
+    registrationTotal.toFixed(2);
+
+
+  document.getElementById(
+    "totalCollected"
+  ).textContent =
+    collected.toFixed(2);
+
+
+  document.getElementById(
+    "totalDue"
+  ).textContent =
+    due.toFixed(2);
 
 }
 
@@ -1702,162 +1829,319 @@ function updateStatistics(){
 
 function openEdit(id){
 
-    const student =
-        students.find(
-            item => item.id === id
-        );
+  const student =
+    students.find(
+      x => String(x.id) === String(id)
+    );
 
 
-    if(!student){
-        return;
-    }
+  if(!student){
+    return;
+  }
 
 
-    editingId =
-        id;
+  editingId =
+    id;
 
 
-    const belts = [
-        "White",
-        "Yellow",
-        "Green",
-        "Blue",
-        "Red",
-        "Black",
-        "Black 1st Dan",
-        "Black 2nd Dan",
-        "Black 3rd Dan"
-    ];
+  const editForm =
+    document.getElementById(
+      "editForm"
+    );
 
 
-    const statuses = [
-        "active",
-        "inactive",
-        "suspended",
-        "graduated"
-    ];
+  const belt =
+    student.belt_rank ||
+    student.belt ||
+    "White";
 
 
-    $("editForm").innerHTML = `
-
-        <label>Student Name</label>
-
-        <input
-            id="editName"
-            value="${escapeAttribute(
-                student.student_name || ""
-            )}"
-        >
+  const email =
+    student.student_email ||
+    student.email ||
+    "";
 
 
-        <label>Email</label>
-
-        <input
-            id="editEmail"
-            type="email"
-            value="${escapeAttribute(
-                student.student_email || ""
-            )}"
-        >
+  const phone =
+    student.student_phone ||
+    student.phone ||
+    "";
 
 
-        <label>Phone</label>
-
-        <input
-            id="editPhone"
-            type="tel"
-            value="${escapeAttribute(
-                student.student_phone || ""
-            )}"
-        >
+  const guardian =
+    student.parent_guardian_name ||
+    student.guardian_name ||
+    student.parent_guardian ||
+    student.parent_name ||
+    "";
 
 
-        <label>Belt Rank</label>
-
-        <select id="editBelt">
-
-            ${belts.map(belt => `
-
-                <option
-                    value="${belt}"
-                    ${
-                        student.belt_rank === belt
-                            ? "selected"
-                            : ""
-                    }
-                >
-                    ${belt}
-                </option>
-
-            `).join("")}
-
-        </select>
+  const medical =
+    student.medical_information ||
+    student.medical_info ||
+    student.medical_notes ||
+    "None";
 
 
-        <label>Status</label>
-
-        <select id="editStatus">
-
-            ${statuses.map(status => `
-
-                <option
-                    value="${status}"
-                    ${
-                        student.status === status
-                            ? "selected"
-                            : ""
-                    }
-                >
-                    ${status}
-                </option>
-
-            `).join("")}
-
-        </select>
+  const experience =
+    student.experience_level ||
+    student.experience ||
+    "";
 
 
-        <label>Monthly Fee</label>
+  editForm.innerHTML = `
 
-        <input
-            id="editMonthlyFee"
-            type="number"
-            min="0"
-            step="0.01"
-            value="${Number(
-                student.monthly_fee || 0
-            )}"
-        >
+    <label>Student Name</label>
 
-
-        <label>Monthly Fee Paid</label>
-
-        <input
-            id="editMonthlyPaid"
-            type="number"
-            min="0"
-            step="0.01"
-            value="${Number(
-                student.monthly_fee_paid || 0
-            )}"
-        >
+    <input
+      id="editName"
+      value="${escapeAttribute(
+        student.student_name || ""
+      )}"
+    >
 
 
-        <label>Medical Information</label>
+    <label>Email</label>
 
-        <textarea
-            id="editMedical"
-            rows="3"
-        >${escapeHTML(
-            student.medical_information ||
-            "None"
-        )}</textarea>
-
-    `;
+    <input
+      id="editEmail"
+      type="email"
+      value="${escapeAttribute(email)}"
+    >
 
 
-    $("editModal")
-        .style.display =
-        "flex";
+    <label>Phone</label>
+
+    <input
+      id="editPhone"
+      value="${escapeAttribute(phone)}"
+    >
+
+
+    <label>Emergency Contact</label>
+
+    <input
+      id="editEmergency"
+      value="${escapeAttribute(
+        student.emergency_contact || ""
+      )}"
+    >
+
+
+    <label>Experience</label>
+
+    <select id="editExperience">
+
+      <option value="">Select Experience</option>
+
+      <option
+        value="No Experience"
+        ${experience === "No Experience"
+          ? "selected"
+          : ""}
+      >
+        No Experience
+      </option>
+
+      <option
+        value="Some Experience"
+        ${experience === "Some Experience"
+          ? "selected"
+          : ""}
+      >
+        Some Experience
+      </option>
+
+      <option
+        value="Experienced"
+        ${experience === "Experienced"
+          ? "selected"
+          : ""}
+      >
+        Experienced
+      </option>
+
+    </select>
+
+
+    <label>Belt Rank</label>
+
+    <select id="editBelt">
+
+      ${
+        [
+          "White",
+          "Yellow",
+          "Green",
+          "Blue",
+          "Red",
+          "Black",
+          "Black 1st Dan",
+          "Black 2nd Dan",
+          "Black 3rd Dan"
+        ]
+        .map(
+          b => `
+
+          <option
+            value="${b}"
+            ${
+              belt === b
+                ? "selected"
+                : ""
+            }
+          >
+            ${b}
+          </option>
+
+          `
+        )
+        .join("")
+      }
+
+    </select>
+
+
+    <label>Status</label>
+
+    <select id="editStatus">
+
+      ${
+        [
+          "active",
+          "inactive",
+          "suspended",
+          "graduated"
+        ]
+        .map(
+          x => `
+
+          <option
+            value="${x}"
+            ${
+              student.status === x
+                ? "selected"
+                : ""
+            }
+          >
+            ${x}
+          </option>
+
+          `
+        )
+        .join("")
+      }
+
+    </select>
+
+
+    <label>Registration Fee Paid</label>
+
+    <select
+      id="editRegistrationPaid"
+    >
+
+      <option
+        value="false"
+        ${
+          student.registration_fee_paid
+            ? ""
+            : "selected"
+        }
+      >
+        Not Paid
+      </option>
+
+      <option
+        value="true"
+        ${
+          student.registration_fee_paid
+            ? "selected"
+            : ""
+        }
+      >
+        Paid ($15)
+      </option>
+
+    </select>
+
+
+    <label>Monthly Fee</label>
+
+    <input
+      id="editMonthlyFee"
+      type="number"
+      min="0"
+      step=".01"
+      value="${Number(
+        student.monthly_fee || 0
+      )}"
+    >
+
+
+    <label>Monthly Fee Paid</label>
+
+    <input
+      id="editMonthlyPaid"
+      type="number"
+      min="0"
+      step=".01"
+      value="${Number(
+        student.monthly_fee_paid || 0
+      )}"
+    >
+
+
+    <label>Guardian Name</label>
+
+    <input
+      id="editGuardian"
+      value="${escapeAttribute(
+        guardian
+      )}"
+    >
+
+
+    <label>Guardian Phone</label>
+
+    <input
+      id="editGuardianPhone"
+      value="${escapeAttribute(
+        student.parent_phone ||
+        student.guardian_phone ||
+        ""
+      )}"
+    >
+
+
+    <label>Home Address</label>
+
+    <textarea
+      id="editAddress"
+      rows="2"
+    >${escapeHTML(
+      student.home_address ||
+      student.parent_address ||
+      ""
+    )}</textarea>
+
+
+    <label>Medical Information</label>
+
+    <textarea
+      id="editMedical"
+      rows="3"
+    >${escapeHTML(
+      medical
+    )}</textarea>
+
+  `;
+
+
+  document.getElementById(
+    "editModal"
+  ).style.display =
+    "flex";
 
 }
 
@@ -1868,78 +2152,278 @@ function openEdit(id){
 
 async function saveEdit(){
 
-    if(!editingId){
-        return;
-    }
+  if(!editingId){
+
+    alert(
+      "No student selected."
+    );
+
+    return;
+
+  }
 
 
-    const name =
-        $("editName")
-            .value
-            .trim();
+  const name =
+    document.getElementById(
+      "editName"
+    ).value.trim();
 
 
-    if(!name){
-
-        alert(
-            "Student name is required."
-        );
-
-        return;
-
-    }
+  const email =
+    document.getElementById(
+      "editEmail"
+    ).value.trim();
 
 
-    const updates = {
+  const phone =
+    document.getElementById(
+      "editPhone"
+    ).value.trim();
 
-        student_name:
-            name,
 
-        student_email:
-            $("editEmail")
-                .value
-                .trim() ||
-            null,
+  const emergency =
+    document.getElementById(
+      "editEmergency"
+    ).value.trim();
 
-        student_phone:
-            $("editPhone")
-                .value
-                .trim() ||
-            null,
 
-        belt_rank:
-            $("editBelt")
-                .value,
+  const experience =
+    document.getElementById(
+      "editExperience"
+    ).value.trim();
 
-        status:
-            $("editStatus")
-                .value,
 
-        monthly_fee:
-            parseFloat(
-                $("editMonthlyFee")
-                    .value
-            ) || 0,
+  if(!name){
 
-        monthly_fee_paid:
-            parseFloat(
-                $("editMonthlyPaid")
-                    .value
-            ) || 0,
+    alert(
+      "Student name is required."
+    );
 
-        medical_information:
-            $("editMedical")
-                .value
-                .trim() ||
-            "None"
+    return;
 
-    };
+  }
 
+
+  if(!email){
+
+    alert(
+      "Student email is required."
+    );
+
+    return;
+
+  }
+
+
+  if(!phone){
+
+    alert(
+      "Student phone is required."
+    );
+
+    return;
+
+  }
+
+
+  if(!emergency){
+
+    alert(
+      "Emergency contact is required."
+    );
+
+    return;
+
+  }
+
+
+  if(!experience){
+
+    alert(
+      "Experience is required."
+    );
+
+    return;
+
+  }
+
+
+  const registrationPaid =
+    document.getElementById(
+      "editRegistrationPaid"
+    ).value === "true";
+
+
+  const monthlyFee =
+    parseFloat(
+      document.getElementById(
+        "editMonthlyFee"
+      ).value
+    ) || 0;
+
+
+  const monthlyPaid =
+    parseFloat(
+      document.getElementById(
+        "editMonthlyPaid"
+      ).value
+    ) || 0;
+
+
+  const belt =
+    document.getElementById(
+      "editBelt"
+    ).value;
+
+
+  const status =
+    document.getElementById(
+      "editStatus"
+    ).value;
+
+
+  const guardian =
+    document.getElementById(
+      "editGuardian"
+    ).value.trim() ||
+    null;
+
+
+  const guardianPhone =
+    document.getElementById(
+      "editGuardianPhone"
+    ).value.trim() ||
+    null;
+
+
+  const address =
+    document.getElementById(
+      "editAddress"
+    ).value.trim() ||
+    null;
+
+
+  const medical =
+    document.getElementById(
+      "editMedical"
+    ).value.trim() ||
+    "None";
+
+
+  const updates = {
+
+    student_name:
+      name,
+
+    phone:
+      phone,
+
+    email:
+      email,
+
+    emergency_contact:
+      emergency,
+
+    experience:
+      experience,
+
+    student_phone:
+      phone,
+
+    student_email:
+      email,
+
+    emergency_contact:
+      emergency,
+
+    experience_level:
+      experience,
+
+    belt:
+      belt,
+
+    belt_rank:
+      belt,
+
+    registration_fee:
+      REG_FEE,
+
+    registration_fee_paid:
+      registrationPaid,
+
+    monthly_fee:
+      monthlyFee,
+
+    monthly_fee_paid:
+      monthlyPaid,
+
+    parent_guardian:
+      guardian,
+
+    parent_name:
+      guardian,
+
+    parent_guardian_name:
+      guardian,
+
+    guardian_name:
+      guardian,
+
+    parent_phone:
+      guardianPhone,
+
+    guardian_phone:
+      guardianPhone,
+
+    parent_address:
+      address,
+
+    home_address:
+      address,
+
+    medical_notes:
+      medical,
+
+    medical_info:
+      medical,
+
+    medical_information:
+      medical,
+
+    status:
+      status,
+
+    registration_fee_paid_at:
+      registrationPaid
+        ? new Date().toISOString()
+        : null,
+
+    last_monthly_payment_at:
+      monthlyPaid > 0
+        ? new Date().toISOString()
+        : null
+
+  };
+
+
+  const button =
+    document.getElementById(
+      "saveEditButton"
+    );
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Saving...";
+
+
+  try{
 
     const {
-        error
+      error
     } =
-    await supabaseClient
+      await supabaseClient
         .from("students")
         .update(updates)
         .eq("id",editingId);
@@ -1947,14 +2431,17 @@ async function saveEdit(){
 
     if(error){
 
-        console.error(error);
+      console.error(
+        "EDIT ERROR:",
+        error
+      );
 
-        alert(
-            "Update failed: " +
-            error.message
-        );
+      alert(
+        "Update failed: " +
+        error.message
+      );
 
-        return;
+      return;
 
     }
 
@@ -1962,12 +2449,21 @@ async function saveEdit(){
     closeModal();
 
     showMessage(
-        "Student updated successfully.",
-        "success"
+      "Student updated successfully.",
+      "success"
     );
 
 
     await loadStudents();
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Save Changes";
+
+  }
 
 }
 
@@ -1978,58 +2474,67 @@ async function saveEdit(){
 
 async function deleteStudent(id){
 
-    const student =
-        students.find(
-            item => item.id === id
-        );
-
-
-    if(!student){
-        return;
-    }
-
-
-    const confirmed =
-        confirm(
-            `Delete ${student.student_name}?`
-        );
-
-
-    if(!confirmed){
-        return;
-    }
-
-
-    const {
-        error
-    } =
-    await supabaseClient
-        .from("students")
-        .delete()
-        .eq("id",id);
-
-
-    if(error){
-
-        console.error(error);
-
-        alert(
-            "Delete failed: " +
-            error.message
-        );
-
-        return;
-
-    }
-
-
-    showMessage(
-        "Student deleted successfully.",
-        "success"
+  const student =
+    students.find(
+      x => String(x.id) === String(id)
     );
 
 
-    await loadStudents();
+  if(!student){
+    return;
+  }
+
+
+  const name =
+    student.student_name ||
+    student.full_name ||
+    "this student";
+
+
+  if(
+    !confirm(
+      `Delete ${name}? This cannot be undone.`
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("students")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    console.error(
+      "DELETE ERROR:",
+      error
+    );
+
+    alert(
+      "Delete failed: " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  showMessage(
+    "Student deleted successfully.",
+    "success"
+  );
+
+
+  await loadStudents();
 
 }
 
@@ -2040,36 +2545,68 @@ async function deleteStudent(id){
 
 function clearStudentForm(){
 
-    [
-        "sName",
-        "sEmail",
-        "sPhone",
-        "pName",
-        "pPhone",
-        "pAddress",
-        "sEmergency",
-        "sMedical",
-        "sFeePaid"
-    ].forEach(id => {
+  const fields = [
 
-        $(id).value = "";
+    "sName",
+    "sEmail",
+    "sPhone",
+    "pName",
+    "pPhone",
+    "pAddress",
+    "sEmergency",
+    "sMedical",
+    "sFeePaid"
 
-    });
+  ];
 
 
-    $("sDay").value = "";
+  fields.forEach(
+    id => {
 
-    $("sMonth").value = "";
+      const element =
+        document.getElementById(id);
 
-    $("sYear").value = "";
+      if(element){
+        element.value = "";
+      }
 
-    $("sGender").value = "";
+    }
+  );
 
-    $("sBelt").value = "White";
 
-    $("sExperience").value = "";
+  document.getElementById(
+    "sDay"
+  ).value = "";
 
-    $("sRegPaid").checked = false;
+
+  document.getElementById(
+    "sMonth"
+  ).value = "";
+
+
+  document.getElementById(
+    "sYear"
+  ).value = "";
+
+
+  document.getElementById(
+    "sGender"
+  ).value = "";
+
+
+  document.getElementById(
+    "sBelt"
+  ).value = "White";
+
+
+  document.getElementById(
+    "sExperience"
+  ).value = "";
+
+
+  document.getElementById(
+    "sRegPaid"
+  ).checked = false;
 
 }
 
@@ -2080,11 +2617,12 @@ function clearStudentForm(){
 
 function closeModal(){
 
-    $("editModal")
-        .style.display =
-        "none";
+  document.getElementById(
+    "editModal"
+  ).style.display =
+    "none";
 
-    editingId = null;
+  editingId = null;
 
 }
 
@@ -2095,12 +2633,10 @@ function closeModal(){
 
 async function logout(){
 
-    await supabaseClient
-        .auth
-        .signOut();
+  await supabaseClient.auth.signOut();
 
-    window.location.href =
-        "index.html";
+  location.href =
+    "index.html";
 
 }
 
@@ -2110,99 +2646,83 @@ async function logout(){
 ===================================================== */
 
 function showMessage(
-    text,
-    type
+  text,
+  type
 ){
 
-    const message =
-        $("message");
+  const message =
+    document.getElementById(
+      "message"
+    );
 
 
-    message.textContent =
-        text;
+  message.textContent =
+    text;
 
 
-    message.className =
-        "message " + type;
+  message.className =
+    "message " + type;
 
 
-    message.style.display =
-        "block";
+  message.style.display =
+    "block";
 
 
-    setTimeout(() => {
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-        message.style.display =
-            "none";
 
-    },5000);
+  setTimeout(
+    () => {
+
+      message.style.display =
+        "none";
+
+    },
+    5000
+  );
 
 }
 
 
 /* =====================================================
-   SECURITY ESCAPING
+   SECURITY / HTML HELPERS
 ===================================================== */
 
 function escapeHTML(value){
 
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+  return String(value)
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
 
 function escapeAttribute(value){
 
-    return escapeHTML(value);
+  return escapeHTML(value);
 
 }
-
-
-/* =====================================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
-===================================================== */
-
-$("editModal")
-    .addEventListener(
-        "click",
-        event => {
-
-            if(
-                event.target ===
-                $("editModal")
-            ){
-
-                closeModal();
-
-            }
-
-        }
-    );
 
 </script>
 
