@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toptaekwondo.zone.id/sitemap.xml
